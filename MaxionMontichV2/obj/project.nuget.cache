@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QqWw/omD7xOK2z8ihobBbXlY5QOtDonrx2Z+5lBAiWF07Pv/1+JnHA6b2Qni+1it9DW+RehOUYR1fRFSpPT2VQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Didier\\Source\\Repos\\G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Didier\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}
