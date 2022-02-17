@@ -11,6 +11,7 @@ namespace MaxionMontichV2.Data
 
         }
 
+        public DbSet<Rol> Rol { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
     }
 }

@@ -22,5 +22,8 @@ namespace MaxionMontichV2.Models
         public string Rol { get; set; }
 
         public bool State { get; set; }
+
+        public Rol rol { get; set; }
+
     }
 }
