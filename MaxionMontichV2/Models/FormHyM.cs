@@ -5,26 +5,27 @@ namespace MaxionMontichV2.Models
     public class FormHyM
     {
         [Key]
-        public int IdForHyM { get; set; }
-        public string EquipoMaquina { get; set; }
-        public string Puesto { get; set; }
-        public string EPP { get; set; }
-        public string limpiezaYorganizacion { get; set; }
-        public string Protecciones { get; set; }
-        public string DoblesPulsadores { get; set; }
-        public string ParadaDeEmergencia { get; set; }
-        public string BarreraOpticaEnclavamientoElectrico { get; set; }
-        public string HerramientasManuales { get; set; }
-        public string PerdidasAireAguaAceite { get; set; }
-        public string Iluminacion { get; set; }
-        public string CondicionesInseguras { get; set; }
-        public string CarrosEmbalajes { get; set; }
-        public string PuertasTablerosElectricos { get; set; }
-        public string GuinchesBalanceadores { get; set; }
-        public string Entrenamiento { get; set; }
+        public int Id { get; set; }
+        public int IdHyM { get; set; }
+        public int Puesto { get; set; }
+        public int EPP { get; set; }
+        public int limpiezaYorganizacion { get; set; }
+        public int Protecciones { get; set; }
+        public int DoblesPulsadores { get; set; }
+        public int ParadaDeEmergencia { get; set; }
+        public int BarreraOpticaEnclavamientoElectrico { get; set; }
+        public int HerramientasManuales { get; set; }
+        public int PerdidasAireAguaAceite { get; set; }
+        public int Iluminacion { get; set; }
+        public int CondicionesInseguras { get; set; }
+        public int CarrosEmbalajes { get; set; }
+        public int PuertasTablerosElectricos { get; set; }
+        public int GuinchesBalanceadores { get; set; }
+        public int Entrenamiento { get; set; }
         public string Observaciones { get; set; }
         public string RespSolucion { get; set; }
 
         public Opciones opciones { get; set; }
+         
     }
 }
