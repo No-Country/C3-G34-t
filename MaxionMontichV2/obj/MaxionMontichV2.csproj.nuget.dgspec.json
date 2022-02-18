@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Cristian\\GitHub\\G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj": {}
+    "C:\\Users\\redfo\\Source\\Repos\\C3-G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj": {}
   },
   "projects": {
-    "D:\\Cristian\\GitHub\\G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj": {
+    "C:\\Users\\redfo\\Source\\Repos\\C3-G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Cristian\\GitHub\\G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj",
+        "projectUniqueName": "C:\\Users\\redfo\\Source\\Repos\\C3-G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj",
         "projectName": "MaxionMontichV2",
-        "projectPath": "D:\\Cristian\\GitHub\\G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj",
-        "packagesPath": "C:\\Users\\Didier\\.nuget\\packages\\",
-        "outputPath": "D:\\Cristian\\GitHub\\G34-t\\MaxionMontichV2\\obj\\",
+        "projectPath": "C:\\Users\\redfo\\Source\\Repos\\C3-G34-t\\MaxionMontichV2\\MaxionMontichV2.csproj",
+        "packagesPath": "C:\\Users\\redfo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\redfo\\Source\\Repos\\C3-G34-t\\MaxionMontichV2\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Didier\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\redfo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,12 +65,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.13, 5.0.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -75,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }
