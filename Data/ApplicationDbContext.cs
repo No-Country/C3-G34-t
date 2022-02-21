@@ -51,5 +51,9 @@ namespace AuditApp.Data
 
         // Lista de Entidades (colocar el "using" correspondiente)
         public DbSet<Auditor> Auditores { get; set; }
+        public DbSet<FormAutoElevadores> AutoElevadores { get; set; }
+        public DbSet<FormTableroElectrico> TablerosElectricos { get; set; }
+        public DbSet<FormHyM> HsyMs { get; set; }
+        public DbSet<Planta> Plantas{ get; set; }
     }
 }
