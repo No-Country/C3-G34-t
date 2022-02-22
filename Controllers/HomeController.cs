@@ -12,6 +12,8 @@ namespace AuditApp.Controllers
 {
     // El data notation de abajo está comentado provisoriamente para poder hacer pruebas en desarrollo sin tener que loguearse
     //[Authorize]
+
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
