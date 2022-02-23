@@ -1,0 +1,135 @@
+﻿@model AuditApp.Models.FormTableroElectrico
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>FormTableroElectrico</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TableroYSector)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TableroYSector)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CarteleriaSeñalizada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CarteleriaSeñalizada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CarteleriaBuenEstado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CarteleriaBuenEstado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CarteleriaEPP)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CarteleriaEPP)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MPCProcEscritos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MPCProcEscritos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MPCCandadosTarjetas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MPCCandadosTarjetas)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MPCTableroProtegido)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MPCTableroProtegido)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EPPCalzadoDielectrico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EPPCalzadoDielectrico)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EPPGuantesDielectrico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EPPGuantesDielectrico)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EPPLentes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EPPLentes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TableroLibre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TableroLibre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cerradura)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cerradura)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OrdenLimpieza)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OrdenLimpieza)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Matafuegos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Matafuegos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AuditorId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AuditorId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ResponsableDesvio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ResponsableDesvio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PlantaId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PlantaId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
