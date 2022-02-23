@@ -1,0 +1,346 @@
+﻿@model AuditApp.Models.FormAutoElevadores;
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Detalles formulario AutoElevadores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class=col-sm-12>
+        <h3>DETALLES FORMULARIO AUTOELEVADORES </h3>
+    </div>
+</div>
+
+<div class='container'>
+    <div class="row">
+        <div class="col-sm-10">
+            <form>
+                <div class='container'>
+
+                    <div class='row'>
+                        <label class='control-label'>1. Fecha de Auditoria</label>
+                        <input placeholder='@Model.Fecha' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>2. Razón Social/Empresa</label>
+                        <input placeholder='@Model.PlantaId' class='form-control' hidden />
+                        <input placeholder='@ViewBag.Planta' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>3. Equipo Nº:</label>
+                        <input placeholder='@Model.ElevadorID' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <b>
+                            <label class='control-label'>4. Los autoelevadores deberán contener una placa identificatoria para el equipo y otra para el accesorio, la cual debería contener, en forma visible, indeleble, destacada y redactada en idioma español, la siguiente información: </label>
+                        </b>
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>4.1 La carga máxima admisible a transportar, conforme el Sistema Métrico Legal Argentino (SIMELA). </label>
+                        <input placeholder='@Model.EtiquetaCargaMaxima' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>4.2 La tabla de carga y/o curvas que permitan el cálculo de cargas máximas admisibles para distintas condiciones de uso, en el sistema métrico legal argentino. </label>
+                        <input placeholder='@Model.EtiquetasCurvas' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>4.3 La identificación interna del autoelevador. </label>
+                        <input placeholder='@Model.Etiquetastringerna' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>4.4. Las placas deberán cumplir con lo establecido por la Norma IRAM 8412-1, o la que en el futuro la modifique o sustituya.</label>
+                        <input placeholder='@Model.IRAM8412' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <b>
+                            <label class='control-label'>5. La cabina del autoelevador deberá cumplir con los siguientes requisitos: </label>
+                        </b>
+
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>5.1 Estructura resistente que proteja al operador contra caídas, proyección de objetos o por desplazamiento de la carga.</label>
+                        <input placeholder='@Model.EstructuraContraCaidas' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'> 5.2 El autoelevador que deba operar con lluvia, nieve, agua nieve, etc., deberá contar con: cerramiento y un sistema de limpiaparabrisas, El aire en el interior de las cabinas con cerramientos, deberá cumplir los requisitos establecidos en la legislación vigente.</label>
+                        <input placeholder='@Model.ProteccionLLuvia' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>
+                            6. Los mandos de la puesta en marcha, aceleración, elevación y freno, deberán reunir las condiciones de seguridad necesarias para evitar el accionamiento involuntario.
+                        </label>
+                        <input placeholder='@Model.SeguridadMandos' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>
+                            7. El asiento del conductor deberá estar diseñado ergonómicamente, poseer soporte lumbar adecuado, ser cómodo, regulable en profundidad y tener la capacidad de neutralizar en medida suficiente las vibraciones.
+                        </label>
+                        <input placeholder='@Model.SillaConductor' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>
+                            <b>
+                                8. El autoelevador deberá estar provisto de los siguientes elementos de seguridad:
+                            </b>
+                        </label>
+
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'> 8.1 Cinturón de seguridad,</label>
+                        <input placeholder='@Model.CinturonSeguridad' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'> 8.2  Luces de giro, balizas, posición y freno, </label>
+                        <input placeholder='@Model.LucesGiroFreno' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.3 Luces de trabajo en aquellos casos donde la tarea que se realice con el autoelevador así lo requiera, </label>
+                        <input placeholder='@Model.LucesTrabajo' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.4 Bocina </label>
+                        <input placeholder='@Model.Bocina' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.5 Dispositivo de aviso de retroceso, acústico-luminoso</label>
+                        <input placeholder='@Model.AvisoRetroceso' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>8.6 Espejos retrovisores en ambos lados del vehículo, </label>
+                        <input placeholder='@Model.EspejosRetrovisores' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.7 Arrestallamas, en el caso de que se trabaje en ambientes que así lo requieran, </label>
+                        <input placeholder='@Model.Arrestallamas' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.8 Dispositivo aislante que envuelva el tubo de escape y puntos calientes, para impedir el contacto con materiales o personas evitando posibles quemaduras o incendios,</label>
+                        <input placeholder='@Model.FrenoEstacionario' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'> 8.9 Freno de estacionamiento que permita mantenerlo inmóvil con su carga máxima y con la pendiente máxima admisible,</label>
+                        <input placeholder='@Model.CuñasRuedas' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.10 Para trabajos en pendientes, debe estar provisto de cuñas para sus ruedas, las que se deben utilizar cuando el autoelevador se encuentre detenido,</label>
+                        <input placeholder='@Model.Extintor' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.11 Extintor acorde con el riesgo existente,</label>
+                        <input placeholder='@Model.MediosAsensoDesenso' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.12 Medios seguros para el ascenso y descenso del operador, </label>
+                        <input placeholder='@Model.AntideslizantesManoPisos' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>8.13 Superficies antideslizantes en pedales de mando, pisos y peldaños.</label>
+                        <input placeholder='@Model.ManualOperario' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>9. El manual del operador deberá estar redactado en idioma español, en el Sistema métrico legal argentino y ser accesible al operador</label>
+                       @* <input placeholder='@Model.' class='form-control' />*@
+                    </div><br />
+
+                    <div class='row'>
+                        <b>
+                            <label class='control-label'>10. El empleador, con el asesoramiento del responsable del servicio de higiene y seguridad de la empresa, deberá:</label>
+                        </b>
+
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'> 10.1 Establecer las velocidades seguras de circulación, colocando cartelería que indique los máximos permitidos, en todas las áreas donde circulen estos vehículos.</label>
+                        <input placeholder='@Model.CarteleraVelocidades' class='form-control' />
+                    </div><br />
+
+                    <div class='row' hidden>
+                        <label class='control-label'>Tomar los recaudos necesarios para que la operación sea segura, en aquellas superficies con obstáculos o desniveles que comprometan al autoelevador en su estabilidad o cuando se opere en superficies resbaladizas. </label>
+                        <input placeholder='@Model.' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>10.2 Señalizar todas las áreas donde se desplace el autoelevador, con cartelería de seguridad, correspondiente a todos los aspectos relacionados con su circulación. </label>
+                        <input placeholder='@Model.CarteleraViasCirculacion' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>10.3 Establecer la prohibición de circulación de personas debajo de la carga elevada. </label>
+                        <input placeholder='@Model.CarteleraProhibicionCarga' class='form-control' />
+                    </div><br />
+
+                    <div class='row'>
+                        <label class='control-label'>10.4 Pintar y señalizar la altura de techos cañerías y otras estructuras, con el fin de evitar accidentes cuando el vehículo se encuentre con la altura máxima de elevación de la torre</label>
+                        <input placeholder='@Model.SeñalizacionAltura' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <b>
+                            <label class='control-label'>11. El vehículo deberá contar con pictogramas y cartelería de prevención de riesgos sobre: </label>
+                        </b>
+
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>11.1 Uso del cinturón de seguridad, </label>
+                        <input placeholder='@Model.CarteleraCinturon' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>11.2 Riesgo de atrapamiento, </label>
+                        <input placeholder='@Model.CarteleraAtrapamiento' class='form-control' />
+                    </div><br />
+                    <div class='row' hidden>
+                        <label class='control-label'> Aplicación del freno de estacionamiento al salir del vehículo, </label>
+                        <input placeholder='@Model.' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>11.3 Presión de inflado de los neumáticos, </label>
+                        <input placeholder='@Model.CarteleraInfladoNeumaticos' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>11.4 Velocidades de circulación autorizadas,</label>
+                        <input placeholder='@Model.CarteleraVelocidadCirculacionAut' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'> 11.5 Prohibición de llevar, elevar o transportar personas, </label>
+                        <input placeholder='@Model.CarteleraProhibicionPersonas' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>11.6 Prohibición de circulación de personas por debajo de la carga,</label>
+                        <input placeholder='@Model.CarteleraVelocidadCirculacionPer' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>11.7 Riesgos en la recarga de baterías y recambio de envases de Gas Licuado de Petróleo (GLP).</label>
+                        <input placeholder='@Model.CarteleraRiesgosBateriasYGas' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>12. Sólo se permitirá la operación del autoelevador a conductores autorizados por el empleador para tal tarea. Dicha autorización se obtendrá tras una capacitación teórico-práctico no menor a DIEZ (10) horas con evaluación final. Asimismo se requiere una revalidación anual de DOS (2) horas de duración. El curso de capacitación se dictará a todos los conductores. En el caso de incorporar un conductor nuevo se deberá brindar dicho curso antes de comenzar a operar el equipo, aun cuando éste posea experiencia previa en el manejo de estos vehículos. </label>
+                        <input placeholder='@Model.OperacionPersonalAut' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <b>
+                            <label class='control-label'>13. El operador del autoelevador, deberá realizar un control diario del equipo en el inicio del turno de trabajo, mediante un listado de verificación o chequeo, que contendrá como mínimo los siguientes puntos: </label>
+                        </b>
+
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'> 13.1 Ruedas (banda de rodaje, presión, desgaste, etc.).</label>
+                        <input placeholder='@Model.ListadoControlRuedas' class='form-control' />
+                    </div><br />
+                    <div class='row' hidden>
+                        <label class='control-label'>Fijación de los brazos de la horquilla/uñas o del accesorio.</label>
+                        <input placeholder='@Model.ListadoFijacionBrazos' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.2 Inexistencia de fugas de fluidos en el circuito hidráulico,  mangueras y/o conexiones.</label>
+                        <input placeholder='@Model.ListadoFugasFluidos' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.3 Niveles de aceites.</label>
+                        <input placeholder='@Model.ListadoNivelAceite' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.4 Mandos en servicio.</label>
+                        <input placeholder='@Model.CheckMandosServicio' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.5 Bocina.</label>
+                        <input placeholder='@Model.CheckBocina' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.6 Luces.</label>
+                        <input placeholder='@Model.CheckLuces' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.7 Dispositivo de aviso de retroceso.</label>
+                        <input placeholder='@Model.CheckAvisoRetroceso' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.8 Frenos de pie y de mano.</label>
+                        <input placeholder='@Model.CheckFrenoPieMano' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.9 Espejos.</label>
+                        <input placeholder='@Model.CheckEspejos' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.10 Extintor.</label>
+                        <input placeholder='@Model.CheckExtintor' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.11 Cinturón de seguridad.</label>
+                        <input placeholder='@Model.CheckCinturonSeguridad' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.12 Sistema de  transmisión.</label>
+                        <input placeholder='@Model.CheckSistemaTransmision' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>13.13 Estado del asiento.</label>
+                        <input placeholder='@Model.CheckEstadoAsiento' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>14. El operador deberá informar al supervisor/responsable/encargado, de las irregularidades detectadas en el chequeo previo, debiendo indicar este último al operador si el autoelevador puede ser operado o debe ir a reparaciones de manera inmediata.</label>
+                        <input placeholder='@Model.InformeReparaciones' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>15. Si el autoelevador se encontrare fuera de servicio, deberá quedar claramente señalizado con la prohibición de su manejo por trabajadores no encargados de su reparación. </label>
+                        <input placeholder='@Model.SeñalizacionFueraServicio' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>16. Trimestralmente un profesional con incumbencia deberá realizar una revisión general del autoelevador.</label>
+                        <input placeholder='@Model.RevisionGeneralTriMestral' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>17. Se deberá registrar el programa interno de mantenimiento preventivo establecido por el fabricante, en caso de no contar con éste, se establecerá uno. Asimismo se deberá registrar el mantenimiento correctivo que se le realice al vehículo.</label>
+                        <input placeholder='@Model.ProgramaMantenimiento' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>18. El reaprovisionamiento de combustible, la carga de baterías y el recambio de envases de Gas Licuado de Petróleo (GLP), se realizará en lugares designados y equipados para tal propósito, los que deberán cumplir con la normativa vigente. El personal que realice esta tarea deberá utilizar los Elementos de Protección Personal seleccionados por el responsable de higiene y seguridad de la  empresa con la participación del servicio de medicina del trabajo, quien seguirá un procedimiento de trabajo seguro, para el cual será entrenado, capacitado y autorizado para realizarla. </label>
+                        <input placeholder='@Model.ElementosProteccionGLP' class='form-control' />
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>19. OBSERVACIONES</label>
+                        <textarea placeholder='@Model.Observaciones' class='form-control' ></textarea>
+                    </div><br />
+                    <div class='row'>
+                        <label class='control-label'>20. Apellido y Nombre Auditor *</label>
+                        <input placeholder='@Model.ResponsableDesvio' class='form-control' />
+                    </div><br />
+
+
+                    <div class="form-group">
+                        <a href="/FAutoElevadores/Index" value="Volver" class="btm btn-primary" >Volver</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
