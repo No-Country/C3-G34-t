@@ -1,0 +1,124 @@
+﻿@model AuditApp.Models.FormTableroElectrico
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>FormTableroElectrico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="TableroYSector" class="control-label"></label>
+                <input asp-for="TableroYSector" class="form-control" />
+                <span asp-validation-for="TableroYSector" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarteleriaSeñalizada" class="control-label"></label>
+                <input asp-for="CarteleriaSeñalizada" class="form-control" />
+                <span asp-validation-for="CarteleriaSeñalizada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarteleriaBuenEstado" class="control-label"></label>
+                <input asp-for="CarteleriaBuenEstado" class="form-control" />
+                <span asp-validation-for="CarteleriaBuenEstado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarteleriaEPP" class="control-label"></label>
+                <input asp-for="CarteleriaEPP" class="form-control" />
+                <span asp-validation-for="CarteleriaEPP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MPCProcEscritos" class="control-label"></label>
+                <input asp-for="MPCProcEscritos" class="form-control" />
+                <span asp-validation-for="MPCProcEscritos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MPCCandadosTarjetas" class="control-label"></label>
+                <input asp-for="MPCCandadosTarjetas" class="form-control" />
+                <span asp-validation-for="MPCCandadosTarjetas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MPCTableroProtegido" class="control-label"></label>
+                <input asp-for="MPCTableroProtegido" class="form-control" />
+                <span asp-validation-for="MPCTableroProtegido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EPPCalzadoDielectrico" class="control-label"></label>
+                <input asp-for="EPPCalzadoDielectrico" class="form-control" />
+                <span asp-validation-for="EPPCalzadoDielectrico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EPPGuantesDielectrico" class="control-label"></label>
+                <input asp-for="EPPGuantesDielectrico" class="form-control" />
+                <span asp-validation-for="EPPGuantesDielectrico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EPPLentes" class="control-label"></label>
+                <input asp-for="EPPLentes" class="form-control" />
+                <span asp-validation-for="EPPLentes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TableroLibre" class="control-label"></label>
+                <input asp-for="TableroLibre" class="form-control" />
+                <span asp-validation-for="TableroLibre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cerradura" class="control-label"></label>
+                <input asp-for="Cerradura" class="form-control" />
+                <span asp-validation-for="Cerradura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrdenLimpieza" class="control-label"></label>
+                <input asp-for="OrdenLimpieza" class="form-control" />
+                <span asp-validation-for="OrdenLimpieza" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Matafuegos" class="control-label"></label>
+                <input asp-for="Matafuegos" class="form-control" />
+                <span asp-validation-for="Matafuegos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuditorId" class="control-label"></label>
+                <input asp-for="AuditorId" class="form-control" />
+                <span asp-validation-for="AuditorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observaciones" class="control-label"></label>
+                <input asp-for="Observaciones" class="form-control" />
+                <span asp-validation-for="Observaciones" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResponsableDesvio" class="control-label"></label>
+                <input asp-for="ResponsableDesvio" class="form-control" />
+                <span asp-validation-for="ResponsableDesvio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlantaId" class="control-label"></label>
+                <input asp-for="PlantaId" class="form-control" />
+                <span asp-validation-for="PlantaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

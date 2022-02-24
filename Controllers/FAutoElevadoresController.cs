@@ -15,14 +15,45 @@ namespace AuditApp.Controllers
         {
             _context = context;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+
+
+        public IActionResult Index()
+        {
+            IEnumerable<FormAutoElevadores> LVFAE = null;
+            try
+            {
+            LVFAE = _context.AutoElevadores;
+               }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return View(LVFAE);
+        }
 
         [HttpGet]
-        //{{ServerURL}}/Rol/GetRol
-        public async Task<IActionResult> GetAE()
+        //HTTP GET
+        public IActionResult Create()
+        {
+            IEnumerable <Planta> LPlantas = null;
+            try
+            {
+                LPlantas = _context.Plantas;
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+            ViewData["Plantas"]=LPlantas;
+            ViewBag.Auditores = "";
+
+            return View();
+        }
+
+        [HttpGet]
+        //{{ServerURL}}/Rol/GetFAE
+        public async Task<IActionResult> GetFAE()
         {
             IEnumerable<FormAutoElevadores> LisFAE = null;
             try
@@ -33,23 +64,29 @@ namespace AuditApp.Controllers
             {
                 return BadRequest();
             }
-            return Ok(LisFAE);
+            return View(LisFAE);
         }
 
-
         [HttpGet]
-        //{{ServerURL}}/Rol/GetRolById?id=1
-        public async Task<IActionResult> GetFAEById(int id)
+        //{{ServerURL}}/Rol/DetailsId?id=1
+        public async Task<IActionResult> Details(int id)
         {
             FormAutoElevadores FAE = new FormAutoElevadores();
+            ViewBag.Planta = "";
             try
             {
                 if (id == null || id == 0)
                 {
                     return NotFound();
                 }
-
                 FAE = _context.AutoElevadores.Find(id);
+                try
+                {
+                    ViewBag.Planta = _context.Plantas.Find(FAE.PlantaId).Nombre.ToString();
+                }
+                catch {
+                    ViewBag.Planta = "No Disponible";
+                       }
 
                 if (FAE == null)
                 {
@@ -60,12 +97,12 @@ namespace AuditApp.Controllers
             {
                 return BadRequest();
             }
-            return Ok(FAE);
+            return View(FAE);
         }
 
         [HttpPost]
-        //{{ServerURL}}/ Rol / CreateRol /
-        public async Task<IActionResult> CreateFAE([FromBody] FormAutoElevadores fae)
+        //{{ServerURL}}/ Rol / CreateFAE /        [FromBody]
+        public async Task<IActionResult> CreateFAE(FormAutoElevadores fae)
         {
             if (ModelState.IsValid)
             {
@@ -80,10 +117,28 @@ namespace AuditApp.Controllers
                     return BadRequest();
                 }
             }
-            return Ok(fae);
+            return Redirect("Index");
         }
 
 
+
+
+        //Metodo agregado para concultar plantas desde otro Lugar diferente a la propia vista
+        [HttpGet]
+        //{{ServerURL}}/Rol/GetF
+        public async Task<IActionResult> GetPlantas()
+        {
+            IEnumerable<Planta> LPlantas = null;
+            try
+            {
+                LPlantas = _context.Plantas;
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+            return Ok(LPlantas);
+        }
 
 
     }
