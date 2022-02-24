@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UsuarioBase> SignInManager
+@inject UserManager<UsuarioBase> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,9 +15,11 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Auditor" asp-action="Index">AuditApp</a>
-                  @*<img src="~/img/auditapp.png"  />*@
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand" asp-area="" asp-controller="Auditor" asp-action="Index">
+                    <img src="~/img/auditapp.png" height="30" />AuditApp
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
 
@@ -21,8 +27,8 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <!-- <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-            </li> -->
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li> -->
 
 
                         <li class="nav-item">
@@ -30,12 +36,26 @@
 
                         </li>
                         @*lo mismo que sigue aca es para auditorias con el desplegable para q aparezcan directamente
-                los 3 tipos de formulario*@
-                        <li class=" nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Plantas" asp-action="Create">Plantas</a>
-                        </li>
+                        los 3 tipos de formulario*@
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class=" nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Plantas" asp-action="Create">Plantas</a>
+                            </li>
 
-                    </ul>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarFormsDropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Formularios
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarFormsDropdownMenu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Historial</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="HyM" asp-action="Details">Herramientas y Máquinas</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FAutoElevadores" asp-action="CreateFAE">Autoelevadores</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Tableros Eléctricos</a></li>
+                                </ul>
+                            </li>
+                        }
+                        </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>

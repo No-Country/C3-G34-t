@@ -8,8 +8,6 @@ namespace AuditApp.Models
 {
     public class FormTableroElectrico : FormBase
     {
-        [Key]
-        public int Id { get; set; }
         public string TableroYSector { get; set; }
         public string CarteleriaSeñalizada { get; set; }
         public string CarteleriaBuenEstado { get; set; }

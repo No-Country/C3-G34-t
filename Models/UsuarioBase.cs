@@ -22,7 +22,7 @@ namespace AuditApp.Models
 
         
         [Required(ErrorMessage = "Ingresar sólo números.Campo obligatorio")]
-        [StringLength(8, MinimumLength = 1)]
+        [StringLength(8, MinimumLength = 8)]
 
         public string DNI { get; set; }
 

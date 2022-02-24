@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace AuditApp.Models
 {
-    public class FormAutoElevadores :FormBase
+    public class FormAutoElevadores : FormBase
     {
-        [Key]
-        public int Id { get; set; }
         public string ElevadorID { get; set; }
         public string EtiquetaCargaMaxima { get; set; }
         public string EtiquetasCurvas { get; set; }

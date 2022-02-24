@@ -1,0 +1,332 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UsuarioBase> SignInManager
+@inject UserManager<UsuarioBase> UserManager
+@model FormHyM
+
+
+<h4>Formulario Herramientas y Máquinas</h4>
+<hr />
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <form asp-action="Create">
+                <input type="text" asp-for="AuditorId" value="@UserManager.GetUserAsync(User).Result.Id" class="invisible" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Fecha" class="control-label"></label>
+                    <input asp-for="Fecha" class="form-control bg-body" value="@DateTime.Now" type="text" readonly/>
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PlantaId" class="control-label">Razón Social / Empresa</label>
+                    <select asp-for="PlantaId" class="form-select" name="PlantaId">
+                        <option disabled>Elegir Planta</option>
+                        @foreach (var p in (IEnumerable<Planta>)ViewData["Plantas"])
+                        {
+                            <option value="@p.Id">@p.Nombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IdHyM" class="control-label"></label>
+                    <input asp-for="IdHyM" class="form-control" />
+                    <span asp-validation-for="IdHyM" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Puesto" class="control-label"></label>
+                    <input asp-for="Puesto" class="form-control" />
+                    <span asp-validation-for="Puesto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EPP" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EPP" value="Ok" id="eppok" checked />
+                            <label class="form-check-label" for="eppok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EPP" value="No Ok" id="eppnook" />
+                            <label class="form-check-label me-md-0" for="eppnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="EPP" value="No Aplica" id="eppnoaplica" />
+                            <label class="form-check-label me-md-0" for="eppnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="EPP" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="EPP" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LimpiezaYorganizacion" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LimpiezaYorganizacion" value="Ok" id="lyook" checked />
+                            <label class="form-check-label" for="lyook">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LimpiezaYorganizacion" value="No Ok" id="lyonook" />
+                            <label class="form-check-label me-md-0" for="lyonook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="LimpiezaYorganizacion" value="No Aplica" id="lyonoaplica" />
+                            <label class="form-check-label me-md-0" for="lyonoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="LimpiezaYorganizacion" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="LimpiezaYorganizacion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Protecciones" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Protecciones" value="Ok" id="protecok" checked />
+                            <label class="form-check-label" for="protecok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Protecciones" value="No Ok" id="protecnook" />
+                            <label class="form-check-label me-md-0" for="protecnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Protecciones" value="No Aplica" id="protecnoaplica" />
+                            <label class="form-check-label me-md-0" for="protecnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="Protecciones" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="Protecciones" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DoblesPulsadores" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="DoblesPulsadores" value="Ok" id="doblepulsapok" checked />
+                            <label class="form-check-label" for="doblepulsaok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="DoblesPulsadores" value="No Ok" id="doblepulsanook" />
+                            <label class="form-check-label me-md-0" for="doblepulsanook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="DoblesPulsadores" value="No Aplica" id="doblepulsanoaplica" />
+                            <label class="form-check-label me-md-0" for="doblepulsanoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="DoblesPulsadores" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="DoblesPulsadores" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ParadaDeEmergencia" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ParadaDeEmergencia" value="Ok" id="paraemergok" checked />
+                            <label class="form-check-label" for="paraemergok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ParadaDeEmergencia" value="No Ok" id="paraemergnook" />
+                            <label class="form-check-label me-md-0" for="paraemergnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="ParadaDeEmergencia" value="No Aplica" id="paraemergnoaplica" />
+                            <label class="form-check-label me-md-0" for="paraemergnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="ParadaDeEmergencia" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="ParadaDeEmergencia" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BarreraOpticaEnclavamientoElectrico" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="BarreraOpticaEnclavamientoElectrico" value="Ok" id="boeeok" checked />
+                            <label class="form-check-label" for="boeeok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="BarreraOpticaEnclavamientoElectrico" value="No Ok" id="boeenook" />
+                            <label class="form-check-label me-md-0" for="boeenook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="BarreraOpticaEnclavamientoElectrico" value="No Aplica" id="boeenoaplica" />
+                            <label class="form-check-label me-md-0" for="boeenoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="BarreraOpticaEnclavamientoElectrico" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="BarreraOpticaEnclavamientoElectrico" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HerramientasManuales" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="HerramientasManuales" value="Ok" id="harramanok" checked />
+                            <label class="form-check-label" for="harramanok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="HerramientasManuales" value="No Ok" id="harramannook" />
+                            <label class="form-check-label me-md-0" for="harramannook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="HerramientasManuales" value="No Aplica" id="harramannoaplica" />
+                            <label class="form-check-label me-md-0" for="harramannoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="HerramientasManuales" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="HerramientasManuales" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PerdidasAireAguaAceite" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="PerdidasAireAguaAceite" value="Ok" id="perdidasok" checked />
+                            <label class="form-check-label" for="perdidasok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="PerdidasAireAguaAceite" value="No Ok" id="perdidasnook" />
+                            <label class="form-check-label me-md-0" for="perdidasnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="PerdidasAireAguaAceite" value="No Aplica" id="perdidasnoaplica" />
+                            <label class="form-check-label me-md-0" for="perdidasnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="PerdidasAireAguaAceite" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="PerdidasAireAguaAceite" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Iluminacion" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Iluminacion" value="Ok" id="ilumok" checked />
+                            <label class="form-check-label" for="ilumok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Iluminacion" value="No Ok" id="ilumnook" />
+                            <label class="form-check-label me-md-0" for="ilumnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Iluminacion" value="No Aplica" id="ilumnoaplica" />
+                            <label class="form-check-label me-md-0" for="ilumnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="Iluminacion" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="Iluminacion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CondicionesInseguras" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="CondicionesInseguras" value="Ok" id="condicinsegok" checked />
+                            <label class="form-check-label" for="condicinsegok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="CondicionesInseguras" value="No Ok" id="condicinsegnook" />
+                            <label class="form-check-label me-md-0" for="condicinsegnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="CondicionesInseguras" value="No Aplica" id="condicinsegnoaplica" />
+                            <label class="form-check-label me-md-0" for="condicinsegnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="CondicionesInseguras" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="CondicionesInseguras" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CarrosEmbalajes" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="CarrosEmbalajes" value="Ok" id="carembaok" checked />
+                            <label class="form-check-label" for="carembaok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="CarrosEmbalajes" value="No Ok" id="carembanook" />
+                            <label class="form-check-label me-md-0" for="carembanook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="CarrosEmbalajes" value="No Aplica" id="carembanoaplica" />
+                            <label class="form-check-label me-md-0" for="carembanoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="CarrosEmbalajes" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="CarrosEmbalajes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PuertasTablerosElectricos" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="PuertasTablerosElectricos" value="Ok" id="puertablerosok" checked />
+                            <label class="form-check-label" for="puertablerosok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="PuertasTablerosElectricos" value="No Ok" id="puertablerosnook" />
+                            <label class="form-check-label me-md-0" for="puertablerosnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="PuertasTablerosElectricos" value="No Aplica" id="puertablerosnoaplica" />
+                            <label class="form-check-label me-md-0" for="puertablerosnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="PuertasTablerosElectricos" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="PuertasTablerosElectricos" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GuinchesBalanceadores" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="GuinchesBalanceadores" value="Ok" id="guinchbalancok" checked />
+                            <label class="form-check-label" for="guinchbalancok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="GuinchesBalanceadores" value="No Ok" id="guinchbalancnook" />
+                            <label class="form-check-label me-md-0" for="guinchbalancnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="GuinchesBalanceadores" value="No Aplica" id="guinchbalancnoaplica" />
+                            <label class="form-check-label me-md-0" for="guinchbalancnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="GuinchesBalanceadores" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="GuinchesBalanceadores" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Entrenamiento" class="control-label"></label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Entrenamiento" value="Ok" id="entrenamok" checked />
+                            <label class="form-check-label" for="entrenamok">Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Entrenamiento" value="No Ok" id="entrenamnook" />
+                            <label class="form-check-label me-md-0" for="entrenamnook">No Ok</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="Entrenamiento" value="No Aplica" id="entrenamnoaplica" />
+                            <label class="form-check-label me-md-0" for="entrenamnoaplica">No Aplica</label>
+                        </div>
+                        <span asp-validation-for="Entrenamiento" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="Entrenamiento" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Observaciones" class="control-label"></label>
+                    <textarea asp-for="Observaciones" class="form-control"></textarea>
+                    <span asp-validation-for="Observaciones" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ResponsableDesvio" class="control-label"></label>
+                    <input asp-for="ResponsableDesvio" class="form-control" />
+                    <span asp-validation-for="ResponsableDesvio" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <a type="button" class="btn btn-light border border-secondary mt-3 me-3" title="Cancelar" asp-controller="Auditor" asp-action="Index">Cancelar</a>
+                    <input type="submit" value="Enviar" class="btn btn-primary  border border-primary mt-3 me-3" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
