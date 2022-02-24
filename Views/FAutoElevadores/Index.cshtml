@@ -33,7 +33,7 @@
             <table class="table table-bordered tabletable-striped">
                 <thead>
                     <tr>
-                        <td>@Html.DisplayNameFor(m => m.Id)</td>
+                        <td>@Html.DisplayNameFor(m => m.FormID)</td>
                         <td>@Html.DisplayNameFor(m => m.ElevadorID)</td>
                         <td>@Html.DisplayNameFor(m => m.Fecha)</td>
                         <td>@Html.DisplayNameFor(m => m.Observaciones)</td>
@@ -45,13 +45,13 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Id</td>
+                            <td>@item.FormID</td>
                             <td>@item.ElevadorID</td>
                             <td>@item.Fecha</td>
                             <td>@item.Observaciones</td>
                             @*<td>@item.AuditorId</td>*@
                             <td>
-                                <a class="btn btn alert-primary" asp-action="Details" asp-controller="FAutoElevadores" asp-route-id="@item.Id">Detalle</a>
+                                <a class="btn btn alert-primary" asp-action="Details" asp-controller="FAutoElevadores" asp-route-id="@item.FormID">Detalle</a>
                             </td>
                         </tr>
                     }

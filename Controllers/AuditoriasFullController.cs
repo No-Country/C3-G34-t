@@ -18,6 +18,7 @@ namespace AuditApp.Controllers
         {
             _context = context;
         }
+        [HttpGet]
         public IActionResult Index(int Auth_id)
         {
             //ViewData["AE"] = "";
@@ -32,7 +33,7 @@ namespace AuditApp.Controllers
 
             try
             {
-                LVFAE = _context.AutoElevadores.Where(x => x.AuditorId.Equals(Auth_id)).ToList();
+                LVFAE = _context.AutoElevadores.Where(x => x.AuditorId.Equals("0")).ToList();
                 LVTE = _context.TablerosElectricos.Where(x => x.AuditorId.Equals(Auth_id)).ToList();
                 LVHyM = _context.HsyMs.Where(x => x.AuditorId.Equals(Auth_id)).ToList();
                 LPlantas = _context.Plantas.ToList();
@@ -44,7 +45,7 @@ namespace AuditApp.Controllers
                     Auth.Fecha = item.Fecha.ToString();
                     Auth.TipoFormulario = "AutoElevadores";
                     Auth.controlador = "FAutoElevadores";
-                    Auth.IdFormulario = item.Id;
+                    Auth.IdFormulario = item.FormID;
                     All.Add(Auth);
                 }
 
@@ -55,7 +56,7 @@ namespace AuditApp.Controllers
                     Auth.Fecha = item.Fecha.ToString();
                     Auth.TipoFormulario = "Tableros Electricos";
                     Auth.controlador = "FormTableroElectrico";
-                    Auth.IdFormulario = item.Id;
+                    Auth.IdFormulario = item.FormID;
                     All.Add(Auth);
                 }
 
@@ -66,7 +67,7 @@ namespace AuditApp.Controllers
                     Auth.Fecha = item.Fecha.ToString();
                     Auth.TipoFormulario = "Herramientas y Maquinas";
                     Auth.controlador = "HyM";
-                    Auth.IdFormulario = item.Id;
+                    Auth.IdFormulario = item.FormID;
                     All.Add(Auth);
                 }
 

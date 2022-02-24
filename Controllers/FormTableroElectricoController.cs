@@ -34,7 +34,7 @@ namespace AuditApp.Controllers
             }
 
             var formTableroElectrico = await _context.TablerosElectricos
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.FormID == id);
             if (formTableroElectrico == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace AuditApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")] FormTableroElectrico formTableroElectrico)
         {
-            if (id != formTableroElectrico.Id)
+            if (id != formTableroElectrico.FormID)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace AuditApp.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FormTableroElectricoExists(formTableroElectrico.Id))
+                    if (!FormTableroElectricoExists(formTableroElectrico.FormID))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace AuditApp.Controllers
             }
 
             var formTableroElectrico = await _context.TablerosElectricos
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.FormID == id);
             if (formTableroElectrico == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace AuditApp.Controllers
 
         private bool FormTableroElectricoExists(int id)
         {
-            return _context.TablerosElectricos.Any(e => e.Id == id);
+            return _context.TablerosElectricos.Any(e => e.FormID == id);
         }
     }
 }
