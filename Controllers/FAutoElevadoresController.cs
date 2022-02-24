@@ -23,7 +23,7 @@ namespace AuditApp.Controllers
             try
             {
             LVFAE = _context.AutoElevadores;
-            }
+               }
             catch (Exception e)
             {
                 return BadRequest();
