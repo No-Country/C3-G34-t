@@ -19,7 +19,7 @@ namespace AuditApp.Controllers
             _context = context;
         }
         [HttpGet]
-        public IActionResult Index(int Auth_id)
+        public IActionResult Index(Guid Auditor_Id)
         {
             //ViewData["AE"] = "";
             //ViewData["TE"] = "";
@@ -33,9 +33,9 @@ namespace AuditApp.Controllers
 
             try
             {
-                LVFAE = _context.AutoElevadores.Where(x => x.AuditorId.Equals("0")).ToList();
-                LVTE = _context.TablerosElectricos.Where(x => x.AuditorId.Equals(Auth_id)).ToList();
-                LVHyM = _context.HsyMs.Where(x => x.AuditorId.Equals(Auth_id)).ToList();
+                LVFAE = _context.AutoElevadores.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
+                LVTE = _context.TablerosElectricos.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
+                LVHyM = _context.HsyMs.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
                 LPlantas = _context.Plantas.ToList();
 
                 foreach (var item in LVFAE)

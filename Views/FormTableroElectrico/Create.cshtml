@@ -1,4 +1,7 @@
 ﻿@model AuditApp.Models.FormTableroElectrico
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<UsuarioBase> SignInManager
+@inject UserManager<UsuarioBase> UserManager
 
 @{
     ViewData["Title"] = "Create";
@@ -10,10 +13,22 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+             <div class='row' hidden>
+                    <label class='control-label'>GUID Auditor </label>
+                    <input asp-for='AuditorGuId' value="@UserManager.GetUserAsync(User).Result.Id">
+             </div><br />
+
+              <div class="form-group">
+                <label class='control-label'>Fecha de Auditoria</label>
+                <input type='date' asp-for='Fecha' value='Cumple' class="form-control">
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
-                <label asp-for="TableroYSector" class="control-label"></label>
+                <label asp-for="TableroYSector" class="control-label">Tablero y sector N°</label>
                 <input asp-for="TableroYSector" class="form-control" />
                 <span asp-validation-for="TableroYSector" class="text-danger"></span>
             </div>
@@ -82,16 +97,8 @@
                 <input asp-for="Matafuegos" class="form-control" />
                 <span asp-validation-for="Matafuegos" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AuditorId" class="control-label"></label>
-                <input asp-for="AuditorId" class="form-control" />
-                <span asp-validation-for="AuditorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
+           
+           
             <div class="form-group">
                 <label asp-for="Observaciones" class="control-label"></label>
                 <input asp-for="Observaciones" class="form-control" />

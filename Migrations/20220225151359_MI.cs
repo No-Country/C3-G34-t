@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AuditApp.Migrations
 {
-    public partial class CrearDb : Migration
+    public partial class MI : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,7 +46,7 @@ namespace AuditApp.Migrations
                 schema: "Identity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    FormID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ElevadorID = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EtiquetaCargaMaxima = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -101,7 +101,7 @@ namespace AuditApp.Migrations
                     RevisionGeneralTriMestral = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProgramaMantenimiento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ElementosProteccionGLP = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AuditorId = table.Column<int>(type: "int", nullable: false),
+                    AuditorGuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ResponsableDesvio = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -109,7 +109,7 @@ namespace AuditApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AutoElevadores", x => x.Id);
+                    table.PrimaryKey("PK_AutoElevadores", x => x.FormID);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,25 +117,25 @@ namespace AuditApp.Migrations
                 schema: "Identity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    FormID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdHyM = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Puesto = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EPP = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LimpiezaYorganizacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Protecciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DoblesPulsadores = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ParadaDeEmergencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BarreraOpticaEnclavamientoElectrico = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HerramientasManuales = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PerdidasAireAguaAceite = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Iluminacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CondicionesInseguras = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CarrosEmbalajes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PuertasTablerosElectricos = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GuinchesBalanceadores = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Entrenamiento = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AuditorId = table.Column<int>(type: "int", nullable: false),
+                    IdHyM = table.Column<int>(type: "int", nullable: false),
+                    Puesto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EPP = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LimpiezaYorganizacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Protecciones = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DoblesPulsadores = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ParadaDeEmergencia = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BarreraOpticaEnclavamientoElectrico = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HerramientasManuales = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PerdidasAireAguaAceite = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Iluminacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CondicionesInseguras = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CarrosEmbalajes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PuertasTablerosElectricos = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GuinchesBalanceadores = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Entrenamiento = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AuditorGuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ResponsableDesvio = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -143,7 +143,7 @@ namespace AuditApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HsyMs", x => x.Id);
+                    table.PrimaryKey("PK_HsyMs", x => x.FormID);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,7 +153,7 @@ namespace AuditApp.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -180,7 +180,7 @@ namespace AuditApp.Migrations
                 schema: "Identity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    FormID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TableroYSector = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CarteleriaSeñalizada = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -196,7 +196,7 @@ namespace AuditApp.Migrations
                     Cerradura = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrdenLimpieza = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Matafuegos = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AuditorId = table.Column<int>(type: "int", nullable: false),
+                    AuditorGuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Observaciones = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ResponsableDesvio = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -204,7 +204,7 @@ namespace AuditApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TablerosElectricos", x => x.Id);
+                    table.PrimaryKey("PK_TablerosElectricos", x => x.FormID);
                 });
 
             migrationBuilder.CreateTable(

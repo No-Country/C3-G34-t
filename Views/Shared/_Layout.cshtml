@@ -40,7 +40,7 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class=" nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Plantas" asp-action="Create">Plantas</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Plantas" asp-action="Index">Plantas</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -48,10 +48,10 @@
                                     Formularios
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarFormsDropdownMenu">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Historial</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="HyM" asp-action="Details">Herramientas y Máquinas</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="FAutoElevadores" asp-action="CreateFAE">Autoelevadores</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Tableros Eléctricos</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="AuditoriasFull" asp-action="Index" asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Historial</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="HyM" asp-action="Index" asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Herramientas y Máquinas</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FAutoElevadores" asp-action="Index"  asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Autoelevadores</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FormTableroElectrico" asp-action="Index" asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Tableros Eléctricos</a></li>
                                 </ul>
                             </li>
                         }

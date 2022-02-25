@@ -18,13 +18,14 @@ namespace AuditApp.Controllers
         {
             _context = context;
         }
-
+     
         // GET: FormTableroElectrico
         public async Task<IActionResult> Index()
         {
             return View(await _context.TablerosElectricos.ToListAsync());
         }
 
+      
         // GET: FormTableroElectrico/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +44,7 @@ namespace AuditApp.Controllers
             return View(formTableroElectrico);
         }
 
+     
         // GET: FormTableroElectrico/Create
         public IActionResult Create()
         {
@@ -54,8 +56,9 @@ namespace AuditApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")] FormTableroElectrico formTableroElectrico)
+        public async Task<IActionResult> Create(FormTableroElectrico formTableroElectrico)
         {
+            //[Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")]
             if (ModelState.IsValid)
             {
                 _context.Add(formTableroElectrico);

@@ -18,12 +18,29 @@ namespace AuditApp.Controllers
             _context = context;
         }
 
-        // GET: HyM
-        public async Task<IActionResult> Index()
+        public IActionResult Index(Guid Auditor_Id)
         {
-            //return View("../Auditor/Index");
-            return View(await _context.HsyMs.ToListAsync());
+            IEnumerable<FormHyM> LVHYV = null;
+            string u = "";
+            try
+            {
+                LVHYV = _context.HsyMs.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return View(LVHYV);
         }
+
+        // GET: HyM
+        //public async Task<IActionResult> Index()
+        //{
+        //    //return View("../Auditor/Index");
+        //    return View(await _context.HsyMs.ToListAsync());
+        //}
 
         // GET: HyM/Details/5
         public async Task<IActionResult> Details(int? id)

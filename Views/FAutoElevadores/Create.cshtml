@@ -1,5 +1,7 @@
 ﻿@model AuditApp.Models.FormAutoElevadores;
-
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<UsuarioBase> SignInManager
+@inject UserManager<UsuarioBase> UserManager
 
 @{
     ViewData["Title"] = "Crear nuevo FAE";
@@ -18,22 +20,28 @@
         <form method="post" asp-action="CreateFAE">
 
             <div class="container">
+                <div class='row' hidden>
+                    <label class='control-label'>GUID Auditor *</label>
+
+                    <input asp-for='AuditorGuId' value="@UserManager.GetUserAsync(User).Result.Id">
+                </div><br />
+
                 <div class='row'>
                     <label class='control-label'>1. Fecha de Auditoria</label>
                     <input type='date' asp-for='Fecha' value='Cumple'>
                 </div><br />
                 <div class='row'>
                     <label class='control-label'>2. Razón Social/Empresa</label>
-                    <select asp-for='PlantaId' name="select">
+                    <select  name="PlantaId">
                         @foreach (var item in (IEnumerable<Planta>)ViewData["Plantas"])
                         {
-                        <option value="@item.Id">@item.Nombre</option>                            
+                        <option asp-for='PlantaId' value="@item.Id">@item.Nombre</option>                            
                         }                         
                     </select>
                 </div><br />
 
                 <div class='row'>
-                    <label class='control-label'>3. Equipo Nº:</label>
+                    <label class='control-label'>3. Equipo AutoElevador Nº:</label>
                     <input asp-for='ElevadorID'>
                 </div><br />
                 <div class='row'>
@@ -721,9 +729,8 @@
                     <label class='control-label'>20. Apellido y Nombre Auditor *</label>
 
                     <input asp-for=' ResponsableDesvio'>
-
-
                 </div><br />
+                
 
             </div><br />
 

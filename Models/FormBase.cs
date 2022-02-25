@@ -14,7 +14,7 @@ namespace AuditApp.Models
         public int FormID { get; set; }
 
         [Required]
-        public int AuditorId { get; set; }
+        public Guid AuditorGuId { get; set; }
         
         [Required]
         [Display(Name = "Fecha de Auditoría")]
