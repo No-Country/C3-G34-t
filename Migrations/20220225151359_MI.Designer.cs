@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuditApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220221225552_CrearDb")]
-    partial class CrearDb
+    [Migration("20220225151359_MI")]
+    partial class MI
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace AuditApp.Migrations
 
             modelBuilder.Entity("AuditApp.Models.FormAutoElevadores", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FormID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -35,8 +35,8 @@ namespace AuditApp.Migrations
                     b.Property<string>("Arrestallamas")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AuditorId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AuditorGuId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AvisoRetroceso")
                         .HasColumnType("nvarchar(max)");
@@ -203,95 +203,110 @@ namespace AuditApp.Migrations
                     b.Property<string>("SillaConductor")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FormID");
 
                     b.ToTable("AutoElevadores");
                 });
 
             modelBuilder.Entity("AuditApp.Models.FormHyM", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FormID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AuditorId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AuditorGuId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BarreraOpticaEnclavamientoElectrico")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CarrosEmbalajes")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CondicionesInseguras")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DoblesPulsadores")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EPP")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Entrenamiento")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("GuinchesBalanceadores")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HerramientasManuales")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IdHyM")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdHyM")
+                        .HasColumnType("int");
 
                     b.Property<string>("Iluminacion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LimpiezaYorganizacion")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Observaciones")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ParadaDeEmergencia")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PerdidasAireAguaAceite")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PlantaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Protecciones")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PuertasTablerosElectricos")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Puesto")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ResponsableDesvio")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FormID");
 
                     b.ToTable("HsyMs");
                 });
 
             modelBuilder.Entity("AuditApp.Models.FormTableroElectrico", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FormID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AuditorId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("AuditorGuId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CarteleriaBuenEstado")
                         .HasColumnType("nvarchar(max)");
@@ -347,7 +362,7 @@ namespace AuditApp.Migrations
                     b.Property<string>("TableroYSector")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("FormID");
 
                     b.ToTable("TablerosElectricos");
                 });
@@ -360,6 +375,7 @@ namespace AuditApp.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

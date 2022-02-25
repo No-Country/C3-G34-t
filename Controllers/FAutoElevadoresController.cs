@@ -3,6 +3,7 @@ using AuditApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AuditApp.Controllers
@@ -17,13 +18,15 @@ namespace AuditApp.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(Guid Auditor_Id)
         {
             IEnumerable<FormAutoElevadores> LVFAE = null;
+            string u = "";
             try
             {
-            LVFAE = _context.AutoElevadores;
-               }
+                LVFAE = _context.AutoElevadores.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
+                
+            }
             catch (Exception e)
             {
                 return BadRequest();
@@ -66,7 +69,7 @@ namespace AuditApp.Controllers
             }
             return View(LisFAE);
         }
-
+        
         [HttpGet]
         //{{ServerURL}}/Rol/DetailsId?id=1
         public async Task<IActionResult> Details(int id)

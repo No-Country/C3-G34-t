@@ -1,6 +1,56 @@
-﻿@*
+﻿@using System.Collections
+@model IEnumerable<AuditApp.Models.FormHyM>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-<h1>Index HyM</h1>
+<div class="row">
+    <div class="col-sm-6">
+        <h3>AUDITORIAS MAQUINAS Y HERRAMIENTAS</h3>
+    </div>
+    <div class="col-sm-6">
+        <a class="btn btn alert-success d-block" asp-action="Create" asp-controller="HyM">Agregar HyM</a>
+    </div>
+</div>
+
+<div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered tabletable-striped">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(m => m.FormID)</td>
+                        <td>@Html.DisplayNameFor(m => m.IdHyM)</td>
+                        <td>@Html.DisplayNameFor(m => m.Fecha)</td>
+                        <td>@Html.DisplayNameFor(m => m.Observaciones)</td>
+                        @*<td>@Html.DisplayNameFor(m => m.AuditorId)</td>*@
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FormID</td>
+                            <td>@item.IdHyM</td>
+                            <td>@item.Fecha</td>
+                            <td>@item.Observaciones</td>
+                            @*<td>@item.AuditorId</td>*@
+                            <td>
+                                <a class="btn btn alert-primary" asp-action="Details" asp-controller="FormTableroElectrico" asp-route-id="@item.FormID">Detalle</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        }
+        else
+        {
+            <p>En el momento no hay tableros  que mostrar.</p>
+        }
+
+
+    </div>
