@@ -26,17 +26,10 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <!-- <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li> -->
-
-
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 
                         </li>
-                        @*lo mismo que sigue aca es para auditorias con el desplegable para q aparezcan directamente
-                        los 3 tipos de formulario*@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class=" nav-item">
@@ -48,7 +41,7 @@
                                     Formularios
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarFormsDropdownMenu">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Historial</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="AuditoriasFullController" asp-action="Index" asp-route-id="@UserManager.GetUserAsync(User).Result.Id">Historial</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="HyM" asp-action="Details">Herramientas y Máquinas</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="FAutoElevadores" asp-action="CreateFAE">Autoelevadores</a></li>
                                     <li><a class="dropdown-item" asp-area="" asp-controller="" asp-action="">Tableros Eléctricos</a></li>
