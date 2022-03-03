@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuditApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220225151359_MI")]
-    partial class MI
+    [Migration("20220226002207_nueva_migracion_inicial_correccion_campos")]
+    partial class nueva_migracion_inicial_correccion_campos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

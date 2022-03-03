@@ -7,22 +7,37 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AuditApp.Data;
 using AuditApp.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AuditApp.Controllers
 {
     public class FormTableroElectricoController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public FormTableroElectricoController(ApplicationDbContext context)
+        private readonly UserManager<UsuarioBase> _userManager;
+        public FormTableroElectricoController(ApplicationDbContext context, UserManager<UsuarioBase> UserManager)
         {
             _context = context;
+            _userManager = UserManager;
         }
-     
+
+        [Route("Tableros/Index/")]
         // GET: FormTableroElectrico
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TablerosElectricos.ToListAsync());
+            IEnumerable<FormTableroElectrico> LVTE;
+            try
+            {
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                LVTE = await _context.TablerosElectricos.Where(f => f.AuditorGuId.ToString() == currentUser.Id).ToListAsync();
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+            return View(LVTE);
         }
 
       

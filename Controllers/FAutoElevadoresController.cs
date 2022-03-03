@@ -1,6 +1,9 @@
 ﻿using AuditApp.Data;
 using AuditApp.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +14,20 @@ namespace AuditApp.Controllers
     public class FAutoElevadoresController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public FAutoElevadoresController(ApplicationDbContext context)
+        private readonly UserManager<UsuarioBase> _userManager;
+        public FAutoElevadoresController(ApplicationDbContext context, UserManager<UsuarioBase> UserManager)
         {
             _context = context;
+            _userManager = UserManager;
         }
-
-
-        public IActionResult Index(Guid Auditor_Id)
+        [Route("Autoelevadores/Index/")]
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<FormAutoElevadores> LVFAE = null;
-            string u = "";
+            IEnumerable<FormAutoElevadores> LVFAE;
             try
             {
-                LVFAE = _context.AutoElevadores.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
-                
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                LVFAE = await _context.AutoElevadores.Where(x => x.AuditorGuId.ToString() == currentUser.Id).ToListAsync();
             }
             catch (Exception e)
             {

@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] AuditApp</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -41,10 +42,11 @@
                                     Formularios
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarFormsDropdownMenu">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="AuditoriasFull" asp-action="Index" asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Historial</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="HyM" asp-action="Index" asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Herramientas y Máquinas</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="FAutoElevadores" asp-action="Index"  asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Autoelevadores</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="FormTableroElectrico" asp-action="Index" asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Tableros Eléctricos</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="AuditoriasFull" asp-action="Index">Historial</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="HyM" asp-action="Index">Herramientas y Máquinas</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FAutoElevadores" asp-action="Index">Autoelevadores</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="FormTableroElectrico" asp-action="Index">Tableros Eléctricos</a></li>
+                                    @*<li><a class="dropdown-item" asp-area="" asp-controller="FormTableroElectrico" asp-action="Index" asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Tableros Eléctricos</a></li>*@
                                 </ul>
                             </li>
                         }

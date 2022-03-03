@@ -1,6 +1,106 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UsuarioBase> SignInManager
+@inject UserManager<UsuarioBase> UserManager
+
+@model FormHyM
+
 <h1>Details HyM</h1>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <form>
+                <div class="form-group mt-2">
+                    <label asp-for="Fecha" class="control-label"></label>
+                    <div class="input-group my-1">
+                        <input asp-for="Fecha" class="form-control" value="@Model.Fecha" type="text" readonly />
+                    </div>
+                </div>
+                <div class="form-group mt-2">
+                    <label asp-for="PlantaId" class="control-label my-2">Razón Social / Empresa</label>
+                    <div class="input-group">
+                        <span class="material-icons input-group-text">factory</span>
+                        <input asp-for="PlantaId" class="form-control" value="@Model.PlantaId.ToString()" type="text" readonly>
+                    </div>
+                </div>
+                <div class="form-group mt-2">
+                    <label asp-for="IdHyM" class="control-label my-2"></label>
+                    <input asp-for="IdHyM" class="form-control" value="@Model.IdHyM" readonly/>
+                </div>
+                <div class="form-group mt-2">
+                    <label asp-for="Puesto" class="control-label my-2"></label>
+                    <input asp-for="Puesto" class="form-control" value="@Model.Puesto" readonly />
+                </div>
+                <div class="form-group mt-4">
+                    <label asp-for="EPP" class="control-label"></label>
+                    <input asp-for="EPP" class="form-control" value="@Model.EPP" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="LimpiezaYorganizacion" class="control-label"></label>
+                    <input asp-for="LimpiezaYorganizacion" class="form-control" value="@Model.LimpiezaYorganizacion" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="Protecciones" class="control-label"></label>
+                    <input asp-for="Protecciones" class="form-control" value="@Model.Protecciones" readonly />
+                </div>
+                <div class="form-group  mt-3">
+                    <label asp-for="DoblesPulsadores" class="control-label"></label>
+                    <input asp-for="DoblesPulsadores" class="form-control" value="@Model.DoblesPulsadores" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="ParadaDeEmergencia" class="control-label"></label>
+                    <input asp-for="ParadaDeEmergencia" class="form-control" value="@Model.ParadaDeEmergencia" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="BarreraOpticaEnclavamientoElectrico" class="control-label"></label>
+                    <input asp-for="BarreraOpticaEnclavamientoElectrico" class="form-control" value="@Model.BarreraOpticaEnclavamientoElectrico" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="HerramientasManuales" class="control-label"></label>
+                    <input asp-for="HerramientasManuales" class="form-control" value="@Model.HerramientasManuales" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="PerdidasAireAguaAceite" class="control-label"></label>
+                    <input asp-for="PerdidasAireAguaAceite" class="form-control" value="@Model.PerdidasAireAguaAceite" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="Iluminacion" class="control-label"></label>
+                    <input asp-for="Iluminacion" class="form-control" value="@Model.Iluminacion" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="CondicionesInseguras" class="control-label"></label>
+                    <input asp-for="CondicionesInseguras" class="form-control" value="@Model.CondicionesInseguras" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="CarrosEmbalajes" class="control-label"></label>
+                    <input asp-for="CarrosEmbalajes" class="form-control" value="@Model.CarrosEmbalajes" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="PuertasTablerosElectricos" class="control-label"></label>
+                    <input asp-for="PuertasTablerosElectricos" class="form-control" value="@Model.PuertasTablerosElectricos" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="GuinchesBalanceadores" class="control-label"></label>
+                    <input asp-for="GuinchesBalanceadores" class="form-control" value="@Model.GuinchesBalanceadores" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="Entrenamiento" class="control-label"></label>
+                    <input asp-for="Entrenamiento" class="form-control" value="@Model.Entrenamiento" readonly />
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="Observaciones" class="control-label my-1"></label>
+                    <textarea asp-for="Observaciones" class="form-control" style="height: 155px" readonly>@Model.Observaciones</textarea>
+                </div>
+                <div class="form-group mt-4">
+                    <label asp-for="ResponsableDesvio" class="control-label my-2"></label>
+                    <input asp-for="ResponsableDesvio" class="form-control" value="@Model.ResponsableDesvio" readonly />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<div>
+    <a asp-area="" asp-controller="HyM" asp-action="Index">Back to HyM List</a>
+</div>
