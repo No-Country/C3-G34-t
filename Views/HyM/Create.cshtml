@@ -4,8 +4,16 @@
 
 @model FormHyM
 
+@{
+    ViewData["Title"] = "Herramientas y Máquinas";
 
-<h3>Formulario Herramientas y Máquinas</h3>
+}
+
+<div class="row">
+    <div class=col-sm-12>
+        <h3>Nueva Auditoría Herramientas y Máquinas</h3>
+    </div>
+</div>
 <hr />
 @if (SignInManager.IsSignedIn(User))
 {
@@ -296,15 +304,15 @@
                 </div>
 
                 <div class="form-group mt-4 w-75">
-                    <a type="button" class="btn btn-light border border-secondary my-3 me-3 w-25" title="Cancelar" asp-controller="Auditor" asp-action="Index">Cancelar</a>
-                    <input type="submit" value="Enviar" class="btn btn-primary border border-primary my-3 w-50" />
+                    @*<a type="button" class="btn btn-light border border-secondary my-3 me-3 w-25" title="Cancelar" asp-controller="Auditor" asp-action="Index">Cancelar</a>*@
+                    <input type="submit" value="Guardar" class="btn btn-primary border border-primary my-3 w-50" />
                 </div>
             </form>
         </div>
     </div>
 }
 <div>
-    <a asp-area="" asp-controller="HyM" asp-action="Index">Back to HyM List</a>
+    <a asp-area="" asp-controller="HyM" asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
 </div>
 
 @section Scripts {
@@ -314,110 +322,3 @@
 
 
 
-
-@* RADIO BUTTONS BASE *@
-@*
-    <!-- Necesario (al comienzo, fuera del html) para manejo de usuario -->
-    @using Microsoft.AspNetCore.Identity
-    @inject SignInManager<UsuarioBase> SignInManager
-    @inject UserManager<UsuarioBase> UserManager
-
-    <!-- Necesario para que solo muestre si está logueado. También para obtener el ID de Usuario -->
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <div class="row">
-            <div class="col-md-6 mx-auto">
-                <form asp-action="Create">
-
-                    <!-- Input invisible para capturar y enviar ID de Usuario -->
-                    <input type="text" asp-for="AuditorGuId" value="@UserManager.GetUserAsync(User).Result.Id" class="invisible" />
-
-                    <!-- Fecha y Hora actual, Solo lectura -->
-                    <div asp-validation-summary="ModelOnly" class="text-danger my-1"></div>
-                    <div class="form-group mt-0">
-                        <label asp-for="Fecha" class="control-label"></label>
-                        <div class="input-group my-1">
-                            <input asp-for="Fecha" class="form-control-plaintext bg-body" value="@DateTime.Now" type="text" readonly />
-                        </div>
-                        <span asp-validation-for="Fecha" class="text-danger my-1"></span>
-                    </div>
-
-                    <!-- Select de Planta / Empresa -->
-                    <div class="form-group mt-1">
-                        <label asp-for="PlantaId" class="control-label my-2">Razón Social / Empresa</label>
-                        <div class="input-group">
-                            <span class="material-icons input-group-text">factory</span>
-                            <select asp-for="PlantaId" class="form-select" name="PlantaId">
-                                <option disabled selected>Elegir Planta</option>
-                                @foreach (var p in (IEnumerable<Planta>)ViewData["Plantas"])
-                                {
-                                    <option value="@p.Id">@p.Nombre</option>
-                                }
-                            </select>
-                        </div>
-                        <span asp-validation-for="PlantaId" class="text-danger my-1"></span>
-                    </div>
-
-                    <!-- Radio Button Model -->
-                    <div class="form-group mt-4">
-                        <label asp-for="NNN" class="control-label"></label>
-                        <div>
-                                <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="X" value="xxxxx" id="xx" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="xx">xxxxx</label>
-
-                                <input type="radio" class="btn-check" name="X" value="yyyyy" id="yy" autocomplete="off">
-                                <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="yy">yyyyy</label>
-
-                                <input type="radio" class="btn-check" name="X" value="zzzzz" id="zz" autocomplete="off">
-                                <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="zz">zzzzz</label>
-                            </div>
-                            <span asp-validation-for="NNN" class="text-danger my-1"></span>
-                        </div>
-                        <span asp-validation-for="NNN" class="text-danger my-1"></span>
-                    </div>
-
-                    <!-- Observaciones -->
-                    <div class="form-group mt-3">
-                        <label asp-for="Observaciones" class="control-label my-1"></label>
-                        <textarea asp-for="Observaciones" class="form-control" style="height: 155px"></textarea>
-                        <span asp-validation-for="Observaciones" class="text-danger my-1"></span>
-                    </div>
-
-                    <!-- Responsable Desvío -->
-                    <div class="form-group mt-4">
-                        <label asp-for="ResponsableDesvio" class="control-label my-2"></label>
-                        <input asp-for="ResponsableDesvio" class="form-control" />
-                        <span asp-validation-for="ResponsableDesvio" class="text-danger my-1"></span>
-                    </div>
-
-                    <!-- Botones -->
-                    <div class="form-group mt-4 w-75">
-                        <a type="button" class="btn btn-light border border-secondary my-3 me-3 w-25" title="Cancelar" asp-controller="Auditor" asp-action="Index">Cancelar</a>
-                        <input type="submit" value="Enviar" class="btn btn-primary border border-primary my-3 w-50" />
-                    </div>
-                </form>
-            </div>
-        </div>
-    }
-
-    <!-- Enlace para volver al listado (fuera del if) -->
-    <div>
-        <a asp-area="" asp-controller="HyM" asp-action="Index" asp-route-Auditor_Id="@UserManager.GetUserAsync(User).Result.Id">Back to HyM List</a>
-    </div>
-*@
-
-
-
-@*<div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="EPP" value="Ok" id="eppok" checked />
-        <label class="form-check-label" for="eppok">Ok</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="EPP" value="No Ok" id="eppnook" />
-        <label class="form-check-label me-md-0" for="eppnook">No Ok</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="EPP" value="No Aplica" id="eppnoaplica" />
-        <label class="form-check-label me-md-0" for="eppnoaplica">No Aplica</label>
-    </div>*@
