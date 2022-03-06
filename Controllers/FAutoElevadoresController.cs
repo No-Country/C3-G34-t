@@ -122,7 +122,7 @@ namespace AuditApp.Controllers
                     return BadRequest();
                 }
             }
-            return Redirect("Index");
+            return RedirectToAction("Index");
         }
 
 

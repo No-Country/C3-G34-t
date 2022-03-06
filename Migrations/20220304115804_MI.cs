@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AuditApp.Migrations
 {
-    public partial class nueva_migracion_inicial_correccion_campos : Migration
+    public partial class MI : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

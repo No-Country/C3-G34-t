@@ -28,8 +28,10 @@
 
                 <div class='row'>
                     <label class='control-label'>1. Fecha de Auditoria</label>
-                    <input type='date' asp-for='Fecha' value='Cumple'>
+                    @*<input type='date' asp-for='Fecha' value='Cumple'>*@
+                    <input asp-for="Fecha" value="@DateTime.Now" type="text" readonly />
                 </div><br />
+
                 <div class='row'>
                     <label class='control-label'>2. Razón Social/Empresa</label>
                     <select  name="PlantaId">
@@ -53,11 +55,11 @@
                 <div class='row'>
                     <label class='control-label'>4.1 La carga máxima admisible a transportar, conforme el Sistema Métrico Legal Argentino (SIMELA). </label>
                     <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='EtiquetaCargaMaxima' value='Cumple'>
+                        <input type='btn'class="btn-check" asp-for='EtiquetaCargaMaxima' value='Cumple'>
                         <label for='EtiquetaCargaMaxima'>Cumple      </label>
-                        <input type='radio' asp-for='EtiquetaCargaMaxima' value='No Cumple'>
+                        <input type='btn' class="btn-check" asp-for='EtiquetaCargaMaxima' value='No Cumple'>
                         <label for='EtiquetaCargaMaxima'>No Cumple      </label>
-                        <input type='radio' asp-for='EtiquetaCargaMaxima' value='No Aplica'>
+                        <input type='btn' class="btn-check" asp-for='EtiquetaCargaMaxima' value='No Aplica'>
                         <label for='EtiquetaCargaMaxima'>No Aplica</label>
                     </div>
 

@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace AuditApp.Controllers
@@ -13,13 +16,14 @@ namespace AuditApp.Controllers
     {
 
         private readonly ApplicationDbContext _context;
-
-        public AuditoriasFullController(ApplicationDbContext context)
+        private readonly UserManager<UsuarioBase> _userManager;
+        public AuditoriasFullController(ApplicationDbContext context, UserManager<UsuarioBase> UserManager)
         {
             _context = context;
+            _userManager = UserManager;
         }
         [HttpGet]
-        public IActionResult Index(Guid Auditor_Id)
+        public async Task<IActionResult> Index()
         {
             //ViewData["AE"] = "";
             //ViewData["TE"] = "";
@@ -32,10 +36,11 @@ namespace AuditApp.Controllers
             List<AuditoriasView> All = new();
 
             try
-            {
-                LVFAE = _context.AutoElevadores.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
-                LVTE = _context.TablerosElectricos.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
-                LVHyM = _context.HsyMs.Where(x => x.AuditorGuId.Equals(Auditor_Id)).ToList();
+            {                
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                LVFAE = _context.AutoElevadores.Where(x => x.AuditorGuId.ToString() == currentUser.Id).ToList();
+                LVTE = _context.TablerosElectricos.Where(x => x.AuditorGuId.ToString() == currentUser.Id).ToList();
+                LVHyM = _context.HsyMs.Where(x => x.AuditorGuId.ToString() == currentUser.Id).ToList();
                 LPlantas = _context.Plantas.ToList();
 
                 foreach (var item in LVFAE)
