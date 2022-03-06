@@ -4,746 +4,1116 @@
 @inject UserManager<UsuarioBase> UserManager
 
 @{
-    ViewData["Title"] = "Crear nuevo FAE";
+    ViewData["Title"] = "Autoelevadores";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 <div class="row">
     <div class=col-sm-12>
-        <h3>CREAR NUEVO FAE</h3>
+        <h3>Nueva Auditoría Autoelevadores</h3>
     </div>
 </div>
-
+<hr />
 <div class="row">
-    <div class=col-sm-10>
+    <div class="col-md-6 mx-auto">
         <form method="post" asp-action="CreateFAE">
-
-            <div class="container">
-                <div class='row' hidden>
-                    <label class='control-label'>GUID Auditor *</label>
-
-                    <input asp-for='AuditorGuId' value="@UserManager.GetUserAsync(User).Result.Id">
-                </div><br />
-
-                <div class='row'>
-                    <label class='control-label'>1. Fecha de Auditoria</label>
-                    <input type='date' asp-for='Fecha' value='Cumple'>
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>2. Razón Social/Empresa</label>
-                    <select  name="PlantaId">
-                        @foreach (var item in (IEnumerable<Planta>)ViewData["Plantas"])
-                        {
-                        <option asp-for='PlantaId' value="@item.Id">@item.Nombre</option>                            
-                        }                         
-                    </select>
-                </div><br />
-
-                <div class='row'>
-                    <label class='control-label'>3. Equipo AutoElevador Nº:</label>
-                    <input asp-for='ElevadorID'>
-                </div><br />
-                <div class='row'>
-                    <b>
-                    <label class='control-label'>4. Los autoelevadores deberán contener una placa identificatoria para el equipo y otra para el accesorio, la cual debería contener, en forma visible, indeleble, destacada y redactada en idioma español, la siguiente información: </label>
-                    </b>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>4.1 La carga máxima admisible a transportar, conforme el Sistema Métrico Legal Argentino (SIMELA). </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='EtiquetaCargaMaxima' value='Cumple'>
-                        <label for='EtiquetaCargaMaxima'>Cumple      </label>
-                        <input type='radio' asp-for='EtiquetaCargaMaxima' value='No Cumple'>
-                        <label for='EtiquetaCargaMaxima'>No Cumple      </label>
-                        <input type='radio' asp-for='EtiquetaCargaMaxima' value='No Aplica'>
-                        <label for='EtiquetaCargaMaxima'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>4.2 La tabla de carga y/o curvas que permitan el cálculo de cargas máximas admisibles para distintas condiciones de uso, en el sistema métrico legal argentino. </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='EtiquetasCurvas' value='Cumple'>
-                        <label for='EtiquetasCurvas'>Cumple      </label>
-                        <input type='radio' asp-for='EtiquetasCurvas' value='No Cumple'>
-                        <label for='EtiquetasCurvas'>No Cumple      </label>
-                        <input type='radio' asp-for='EtiquetasCurvas' value='No Aplica'>
-                        <label for='EtiquetasCurvas'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>4.3La identificación interna del autoelevador. </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='Etiquetastringerna' value='Cumple'>
-                        <label for='Etiquetastringerna'>Cumple      </label>
-                        <input type='radio' asp-for='Etiquetastringerna' value='No Cumple'>
-                        <label for='Etiquetastringerna'>No Cumple      </label>
-                        <input type='radio' asp-for='Etiquetastringerna' value='No Aplica'>
-                        <label for='Etiquetastringerna'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>4.4. Las placas deberán cumplir con lo establecido por la Norma IRAM 8412-1, o la que en el futuro la modifique o sustituya.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='IRAM8412' value='Cumple'>
-                        <label for='IRAM8412'>Cumple      </label>
-                        <input type='radio' asp-for='IRAM8412' value='No Cumple'>
-                        <label for='IRAM8412'>No Cumple      </label>
-                        <input type='radio' asp-for='IRAM8412' value='No Aplica'>
-                        <label for='IRAM8412'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <b>
-                    <label class='control-label'>5. La cabina del autoelevador deberá cumplir con los siguientes requisitos: </label>
-                    </b>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>5.1 Estructura resistente que proteja al operador contra caídas, proyección de objetos o por desplazamiento de la carga.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='EstructuraContraCaidas' value='Cumple'>
-                        <label for='EstructuraContraCaidas'>Cumple      </label>
-                        <input type='radio' asp-for='EstructuraContraCaidas' value='No Cumple'>
-                        <label for='EstructuraContraCaidas'>No Cumple      </label>
-                        <input type='radio' asp-for='EstructuraContraCaidas' value='No Aplica'>
-                        <label for='EstructuraContraCaidas'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'> 5.2 El autoelevador que deba operar con lluvia, nieve, agua nieve, etc., deberá contar con: cerramiento y un sistema de limpiaparabrisas, El aire en el interior de las cabinas con cerramientos, deberá cumplir los requisitos establecidos en la legislación vigente.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='ProteccionLLuvia' value='Cumple'>
-                        <label for='ProteccionLLuvia'>Cumple      </label>
-                        <input type='radio' asp-for='ProteccionLLuvia' value='No Cumple'>
-                        <label for='ProteccionLLuvia'>No Cumple      </label>
-                        <input type='radio' asp-for='ProteccionLLuvia' value='No Aplica'>
-                        <label for='ProteccionLLuvia'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>
-                        6. Los mandos de la puesta en marcha, aceleración, elevación y freno, deberán reunir las condiciones de seguridad necesarias para evitar el accionamiento involuntario.
-                        Marca solo un óvalo.
-                    </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='SeguridadMandos' value='Cumple'>
-                        <label for='SeguridadMandos'>Cumple      </label>
-                        <input type='radio' asp-for='SeguridadMandos' value='No Cumple'>
-                        <label for='SeguridadMandos'>No Cumple      </label>
-                        <input type='radio' asp-for='SeguridadMandos' value='No Aplica'>
-                        <label for='SeguridadMandos'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>7. El asiento del conductor deberá estar diseñado ergonómicamente, poseer soporte lumbar adecuado, ser cómodo, regulable en profundidad y tener la capacidad de neutralizar en medida suficiente las vibraciones.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='SillaConductor' value='Cumple'>
-                        <label for='SillaConductor'>Cumple      </label>
-                        <input type='radio' asp-for='SillaConductor' value='No Cumple'>
-                        <label for='SillaConductor'>No Cumple      </label>
-                        <input type='radio' asp-for='SillaConductor' value='No Aplica'>
-                        <label for='SillaConductor'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <b>                    
-                    <label class='control-label'>8. El autoelevador deberá estar provisto de los siguientes elementos de seguridad:</label>
-                    </b>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'> 8.1 Cinturón de seguridad,</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CinturonSeguridad' value='Cumple'>
-                        <label for='CinturonSeguridad'>Cumple      </label>
-                        <input type='radio' asp-for='CinturonSeguridad' value='No Cumple'>
-                        <label for='CinturonSeguridad'>No Cumple      </label>
-                        <input type='radio' asp-for='CinturonSeguridad' value='No Aplica'>
-                        <label for='CinturonSeguridad'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'> 8.2  Luces de giro, balizas, posición y freno, </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='LucesGiroFreno' value='Cumple'>
-                        <label for='LucesGiroFreno'>Cumple      </label>
-                        <input type='radio' asp-for='LucesGiroFreno' value='No Cumple'>
-                        <label for='LucesGiroFreno'>No Cumple      </label>
-                        <input type='radio' asp-for='LucesGiroFreno' value='No Aplica'>
-                        <label for='LucesGiroFreno'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.3 Luces de trabajo en aquellos casos donde la tarea que se realice con el autoelevador así lo requiera, </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='LucesTrabajo' value='Cumple'>
-                        <label for='LucesTrabajo'>Cumple      </label>
-                        <input type='radio' asp-for='LucesTrabajo' value='No Cumple'>
-                        <label for='LucesTrabajo'>No Cumple      </label>
-                        <input type='radio' asp-for='LucesTrabajo' value='No Aplica'>
-                        <label for='LucesTrabajo'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.4 Bocina, , </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='Bocina' value='Cumple'>
-                        <label for='Bocina'>Cumple      </label>
-                        <input type='radio' asp-for='Bocina' value='No Cumple'>
-                        <label for='Bocina'>No Cumple      </label>
-                        <input type='radio' asp-for='Bocina' value='No Aplica'>
-                        <label for='Bocina'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.5 Dispositivo de aviso de retroceso, acústico-luminoso</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='AvisoRetroceso' value='Cumple'>
-                        <label for='AvisoRetroceso'>Cumple      </label>
-                        <input type='radio' asp-for='AvisoRetroceso' value='No Cumple'>
-                        <label for='AvisoRetroceso'>No Cumple      </label>
-                        <input type='radio' asp-for='AvisoRetroceso' value='No Aplica'>
-                        <label for='AvisoRetroceso'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.6 Espejos retrovisores en ambos lados del vehículo, </label>
-
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='EspejosRetrovisores' value='Cumple'>
-                        <label for='EspejosRetrovisores'>Cumple      </label>
-                        <input type='radio' asp-for='EspejosRetrovisores' value='No Cumple'>
-                        <label for='EspejosRetrovisores'>No Cumple      </label>
-                        <input type='radio' asp-for='EspejosRetrovisores' value='No Aplica'>
-                        <label for='EspejosRetrovisores'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.7 Arrestallamas, en el caso de que se trabaje en ambientes que así lo requieran, </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='Arrestallamas' value='Cumple'>
-                        <label for='Arrestallamas'>Cumple      </label>
-                        <input type='radio' asp-for='Arrestallamas' value='No Cumple'>
-                        <label for='Arrestallamas'>No Cumple      </label>
-                        <input type='radio' asp-for='Arrestallamas' value='No Aplica'>
-                        <label for='Arrestallamas'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.8 Dispositivo aislante que envuelva el tubo de escape y puntos calientes, para impedir el contacto con materiales o personas evitando posibles quemaduras o incendios,</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='FrenoEstacionario' value='Cumple'>
-                        <label for='FrenoEstacionario'>Cumple      </label>
-                        <input type='radio' asp-for='FrenoEstacionario' value='No Cumple'>
-                        <label for='FrenoEstacionario'>No Cumple      </label>
-                        <input type='radio' asp-for='FrenoEstacionario' value='No Aplica'>
-                        <label for='FrenoEstacionario'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'> 8.9 Freno de estacionamiento que permita mantenerlo inmóvil con su carga máxima y con la pendiente máxima admisible,</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CuñasRuedas' value='Cumple'>
-                        <label for='CuñasRuedas'>Cumple      </label>
-                        <input type='radio' asp-for='CuñasRuedas' value='No Cumple'>
-                        <label for='CuñasRuedas'>No Cumple      </label>
-                        <input type='radio' asp-for='CuñasRuedas' value='No Aplica'>
-                        <label for='CuñasRuedas'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.10 Para trabajos en pendientes, debe estar provisto de cuñas para sus ruedas, las que se deben utilizar cuando el autoelevador se encuentre detenido,</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='Extintor' value='Cumple'>
-                        <label for='Extintor'>Cumple      </label>
-                        <input type='radio' asp-for='Extintor' value='No Cumple'>
-                        <label for='Extintor'>No Cumple      </label>
-                        <input type='radio' asp-for='Extintor' value='No Aplica'>
-                        <label for='Extintor'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.,11 Extintor acorde con el riesgo existente,</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='MediosAsensoDesenso' value='Cumple'>
-                        <label for='MediosAsensoDesenso'>Cumple      </label>
-                        <input type='radio' asp-for='MediosAsensoDesenso' value='No Cumple'>
-                        <label for='MediosAsensoDesenso'>No Cumple      </label>
-                        <input type='radio' asp-for='MediosAsensoDesenso' value='No Aplica'>
-                        <label for='MediosAsensoDesenso'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.12 Medios seguros para el ascenso y descenso del operador, </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='AntideslizantesManoPisos' value='Cumple'>
-                        <label for='AntideslizantesManoPisos'>Cumple      </label>
-                        <input type='radio' asp-for='AntideslizantesManoPisos' value='No Cumple'>
-                        <label for='AntideslizantesManoPisos'>No Cumple      </label>
-                        <input type='radio' asp-for='AntideslizantesManoPisos' value='No Aplica'>
-                        <label for='AntideslizantesManoPisos'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>8.13 Superficies antideslizantes en pedales de mando, pisos y peldaños.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='ManualOperario' value='Cumple'>
-                        <label for='ManualOperario'>Cumple      </label>
-                        <input type='radio' asp-for='ManualOperario' value='No Cumple'>
-                        <label for='ManualOperario'>No Cumple      </label>
-                        <input type='radio' asp-for='ManualOperario' value='No Aplica'>
-                        <label for='ManualOperario'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-
-                    <label class='control-label'>9. El manual del operador deberá estar redactado en idioma español, en el Sistema métrico legal argentino y ser accesible al operador</label>
-
-
-                </div><br />
-                <div class='row'>
-                    <b>
-                    <label class='control-label'>10. El empleador, con el asesoramiento del responsable del servicio de higiene y seguridad de la empresa, deberá:</label>
-                    </b>
-
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'> 10.1 Establecer las velocidades seguras de circulación, colocando cartelería que indique los máximos permitidos, en todas las áreas donde circulen estos vehículos.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraVelocidades' value='Cumple'>
-                        <label for='CarteleraVelocidades'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraVelocidades' value='No Cumple'>
-                        <label for='CarteleraVelocidades'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraVelocidades' value='No Aplica'>
-                        <label for='CarteleraVelocidades'>No Aplica</label>
-                    </div>
-
-                </div><br />
-
-                <div class='row'>
-                    <label class='control-label'>10.2 Señalizar todas las áreas donde se desplace el autoelevador, con cartelería de seguridad, correspondiente a todos los aspectos relacionados con su circulación. </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraViasCirculacion' value='Cumple'>
-                        <label for='CarteleraViasCirculacion'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraViasCirculacion' value='No Cumple'>
-                        <label for='CarteleraViasCirculacion'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraViasCirculacion' value='No Aplica'>
-                        <label for='CarteleraViasCirculacion'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>10.3 Establecer la prohibición de circulación de personas debajo de la carga elevada. </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraProhibicionCarga' value='Cumple'>
-                        <label for='CarteleraProhibicionCarga'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraProhibicionCarga' value='No Cumple'>
-                        <label for='CarteleraProhibicionCarga'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraProhibicionCarga' value='No Aplica'>
-                        <label for='CarteleraProhibicionCarga'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>10.4 Pintar y señalizar la altura de techos cañerías y otras estructuras, con el fin de evitar accidentes cuando el vehículo se encuentre con la altura máxima de elevación de la torre</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='SeñalizacionAltura' value='Cumple'>
-                        <label for='SeñalizacionAltura'>Cumple      </label>
-                        <input type='radio' asp-for='SeñalizacionAltura' value='No Cumple'>
-                        <label for='SeñalizacionAltura'>No Cumple      </label>
-                        <input type='radio' asp-for='SeñalizacionAltura' value='No Aplica'>
-                        <label for='SeñalizacionAltura'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <b>
-                    <label class='control-label'>11. El vehículo deberá contar con pictogramas y cartelería de prevención de riesgos sobre: </label>
-                    </b>
-
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>11.1 Uso del cinturón de seguridad, </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraCinturon' value='Cumple'>
-                        <label for='CarteleraCinturon'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraCinturon' value='No Cumple'>
-                        <label for='CarteleraCinturon'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraCinturon' value='No Aplica'>
-                        <label for='CarteleraCinturon'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>11.2 Riesgo de atrapamiento, </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraAtrapamiento' value='Cumple'>
-                        <label for='CarteleraAtrapamiento'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraAtrapamiento' value='No Cumple'>
-                        <label for='CarteleraAtrapamiento'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraAtrapamiento' value='No Aplica'>
-                        <label for='CarteleraAtrapamiento'>No Aplica</label>
-                    </div>
-
-                </div><br />
-
-                <div class='row'>
-                    <label class='control-label'>11.3 Presión de inflado de los neumáticos, </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraInfladoNeumaticos' value='Cumple'>
-                        <label for='CarteleraInfladoNeumaticos'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraInfladoNeumaticos' value='No Cumple'>
-                        <label for='CarteleraInfladoNeumaticos'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraInfladoNeumaticos' value='No Aplica'>
-                        <label for='CarteleraInfladoNeumaticos'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>11.4 Velocidades de circulación autorizadas,</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraVelocidadCirculacionAut' value='Cumple'>
-                        <label for='CarteleraVelocidadCirculacionAut'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraVelocidadCirculacionAut' value='No Cumple'>
-                        <label for='CarteleraVelocidadCirculacionAut'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraVelocidadCirculacionAut' value='No Aplica'>
-                        <label for='CarteleraVelocidadCirculacionAut'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'> 11.5 Prohibición de llevar, elevar o transportar personas, </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraProhibicionPersonas' value='Cumple'>
-                        <label for='CarteleraProhibicionPersonas'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraProhibicionPersonas' value='No Cumple'>
-                        <label for='CarteleraProhibicionPersonas'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraProhibicionPersonas' value='No Aplica'>
-                        <label for='CarteleraProhibicionPersonas'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>11.6 Prohibición de circulación de personas por debajo de la carga,</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraVelocidadCirculacionPer' value='Cumple'>
-                        <label for='CarteleraVelocidadCirculacionPer'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraVelocidadCirculacionPer' value='No Cumple'>
-                        <label for='CarteleraVelocidadCirculacionPer'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraVelocidadCirculacionPer' value='No Aplica'>
-                        <label for='CarteleraVelocidadCirculacionPer'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>11.7 Riesgos en la recarga de baterías y recambio de envases de Gas Licuado de Petróleo (GLP).</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CarteleraRiesgosBateriasYGas' value='Cumple'>
-                        <label for='CarteleraRiesgosBateriasYGas'>Cumple      </label>
-                        <input type='radio' asp-for='CarteleraRiesgosBateriasYGas' value='No Cumple'>
-                        <label for='CarteleraRiesgosBateriasYGas'>No Cumple      </label>
-                        <input type='radio' asp-for='CarteleraRiesgosBateriasYGas' value='No Aplica'>
-                        <label for='CarteleraRiesgosBateriasYGas'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>12. Sólo se permitirá la operación del autoelevador a conductores autorizados por el empleador para tal tarea. Dicha autorización se obtendrá tras una capacitación teórico-práctico no menor a DIEZ (10) horas con evaluación final. Asimismo se requiere una revalidación anual de DOS (2) horas de duración. El curso de capacitación se dictará a todos los conductores. En el caso de incorporar un conductor nuevo se deberá brindar dicho curso antes de comenzar a operar el equipo, aun cuando éste posea experiencia previa en el manejo de estos vehículos. </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='OperacionPersonalAut' value='Cumple'>
-                        <label for='OperacionPersonalAut'>Cumple      </label>
-                        <input type='radio' asp-for='OperacionPersonalAut' value='No Cumple'>
-                        <label for='OperacionPersonalAut'>No Cumple      </label>
-                        <input type='radio' asp-for='OperacionPersonalAut' value='No Aplica'>
-                        <label for='OperacionPersonalAut'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <b>
-                    <label class='control-label'>13. El operador del autoelevador, deberá realizar un control diario del equipo en el inicio del turno de trabajo, mediante un listado de verificación o chequeo, que contendrá como mínimo los siguientes puntos: </label>
-                    </b>
-
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'> 13.1 Ruedas (banda de rodaje, presión, desgaste, etc.).</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='ListadoControlRuedas' value='Cumple'>
-                        <label for='ListadoControlRuedas'>Cumple      </label>
-                        <input type='radio' asp-for='ListadoControlRuedas' value='No Cumple'>
-                        <label for='ListadoControlRuedas'>No Cumple      </label>
-                        <input type='radio' asp-for='ListadoControlRuedas' value='No Aplica'>
-                        <label for='ListadoControlRuedas'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>Fijación de los brazos de la horquilla/uñas o del accesorio.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='ListadoFijacionBrazos' value='Cumple'>
-                        <label for='ListadoFijacionBrazos'>Cumple      </label>
-                        <input type='radio' asp-for='ListadoFijacionBrazos' value='No Cumple'>
-                        <label for='ListadoFijacionBrazos'>No Cumple      </label>
-                        <input type='radio' asp-for='ListadoFijacionBrazos' value='No Aplica'>
-                        <label for='ListadoFijacionBrazos'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.2 Inexistencia de fugas de fluidos en el circuito hidráulico,  mangueras y/o conexiones.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='ListadoFugasFluidos' value='Cumple'>
-                        <label for='ListadoFugasFluidos'>Cumple      </label>
-                        <input type='radio' asp-for='ListadoFugasFluidos' value='No Cumple'>
-                        <label for='ListadoFugasFluidos'>No Cumple      </label>
-                        <input type='radio' asp-for='ListadoFugasFluidos' value='No Aplica'>
-                        <label for='ListadoFugasFluidos'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.3 Niveles de aceites.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='ListadoNivelAceite' value='Cumple'>
-                        <label for='ListadoNivelAceite'>Cumple      </label>
-                        <input type='radio' asp-for='ListadoNivelAceite' value='No Cumple'>
-                        <label for='ListadoNivelAceite'>No Cumple      </label>
-                        <input type='radio' asp-for='ListadoNivelAceite' value='No Aplica'>
-                        <label for='ListadoNivelAceite'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.4 Mandos en servicio.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckMandosServicio' value='Cumple'>
-                        <label for='CheckMandosServicio'>Cumple      </label>
-                        <input type='radio' asp-for='CheckMandosServicio' value='No Cumple'>
-                        <label for='CheckMandosServicio'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckMandosServicio' value='No Aplica'>
-                        <label for='CheckMandosServicio'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.5 Bocina.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckBocina' value='Cumple'>
-                        <label for='CheckBocina'>Cumple      </label>
-                        <input type='radio' asp-for='CheckBocina' value='No Cumple'>
-                        <label for='CheckBocina'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckBocina' value='No Aplica'>
-                        <label for='CheckBocina'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.6 Luces.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckLuces' value='Cumple'>
-                        <label for='CheckLuces'>Cumple      </label>
-                        <input type='radio' asp-for='CheckLuces' value='No Cumple'>
-                        <label for='CheckLuces'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckLuces' value='No Aplica'>
-                        <label for='CheckLuces'>No Aplica</label>
-                    </div>
-
-                </div>"
-                <div class='row'>
-                    <label class='control-label'>13.7 Dispositivo de aviso de retroceso.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckAvisoRetroceso' value='Cumple'>
-                        <label for='CheckAvisoRetroceso'>Cumple      </label>
-                        <input type='radio' asp-for='CheckAvisoRetroceso' value='No Cumple'>
-                        <label for='CheckAvisoRetroceso'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckAvisoRetroceso' value='No Aplica'>
-                        <label for='CheckAvisoRetroceso'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.8 Frenos de pie y de mano.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckFrenoPieMano' value='Cumple'>
-                        <label for='CheckFrenoPieMano'>Cumple      </label>
-                        <input type='radio' asp-for='CheckFrenoPieMano' value='No Cumple'>
-                        <label for='CheckFrenoPieMano'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckFrenoPieMano' value='No Aplica'>
-                        <label for='CheckFrenoPieMano'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.9 Espejos.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckEspejos' value='Cumple'>
-                        <label for='CheckEspejos'>Cumple      </label>
-                        <input type='radio' asp-for='CheckEspejos' value='No Cumple'>
-                        <label for='CheckEspejos'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckEspejos' value='No Aplica'>
-                        <label for='CheckEspejos'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.10 Extintor.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckExtintor' value='Cumple'>
-                        <label for='CheckExtintor'>Cumple      </label>
-                        <input type='radio' asp-for='CheckExtintor' value='No Cumple'>
-                        <label for='CheckExtintor'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckExtintor' value='No Aplica'>
-                        <label for='CheckExtintor'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.11 Cinturón de seguridad.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckCinturonSeguridad' value='Cumple'>
-                        <label for='CheckCinturonSeguridad'>Cumple      </label>
-                        <input type='radio' asp-for='CheckCinturonSeguridad' value='No Cumple'>
-                        <label for='CheckCinturonSeguridad'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckCinturonSeguridad' value='No Aplica'>
-                        <label for='CheckCinturonSeguridad'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.12 Sistema de  transmisión.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckSistemaTransmision' value='Cumple'>
-                        <label for='CheckSistemaTransmision'>Cumple      </label>
-                        <input type='radio' asp-for='CheckSistemaTransmision' value='No Cumple'>
-                        <label for='CheckSistemaTransmision'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckSistemaTransmision' value='No Aplica'>
-                        <label for='CheckSistemaTransmision'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>13.13 Estado del asiento.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='CheckEstadoAsiento' value='Cumple'>
-                        <label for='CheckEstadoAsiento'>Cumple      </label>
-                        <input type='radio' asp-for='CheckEstadoAsiento' value='No Cumple'>
-                        <label for='CheckEstadoAsiento'>No Cumple      </label>
-                        <input type='radio' asp-for='CheckEstadoAsiento' value='No Aplica'>
-                        <label for='CheckEstadoAsiento'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                "<div class='row'>
-                    <label class='control-label'>14. El operador deberá informar al supervisor/responsable/encargado, de las irregularidades detectadas en el chequeo previo, debiendo indicar este último al operador si el autoelevador puede ser operado o debe ir a reparaciones de manera inmediata.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='InformeReparaciones' value='Cumple'>
-                        <label for='InformeReparaciones'>Cumple      </label>
-                        <input type='radio' asp-for='InformeReparaciones' value='No Cumple'>
-                        <label for='InformeReparaciones'>No Cumple      </label>
-                        <input type='radio' asp-for='InformeReparaciones' value='No Aplica'>
-                        <label for='InformeReparaciones'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>15. Si el autoelevador se encontrare fuera de servicio, deberá quedar claramente señalizado con la prohibición de su manejo por trabajadores no encargados de su reparación. </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='SeñalizacionFueraServicio' value='Cumple'>
-                        <label for='SeñalizacionFueraServicio'>Cumple      </label>
-                        <input type='radio' asp-for='SeñalizacionFueraServicio' value='No Cumple'>
-                        <label for='SeñalizacionFueraServicio'>No Cumple      </label>
-                        <input type='radio' asp-for='SeñalizacionFueraServicio' value='No Aplica'>
-                        <label for='SeñalizacionFueraServicio'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>16. Trimestralmente un profesional con incumbencia deberá realizar una revisión general del autoelevador.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='RevisionGeneralTriMestral' value='Cumple'>
-                        <label for='RevisionGeneralTriMestral'>Cumple      </label>
-                        <input type='radio' asp-for='RevisionGeneralTriMestral' value='No Cumple'>
-                        <label for='RevisionGeneralTriMestral'>No Cumple      </label>
-                        <input type='radio' asp-for='RevisionGeneralTriMestral' value='No Aplica'>
-                        <label for='RevisionGeneralTriMestral'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>17. Se deberá registrar el programa interno de mantenimiento preventivo establecido por el fabricante, en caso de no contar con éste, se establecerá uno. Asimismo se deberá registrar el mantenimiento correctivo que se le realice al vehículo.</label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='ProgramaMantenimiento' value='Cumple'>
-                        <label for='ProgramaMantenimiento'>Cumple      </label>
-                        <input type='radio' asp-for='ProgramaMantenimiento' value='No Cumple'>
-                        <label for='ProgramaMantenimiento'>No Cumple      </label>
-                        <input type='radio' asp-for='ProgramaMantenimiento' value='No Aplica'>
-                        <label for='ProgramaMantenimiento'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>18. El reaprovisionamiento de combustible, la carga de baterías y el recambio de envases de Gas Licuado de Petróleo (GLP), se realizará en lugares designados y equipados para tal propósito, los que deberán cumplir con la normativa vigente. El personal que realice esta tarea deberá utilizar los Elementos de Protección Personal seleccionados por el responsable de higiene y seguridad de la  empresa con la participación del servicio de medicina del trabajo, quien seguirá un procedimiento de trabajo seguro, para el cual será entrenado, capacitado y autorizado para realizarla. </label>
-                    <div class='row-cols-sm-auto'>
-                        <input type='radio' asp-for='ElementosProteccionGLP' value='Cumple'>
-                        <label for='ElementosProteccionGLP'>Cumple      </label>
-                        <input type='radio' asp-for='ElementosProteccionGLP' value='No Cumple'>
-                        <label for='ElementosProteccionGLP'>No Cumple      </label>
-                        <input type='radio' asp-for='ElementosProteccionGLP' value='No Aplica'>
-                        <label for='ElementosProteccionGLP'>No Aplica</label>
-                    </div>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>19. OBSERVACIONES</label>
-
-                    <textarea asp-for='Observaciones'></textarea>
-
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>20. Apellido y Nombre Auditor *</label>
-
-                    <input asp-for=' ResponsableDesvio'>
-                </div><br />
-                
-
-            </div><br />
-
-            <div class="form-group">
-                <input type="submit" value="Crear Registro" class="btm btn-primary" />
+            <input type="text" asp-for="AuditorGuId" value="@UserManager.GetUserAsync(User).Result.Id" class="invisible" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger my-1"></div>
+            <div class="form-group mt-0">
+                <b>
+                    <label class='control-label'>1. Fecha</label>
+                </b>
+                @*<label asp-for="Fecha" class="control-label"></label>*@
+                <div class="input-group my-1">
+                    <input asp-for="Fecha" class="form-control-plaintext bg-body" value="@DateTime.Now" type="text" readonly />
+                </div>
+                <span asp-validation-for="Fecha" class="text-danger my-1"></span>
             </div>
+            <div class="form-group mt-1">
+                <b>
+                    <label class='control-label'>2. Razón Social / Empresa</label>
+                </b>
+                @*<label asp-for="PlantaId" class="control-label my-2">Razón Social / Empresa</label>*@
+                <div class="input-group">
+                    <span class="material-icons input-group-text">factory</span>
+                    <select asp-for="PlantaId" class="form-select" name="PlantaId">
+                        <option disabled selected>Elegir Planta</option>
+                        @foreach (var p in (IEnumerable<Planta>)ViewData["Plantas"])
+                        {
+                            <option value="@p.Id">@p.Nombre</option>
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="PlantaId" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <b>
+                    <label class='control-label'>3. Elevador ID</label>
+                </b>
+                @*<label asp-for="ElevadorID" class="control-label my-2"></label>*@
+                <input asp-for="ElevadorID" class="form-control" />
+                <span asp-validation-for="ElevadorID" class="text-danger my-1"></span>
+            </div>
+            <div class="form-group mt-4">
+                <b>
+                    <label class='control-label'>4. Los autoelevadores deberán contener una placa identificatoria para el equipo y otra para el accesorio, la cual debería contener, en forma visible, indeleble, destacada y redactada en idioma español, la siguiente información</label>
+                </b>
+
+            </div>
+            <div class="form-group mt-4">
+                <label class='control-label'>4.1 La carga máxima admisible a transportar, conforme el Sistema Métrico Legal Argentino (SIMELA). </label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="EtiquetaCargaMaxima" value="Ok" id="EtiquetaCargaMaximaok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EtiquetaCargaMaximaok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="EtiquetaCargaMaxima" value="No Ok" id="EtiquetaCargaMaximanook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="EtiquetaCargaMaximanook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="EtiquetaCargaMaxima" value="No Aplica" id="EtiquetaCargaMaximanoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EtiquetaCargaMaximanoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="EtiquetaCargaMaxima" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="EtiquetaCargaMaxima" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>4.2 La tabla de carga y/o curvas que permitan el cálculo de cargas máximas admisibles para distintas condiciones de uso, en el sistema métrico legal argentino</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="EtiquetasCurvas" value="Ok" id="EtiquetasCurvasok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EtiquetasCurvasok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="EtiquetasCurvas" value="No Ok" id="EtiquetasCurvasnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="EtiquetasCurvasnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="EtiquetasCurvas" value="No Aplica" id="EtiquetasCurvasnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EtiquetasCurvasnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="EtiquetasCurvas" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="EtiquetasCurvas" class="text-danger my-1"></span>
+            </div>
+
+
+            <div class="form-group mt-3">
+                <label class='control-label'>4.3 La identificación interna del autoelevador</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="Etiquetastringerna" value="Ok" id="Etiquetastringernaok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Etiquetastringernaok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="Etiquetastringerna" value="No Ok" id="Etiquetastringernanook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="Etiquetastringernanook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="Etiquetastringerna" value="No Aplica" id="Etiquetastringernanoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Etiquetastringernanoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="Etiquetastringerna" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="Etiquetastringerna" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>4.4. Las placas deberán cumplir con lo establecido por la Norma IRAM 8412-1, o la que en el futuro la modifique o sustituya</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="IRAM8412" value="Ok" id="IRAM8412ok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="IRAM8412ok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="IRAM8412" value="No Ok" id="IRAM8412nook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="IRAM8412nook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="IRAM8412" value="No Aplica" id="IRAM8412noaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="IRAM8412noaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="IRAM8412" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="IRAM8412" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <b>
+                    <label class='control-label'>5. La cabina del autoelevador deberá cumplir con los siguientes requisitos</label>
+                </b>
+
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>5.1 Estructura resistente que proteja al operador contra caídas, proyección de objetos o por desplazamiento de la carga</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="EstructuraContraCaidas" value="Ok" id="EstructuraContraCaidasok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EstructuraContraCaidasok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="EstructuraContraCaidas" value="No Ok" id="EstructuraContraCaidasnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="EstructuraContraCaidasnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="EstructuraContraCaidas" value="No Aplica" id="EstructuraContraCaidasnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EstructuraContraCaidasnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="EstructuraContraCaidas" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="EstructuraContraCaidas" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>5.2 El autoelevador que deba operar con lluvia, nieve, agua nieve, etc., deberá contar con: cerramiento y un sistema de limpiaparabrisas, el aire en el interior de las cabinas con cerramientos, deberá cumplir los requisitos establecidos en la legislación vigente</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="ProteccionLLuvia" value="Ok" id="ProteccionLLuviaok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ProteccionLLuviaok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="ProteccionLLuvia" value="No Ok" id="ProteccionLLuvianook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ProteccionLLuvianook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="ProteccionLLuvia" value="No Aplica" id="ProteccionLLuvianoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ProteccionLLuvianoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="ProteccionLLuvia" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="ProteccionLLuvia" class="text-danger my-1"></span>
+            </div>
+          
+            <div class="form-group mt-3">
+                <b><label class='control-label'>6. Los mandos de la puesta en marcha, aceleración, elevación y freno, deberán reunir las condiciones de seguridad necesarias para evitar el accionamiento involuntario</label></b>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="SeguridadMandos" value="Ok" id="SeguridadMandosok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="SeguridadMandosok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="SeguridadMandos" value="No Ok" id="SeguridadMandosnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="SeguridadMandosnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="SeguridadMandos" value="No Aplica" id="SeguridadMandosnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="SeguridadMandosnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="SeguridadMandos" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="SeguridadMandos" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>7. El asiento del conductor deberá estar diseñado ergonómicamente, poseer soporte lumbar adecuado, ser cómodo, regulable en profundidad y tener la capacidad de neutralizar en medida suficiente las vibraciones</label></b>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="SillaConductor" value="Ok" id="SillaConductorok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="SillaConductorok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="SillaConductor" value="No Ok" id="SillaConductornook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="SillaConductornook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="SillaConductor" value="No Aplica" id="SillaConductornoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="SillaConductornoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="SillaConductor" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="SillaConductor" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b>
+                    <label class='control-label'>8. El autoelevador deberá estar provisto de los siguientes elementos de seguridad</label>
+                </b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.1 Cinturón de seguridad</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CinturonSeguridad" value="Ok" id="CinturonSeguridadok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CinturonSeguridadok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CinturonSeguridad" value="No Ok" id="CinturonSeguridadnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CinturonSeguridadnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CinturonSeguridad" value="No Aplica" id="CinturonSeguridadnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CinturonSeguridadnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CinturonSeguridad" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CinturonSeguridad" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'> 8.2  Luces de giro, balizas, posición y freno </label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="LucesGiroFreno" value="Ok" id="LucesGiroFrenook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="LucesGiroFrenook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="LucesGiroFreno" value="No Ok" id="LucesGiroFrenonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="LucesGiroFrenonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="LucesGiroFreno" value="No Aplica" id="LucesGiroFrenonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="LucesGiroFrenonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="LucesGiroFreno" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="LucesGiroFreno" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.3 Luces de trabajo en aquellos casos donde la tarea que se realice con el autoelevador así lo requiera</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="LucesTrabajo" value="Ok" id="LucesTrabajook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="LucesTrabajook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="LucesTrabajo" value="No Ok" id="LucesTrabajonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="LucesTrabajonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="LucesTrabajo" value="No Aplica" id="LucesTrabajonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="LucesTrabajonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="LucesTrabajo" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="LucesTrabajo" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.4 Bocina </label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="Bocina" value="Ok" id="Bocinaok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Bocinaok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="Bocina" value="No Ok" id="Bocinanook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="Bocinanook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="Bocina" value="No Aplica" id="Bocinanoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Bocinanoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="Bocina" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="Bocina" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.5 Dispositivo de aviso de retroceso, acústico-luminoso </label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="AvisoRetroceso" value="Ok" id="AvisoRetrocesook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="AvisoRetrocesook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="AvisoRetroceso" value="No Ok" id="AvisoRetrocesonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="AvisoRetrocesonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="AvisoRetroceso" value="No Aplica" id="AvisoRetrocesonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="AvisoRetrocesonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="AvisoRetroceso" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="AvisoRetroceso" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.6 Espejos retrovisores en ambos lados del vehículo</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="EspejosRetrovisores" value="Ok" id="EspejosRetrovisoresok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EspejosRetrovisoresok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="EspejosRetrovisores" value="No Ok" id="EspejosRetrovisoresnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="EspejosRetrovisoresnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="EspejosRetrovisores" value="No Aplica" id="EspejosRetrovisoresnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EspejosRetrovisoresnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="EspejosRetrovisores" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="EspejosRetrovisores" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.7 Arrestallamas, en el caso de que se trabaje en ambientes que así lo requieran</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="Arrestallamas" value="Ok" id="Arrestallamasok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Arrestallamasok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="Arrestallamas" value="No Ok" id="Arrestallamasnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="Arrestallamasnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="Arrestallamas" value="No Aplica" id="Arrestallamasnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Arrestallamasnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="Arrestallamas" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="Arrestallamas" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.8 Dispositivo aislante que envuelva el tubo de escape y puntos calientes, para impedir el contacto con materiales o personas evitando posibles quemaduras o incendios</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="DispositivoAislante" value="Ok" id="DispositivoAislanteok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="DispositivoAislanteok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="DispositivoAislante" value="No Ok" id="DispositivoAislanteok" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="DispositivoAislanteok">No ok</label>
+
+                        <input type="radio" class="btn-check" name="DispositivoAislante" value="No Aplica" id="DispositivoAislantenoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="DispositivoAislantenoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="DispositivoAislante" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="DispositivoAislante" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.9 Para trabajos en pendientes, debe estar provisto de cuñas para sus ruedas, las que se deben utilizar cuando el autoelevador se encuentre detenido</label>
+                <div>
+
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CuñasRuedas" value="Ok" id="CuñasRuedasok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CuñasRuedasok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CuñasRuedas" value="No Ok" id="CuñasRuedasnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CuñasRuedasnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CuñasRuedas" value="No Aplica" id="CuñasRuedasnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CuñasRuedasnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CuñasRuedas" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CuñasRuedas" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.10 Freno de estacionamiento que permita mantenerlo inmóvil con su carga máxima y con la pendiente máxima admisible</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="FrenoEstacionario" value="Ok" id="FrenoEstacionariook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="FrenoEstacionariook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="FrenoEstacionario" value="No Ok" id="FrenoEstacionarioook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="FrenoEstacionarionook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="FrenoEstacionario" value="No Aplica" id="FrenoEstacionarionoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="FrenoEstacionarionoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="FrenoEstacionario" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="FrenoEstacionario" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.11 Extintor acorde con el riesgo existente</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="Extintor" value="Ok" id="Extintorok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Extintorok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="Extintor" value="No Ok" id="Extintornook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="Extintornook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="Extintor" value="No Aplica" id="Extintornoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Extintornoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="Extintor" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="Extintor" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.12 Medios seguros para el ascenso y descenso del operador</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="MediosAsensoDesenso" value="Ok" id="MediosAsensoDesensook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="MediosAsensoDesensook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="MediosAsensoDesenso" value="No Ok" id="MediosAsensoDesensonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="MediosAsensoDesensonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="MediosAsensoDesenso" value="No Aplica" id="MediosAsensoDesensonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="MediosAsensoDesensonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="MediosAsensoDesenso" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="MediosAsensoDesenso" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.13 Superficies antideslizantes en pedales de mando, pisos y peldaños</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="AntideslizantesManoPisos" value="Ok" id="AntideslizantesManoPisosok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="AntideslizantesManoPisosok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="AntideslizantesManoPisos" value="No Ok" id="AntideslizantesManoPisosnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="AntideslizantesManoPisosnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="AntideslizantesManoPisos" value="No Aplica" id="AntideslizantesManoPisosnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="AntideslizantesManoPisosnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="AntideslizantesManoPisos" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="AntideslizantesManoPisos" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>9. El manual del operador deberá estar redactado en idioma español, en el Sistema métrico legal argentino y ser accesible al operador</label></b>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="ManualOperario" value="Ok" id="ManualOperariook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ManualOperariook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="ManualOperario" value="No Ok" id="ManualOperarionook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ManualOperarionook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="ManualOperario" value="No Aplica" id="ManualOperarionoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ManualOperarionoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="ManualOperario" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="ManualOperario" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b>
+                    <label class='control-label'>10. El empleador, con el asesoramiento del responsable del servicio de higiene y seguridad de la empresa, deberá</label>
+                </b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'> 10.1  Establecer las velocidades seguras de circulación, colocando cartelería que indique los máximos permitidos, en todas las áreas donde circulen estos vehículos</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraVelocidades" value="Ok" id="CarteleraVelocidadesok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraVelocidadesok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraVelocidades" value="No Ok" id="CarteleraVelocidadesnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraVelocidadesnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraVelocidades" value="No Aplica" id="CarteleraVelocidadesnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraVelocidadesnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraVelocidades" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraVelocidades" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>10.2 Señalizar todas las áreas donde se desplace el autoelevador, con cartelería de seguridad, correspondiente a todos los aspectos relacionados con su circulación</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraViasCirculacion" value="Ok" id="CarteleraViasCirculacionok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraViasCirculacionok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraViasCirculacion" value="No Ok" id="CarteleraViasCirculacionnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraViasCirculacionnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraViasCirculacion" value="No Aplica" id="CarteleraViasCirculacionnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraViasCirculacionnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraViasCirculacion" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraViasCirculacion" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>10.3 Establecer la prohibición de circulación de personas debajo de la carga elevada</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionCarga" value="Ok" id="CarteleraProhibicionCargaok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraProhibicionCargaok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionCarga" value="No Ok" id="CarteleraProhibicionCarganook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraProhibicionCarganook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionCarga" value="No Aplica" id="CarteleraProhibicionCarganoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraProhibicionCarganoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraProhibicionCarga" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraProhibicionCarga" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>10.4 Pintar y señalizar la altura de techos cañerías y otras estructuras, con el fin de evitar accidentes cuando el vehículo se encuentre con la altura máxima de elevación de la torre</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="SeñalizacionAltura" value="Ok" id="SeñalizacionAlturaok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="SeñalizacionAlturaok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="SeñalizacionAltura" value="No Ok" id="SeñalizacionAlturanook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="SeñalizacionAlturanook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="SeñalizacionAltura" value="No Aplica" id="SeñalizacionAlturanoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="SeñalizacionAlturanoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="SeñalizacionAltura" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="SeñalizacionAltura" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b>
+                    <label class='control-label'>11. El vehículo deberá contar con pictogramas y cartelería de prevención de riesgos sobre</label>
+                </b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.1 Uso del cinturón de seguridad </label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraCinturon" value="Ok" id="CarteleraCinturonok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraCinturonok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraCinturon" value="No Ok" id="CarteleraCinturonnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraCinturonnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraCinturon" value="No Aplica" id="CarteleraCinturonnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraCinturonnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraCinturon" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraCinturon" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.2 Riesgo de atrapamiento</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraAtrapamiento" value="Ok" id="CarteleraAtrapamientook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraAtrapamientook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraAtrapamiento" value="No Ok" id="CarteleraAtrapamientonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraAtrapamientonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraAtrapamiento" value="No Aplica" id="CarteleraAtrapamientonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraAtrapamientononoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraAtrapamiento" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraAtrapamiento" class="text-danger my-1"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label class='control-label'>11.3 Presión de inflado de los neumáticos</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraInfladoNeumaticos" value="Ok" id="CarteleraInfladoNeumaticosok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraInfladoNeumaticosok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraInfladoNeumaticos" value="No Ok" id="CarteleraInfladoNeumaticosnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraInfladoNeumaticosnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraInfladoNeumaticos" value="No Aplica" id="CarteleraInfladoNeumaticosnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraInfladoNeumaticosonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraInfladoNeumaticos" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraInfladoNeumaticos" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.4 Velocidades de circulación autorizadas</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraVelocidadCirculacionAut" value="Ok" id="CarteleraVelocidadCirculacionAutok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraVelocidadCirculacionAutok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraVelocidadCirculacionAut" value="No Ok" id="CarteleraVelocidadCirculacionAutnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraVelocidadCirculacionAutnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraVelocidadCirculacionAut" value="No Aplica" id="CarteleraVelocidadCirculacionAutnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraVelocidadCirculacionAutnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraVelocidadCirculacionAut" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraVelocidadCirculacionAut" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.5 Prohibición de llevar, elevar o transportar personas</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionPersonas" value="Ok" id="CarteleraProhibicionPersonasok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraProhibicionPersonasok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionPersonas" value="No Ok" id="CarteleraProhibicionPersonasnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraProhibicionPersonasnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionPersonas" value="No Aplica" id="CarteleraProhibicionPersonasnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraProhibicionPersonasnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraProhibicionPersonas" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraProhibicionPersonas" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.6 Prohibición de circulación de personas por debajo de la carga</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionCircPersonas" value="Ok" id="CarteleraProhibicionCircPersonasok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraProhibicionCircPersonasok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionCircPersonas" value="No Ok" id="CarteleraProhibicionCircPersonasnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraProhibicionCircPersonasnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraProhibicionCircPersonas" value="No Aplica" id="CarteleraProhibicionCircPersonasnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraProhibicionCircPersonasnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraProhibicionCircPersonas" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraProhibicionCircPersonas" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.7 Aplicación de freno de estacionamiento al salir del vehículo</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraAplicarFreno" value="Ok" id="CarteleraAplicarFrenook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraAplicarFrenook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraAplicarFreno" value="No Ok" id="CarteleraAplicarFrenonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraAplicarFrenonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraAplicarFreno" value="No Aplica" id="CarteleraAplicarFrenonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraAplicarFrenonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraAplicarFreno" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraAplicarFreno" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.8 Riesgos en la recarga de baterías y recambio de envases de Gas Licuado de Petróleo (GLP)</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CarteleraRiesgosBateriasYGas" value="Ok" id="CarteleraRiesgosBateriasYGasok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraRiesgosBateriasYGasok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraRiesgosBateriasYGas" value="No Ok" id="CarteleraRiesgosBateriasYGasnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleraRiesgosBateriasYGasnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CarteleraRiesgosBateriasYGas" value="No Aplica" id="CarteleraRiesgosBateriasYGasnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleraRiesgosBateriasYGasnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CarteleraRiesgosBateriasYGas" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CarteleraRiesgosBateriasYGas" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>12. Sólo se permitirá la operación del autoelevador a conductores autorizados por el empleador para tal tarea. Dicha autorización se obtendrá tras una capacitación teórico-práctico no menor a DIEZ (10) horas con evaluación final. Asimismo se requiere una revalidación anual de DOS (2) horas de duración. El curso de capacitación se dictará a todos los conductores. En el caso de incorporar un conductor nuevo se deberá brindar dicho curso antes de comenzar a operar el equipo, aun cuando éste posea experiencia previa en el manejo de estos vehículos</label></b>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="OperacionPersonalAut" value="Ok" id="OperacionPersonalAutok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="OperacionPersonalAutok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="OperacionPersonalAut" value="No Ok" id="OperacionPersonalAutnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="OperacionPersonalAutnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="OperacionPersonalAut" value="No Aplica" id="OperacionPersonalAutnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="OperacionPersonalAutnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="OperacionPersonalAut" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="OperacionPersonalAut" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b>
+                    <label class='control-label'>13. El operador del autoelevador, deberá realizar un control diario del equipo en el inicio del turno de trabajo, mediante un listado de verificación o chequeo, que contendrá como mínimo los siguientes puntos</label>
+                </b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.1 Ruedas (banda de rodaje, presión, desgaste, etc.)</label>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="ListadoControlRuedas" value="Ok" id="ListadoControlRuedasok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ListadoControlRuedasok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="ListadoControlRuedas" value="No Ok" id="ListadoControlRuedasnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ListadoControlRuedasnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="ListadoControlRuedas" value="No Aplica" id="ListadoControlRuedasnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ListadoControlRuedasnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="ListadoControlRuedas" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="ListadoControlRuedas" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.2 Fijación de los brazos de la horquilla/uñas o del accesorio</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="ListadoFijacionBrazos" value="Ok" id="ListadoFijacionBrazosok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ListadoFijacionBrazosok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="ListadoFijacionBrazos" value="No Ok" id="ListadoFijacionBrazosnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ListadoFijacionBrazosnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="ListadoFijacionBrazos" value="No Aplica" id="ListadoFijacionBrazosnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ListadoFijacionBrazosnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="ListadoFijacionBrazos" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="ListadoFijacionBrazos" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.3 Inexistencia de fugas de fluidos en el circuito hidráulico,  mangueras y/o conexiones</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="ListadoFugasFluidos" value="Ok" id="ListadoFugasFluidosok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ListadoFugasFluidosok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="ListadoFugasFluidos" value="No Ok" id="ListadoFugasFluidosnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ListadoFugasFluidosnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="ListadoFugasFluidos" value="No Aplica" id="ListadoFugasFluidosnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ListadoFugasFluidosnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="ListadoFugasFluidos" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="ListadoFugasFluidos" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.4 Niveles de aceites</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="ListadoNivelAceite" value="Ok" id="ListadoNivelAceiteok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ListadoNivelAceiteok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="ListadoNivelAceite" value="No Ok" id="ListadoNivelAceitenook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ListadoNivelAceitenook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="ListadoNivelAceite" value="No Aplica" id="ListadoNivelAceitenoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ListadoNivelAceitenoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="ListadoNivelAceite" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="ListadoNivelAceite" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.5 Mandos en servicio</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckMandosServicio" value="Ok" id="CheckMandosServiciook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckMandosServiciook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckMandosServicio" value="No Ok" id="CheckMandosServicionook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckMandosServicionook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckMandosServicio" value="No Aplica" id="CheckMandosServicionoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckMandosServicionoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckMandosServicio" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckMandosServicio" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.6 Bocina</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckBocina" value="Ok" id="CheckBocinaok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckBocinaok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckBocina" value="No Ok" id="CheckBocinanook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckBocinanook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckBocina" value="No Aplica" id="CheckBocinanoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckBocinanoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckBocina" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckBocina" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.7 Luces</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckLuces" value="Ok" id="CheckLucesok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckLucesok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckLuces" value="No Ok" id="CheckLucesnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckLucesnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckLuces" value="No Aplica" id="CheckLucesnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckLucesnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckLuces" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckLuces" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.8 Dispositivo de aviso de retroceso</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckAvisoRetroceso" value="Ok" id="CheckAvisoRetrocesook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckAvisoRetrocesook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckAvisoRetroceso" value="No Ok" id="CheckAvisoRetrocesonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckAvisoRetrocesonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckAvisoRetroceso" value="No Aplica" id="CheckAvisoRetrocesonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckAvisoRetrocesonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckAvisoRetroceso" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckAvisoRetroceso" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.9 Frenos de pie y de mano</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckFrenoPieMano" value="Ok" id="CheckFrenoPieManook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckFrenoPieManook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckFrenoPieMano" value="No Ok" id="CheckFrenoPieManonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckFrenoPieManonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckFrenoPieMano" value="No Aplica" id="CheckFrenoPieManonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckFrenoPieManonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckFrenoPieMano" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckFrenoPieMano" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.10 Espejos</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckEspejos" value="Ok" id="CheckEspejosok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckEspejosok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckEspejos" value="No Ok" id="CheckEspejosnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckEspejosnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckEspejos" value="No Aplica" id="CheckEspejosnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckEspejosnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckEspejos" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckEspejos" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.11 Extintor</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckExtintor" value="Ok" id="CheckExtintorok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckExtintorok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckExtintor" value="No Ok" id="CheckExtintornook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckExtintornook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckExtintor" value="No Aplica" id="CheckExtintornoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckExtintornoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckExtintor" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckExtintor" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.12 Cinturón de seguridad</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckCinturonSeguridad" value="Ok" id="CheckCinturonSeguridadok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckCinturonSeguridadok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckCinturonSeguridad" value="No Ok" id="CheckCinturonSeguridadnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckCinturonSeguridadnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckCinturonSeguridad" value="No Aplica" id="CheckCinturonSeguridadnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckCinturonSeguridadnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckCinturonSeguridad" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckExtintor" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.13  Sistema de  transmisión</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckSistemaTransmision" value="Ok" id="CheckSistemaTransmisionok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckSistemaTransmisionok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckSistemaTransmision" value="No Ok" id="CheckSistemaTransmisionnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckSistemaTransmisionnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckSistemaTransmision" value="No Aplica" id="CheckSistemaTransmisionnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckSistemaTransmisionnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckSistemaTransmision" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckSistemaTransmision" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.14  Estado del asiento</label>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="CheckEstadoAsiento" value="Ok" id="CheckEstadoAsientook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckEstadoAsientook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckEstadoAsiento" value="No Ok" id="CheckEstadoAsientonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CheckEstadoAsientonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="CheckEstadoAsiento" value="No Aplica" id="CheckEstadoAsientonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CheckEstadoAsientonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="CheckEstadoAsiento" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="CheckEstadoAsiento" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>14. El operador deberá informar al supervisor/responsable/encargado, de las irregularidades detectadas en el chequeo previo, debiendo indicar este último al operador si el autoelevador puede ser operado o debe ir a reparaciones de manera inmediata</label></b>
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="InformeReparaciones" value="Ok" id="InformeReparacionesok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="InformeReparacionesok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="InformeReparaciones" value="No Ok" id="InformeReparacionesnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="InformeReparacionesnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="InformeReparaciones" value="No Aplica" id="InformeReparacionesnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="InformeReparacionesnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="InformeReparaciones" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="InformeReparaciones" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>15. Si el autoelevador se encontrare fuera de servicio, deberá quedar claramente señalizado con la prohibición de su manejo por trabajadores no encargados de su reparación</label></b>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="SeñalizacionFueraServicio" value="Ok" id="SeñalizacionFueraServiciook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="SeñalizacionFueraServiciook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="SeñalizacionFueraServicio" value="No Ok" id="SeñalizacionFueraServicionook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="SeñalizacionFueraServicionook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="SeñalizacionFueraServicio" value="No Aplica" id="SeñalizacionFueraServicionoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="SeñalizacionFueraServicionoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="SeñalizacionFueraServicio" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="SeñalizacionFueraServicio" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>16. Trimestralmente un profesional con incumbencia deberá realizar una revisión general del autoelevador</label></b>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="RevisionGeneralTriMestral" value="Ok" id="RevisionGeneralTriMestralok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="RevisionGeneralTriMestralok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="RevisionGeneralTriMestral" value="No Ok" id="RevisionGeneralTriMestralnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="RevisionGeneralTriMestralnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="RevisionGeneralTriMestral" value="No Aplica" id="RevisionGeneralTriMestralnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="RevisionGeneralTriMestralnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="RevisionGeneralTriMestral" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="RevisionGeneralTriMestral" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>17. Se deberá registrar el programa interno de mantenimiento preventivo establecido por el fabricante, en caso de no contar con éste, se establecerá uno. Asimismo se deberá registrar el mantenimiento correctivo que se le realice al vehículo</label></b>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="ProgramaMantenimiento" value="Ok" id="ProgramaMantenimientook" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ProgramaMantenimientook">Ok</label>
+
+                        <input type="radio" class="btn-check" name="ProgramaMantenimiento" value="No Ok" id="ProgramaMantenimientonook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ProgramaMantenimientonook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="ProgramaMantenimiento" value="No Aplica" id="ProgramaMantenimientonoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ProgramaMantenimientonoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="ProgramaMantenimiento" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="ProgramaMantenimiento" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>18. El reaprovisionamiento de combustible, la carga de baterías y el recambio de envases de Gas Licuado de Petróleo (GLP), se realizará en lugares designados y equipados para tal propósito, los que deberán cumplir con la normativa vigente. El personal que realice esta tarea deberá utilizar los Elementos de Protección Personal seleccionados por el responsable de higiene y seguridad de la  empresa con la participación del servicio de medicina del trabajo, quien seguirá un procedimiento de trabajo seguro, para el cual será entrenado, capacitado y autorizado para realizarla</label></b>
+
+                <div>
+                    <div class="btn-group w-100 mt-1" role="group" ariaListadoFijacionBrazos-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="ElementosProteccionGLP" value="Ok" id="ElementosProteccionGLPok" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ElementosProteccionGLPok">Ok</label>
+
+                        <input type="radio" class="btn-check" name="ElementosProteccionGLP" value="No Ok" id="ElementosProteccionGLPnook" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ElementosProteccionGLPnook">No ok</label>
+
+                        <input type="radio" class="btn-check" name="ElementosProteccionGLP" value="No Aplica" id="ElementosProteccionGLPnoaplica" autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ElementosProteccionGLPnoaplica">No aplica</label>
+                    </div>
+                    <span asp-validation-for="ElementosProteccionGLP" class="text-danger my-1"></span>
+                </div>
+                <span asp-validation-for="ElementosProteccionGLP" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="Observaciones" class="control-label my-1"></label></b>
+                <textarea asp-for="Observaciones" class="form-control" style="height: 155px"></textarea>
+                <span asp-validation-for="Observaciones" class="text-danger my-1"></span>
+            </div>
+            <div class="form-group mt-4">
+                <b><label asp-for="ResponsableDesvio" class="control-label my-2"></label></b>
+                <input asp-for="ResponsableDesvio" class="form-control" />
+                <span asp-validation-for="ResponsableDesvio" class="text-danger my-1"></span>
+            </div>
+
+            <div class="form-group mt-4 w-75">
+
+                <input type="submit" value="Guardar" class="btn btn-primary border border-primary my-3 w-50" />
+            </div>
+
         </form>
     </div>
 </div>
+<div>
+    <a asp-controller="FAutoElevadores" asp-action="Index"style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
+</div>
+
+
 
 @section Scripts{
-@{
-    <partial name="_ValidationScriptsPartial" />
-}
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }
 

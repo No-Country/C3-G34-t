@@ -4,8 +4,15 @@
 
 @model FormHyM
 
-<h1>Details HyM</h1>
-
+@{
+    ViewData["Title"] = "Herramientas y Máquinas";
+}
+<div class="row">
+    <div class=col-sm-12>
+        <h3>Detalle Auditoría Herramientas y Máquinas</h3>
+    </div>
+</div>
+<hr />
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="row">
@@ -26,7 +33,7 @@
                 </div>
                 <div class="form-group mt-2">
                     <label asp-for="IdHyM" class="control-label my-2"></label>
-                    <input asp-for="IdHyM" class="form-control" value="@Model.IdHyM" readonly/>
+                    <input asp-for="IdHyM" class="form-control" value="@Model.IdHyM" readonly />
                 </div>
                 <div class="form-group mt-2">
                     <label asp-for="Puesto" class="control-label my-2"></label>
@@ -101,6 +108,9 @@
     </div>
 }
 
+@*<div>
+        <a asp-area="" asp-controller="HyM" asp-action="Index">Back to HyM List</a>
+    </div>*@
 <div>
-    <a asp-area="" asp-controller="HyM" asp-action="Index">Back to HyM List</a>
+    <a asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
 </div>

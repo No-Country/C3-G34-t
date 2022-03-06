@@ -4,16 +4,16 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Detalles formulario AutoElevadores";
+    ViewData["Title"] = "AutoElevadores";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
     <div class=col-sm-12>
-        <h3>DETALLES FORMULARIO AUTOELEVADORES </h3>
+        <h3>Detalle Auditoría Autoelevadores</h3>
     </div>
 </div>
-
+<hr />
 <div class='container'>
     <div class="row">
         <div class="col-sm-10">
@@ -168,7 +168,7 @@
 
                     <div class='row'>
                         <label class='control-label'>9. El manual del operador deberá estar redactado en idioma español, en el Sistema métrico legal argentino y ser accesible al operador</label>
-                       @* <input placeholder='@Model.' class='form-control' />*@
+                        @* <input placeholder='@Model.' class='form-control' />*@
                     </div><br />
 
                     <div class='row'>
@@ -234,7 +234,7 @@
                     </div><br />
                     <div class='row'>
                         <label class='control-label'>11.6 Prohibición de circulación de personas por debajo de la carga,</label>
-                        <input placeholder='@Model.CarteleraVelocidadCirculacionPer' class='form-control' />
+                        <input placeholder='@Model.CarteleraProhibicionCircPersonas' class='form-control' />
                     </div><br />
                     <div class='row'>
                         <label class='control-label'>11.7 Riesgos en la recarga de baterías y recambio de envases de Gas Licuado de Petróleo (GLP).</label>
@@ -328,17 +328,19 @@
                     </div><br />
                     <div class='row'>
                         <label class='control-label'>19. OBSERVACIONES</label>
-                        <textarea placeholder='@Model.Observaciones' class='form-control' ></textarea>
+                        <textarea placeholder='@Model.Observaciones' class='form-control'></textarea>
                     </div><br />
                     <div class='row'>
                         <label class='control-label'>20. Apellido y Nombre Auditor *</label>
                         <input placeholder='@Model.ResponsableDesvio' class='form-control' />
                     </div><br />
 
-
-                    <div class="form-group">
-                        <a href="/FAutoElevadores/Index" value="Volver" class="btm btn-primary" >Volver</a>
+                    <div>
+                        <a asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
                     </div>
+                    @*<div class="form-group">
+            <a href="/FAutoElevadores/Index" value="Volver" class="btm btn-primary" >Volver</a>
+        </div>*@
                 </div>
             </form>
         </div>

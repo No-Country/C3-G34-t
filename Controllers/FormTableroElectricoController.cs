@@ -59,12 +59,55 @@ namespace AuditApp.Controllers
             return View(formTableroElectrico);
         }
 
-     
+
         // GET: FormTableroElectrico/Create
-        public IActionResult Create()
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+        // GET: HyM/Create
+        public ActionResult Create()
         {
+            IEnumerable<Planta> LPlantas;
+            try
+            {
+                LPlantas = _context.Plantas;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+            ViewData["Plantas"] = LPlantas;
+
             return View();
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+       
+        public async Task<IActionResult> Save(FormTableroElectrico newTEAudit)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var id_usuario = newTEAudit.AuditorGuId;
+                    _context.Add(newTEAudit);
+                    await _context.SaveChangesAsync();
+                   
+                    return RedirectToAction("Index");
+
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e);
+                }
+            }
+            return View("Create", newTEAudit);
+        }
+
 
         // POST: FormTableroElectrico/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
