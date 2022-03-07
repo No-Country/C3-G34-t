@@ -20,21 +20,27 @@
         <form method="post" asp-action="CreateFAE">
             <input type="text" asp-for="AuditorGuId" value="@UserManager.GetUserAsync(User).Result.Id" class="invisible" />
 
-            <div class="container">
-                <div class='row' hidden>
-                    <label class='control-label'>GUID Auditor *</label>
-
-                    <input asp-for='AuditorGuId' value="@UserManager.GetUserAsync(User).Result.Id">
-                </div><br />
-
-                <div class='row'>
-                    <label class='control-label'>1. Fecha de Auditoria</label>
-                    <input type='date' asp-for='Fecha' value='Cumple'>
-                </div><br />
-                <div class='row'>
-                    <label class='control-label'>2. Razón Social/Empresa</label>
-                    <select  name="PlantaId">
-                        @foreach (var item in (IEnumerable<Planta>)ViewData["Plantas"])
+            <div asp-validation-summary="ModelOnly" class="text-danger my-1"></div>
+            <div class="form-group mt-0">
+                <b>
+                    <label class='control-label'>1. Fecha</label>
+                </b>
+                @*<label asp-for="Fecha" class="control-label"></label>*@
+                <div class="input-group my-1">
+                    <input asp-for="Fecha" class="form-control-plaintext bg-body" value="@DateTime.Now" type="text" readonly />
+                </div>
+                <span asp-validation-for="Fecha" class="text-danger my-1"></span>
+            </div>
+            <div class="form-group mt-1">
+                <b>
+                    <label class='control-label'>2. Razón Social / Empresa</label>
+                </b>
+                @*<label asp-for="PlantaId" class="control-label my-2">Razón Social / Empresa</label>*@
+                <div class="input-group">
+                    <span class="material-icons input-group-text">factory</span>
+                    <select asp-for="PlantaId" class="form-select" name="PlantaId">
+                        <option disabled selected>Elegir Planta</option>
+                        @foreach (var p in (IEnumerable<Planta>)ViewData["Plantas"])
                         {
                             <option value="@p.Id">@p.Nombre</option>
                         }
@@ -172,7 +178,7 @@
                 </div>
                 <span asp-validation-for="ProteccionLLuvia" class="text-danger my-1"></span>
             </div>
-          
+
             <div class="form-group mt-3">
                 <b><label class='control-label'>6. Los mandos de la puesta en marcha, aceleración, elevación y freno, deberán reunir las condiciones de seguridad necesarias para evitar el accionamiento involuntario</label></b>
                 <div>
@@ -1100,7 +1106,7 @@
     </div>
 </div>
 <div>
-    <a asp-controller="FAutoElevadores" asp-action="Index"style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
+    <a asp-controller="FAutoElevadores" asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
 </div>
 
 
