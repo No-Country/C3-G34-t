@@ -7,24 +7,40 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AuditApp.Data;
 using AuditApp.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AuditApp.Controllers
 {
     public class FormTableroElectricoController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public FormTableroElectricoController(ApplicationDbContext context)
+        private readonly UserManager<UsuarioBase> _userManager;
+        public FormTableroElectricoController(ApplicationDbContext context, UserManager<UsuarioBase> UserManager)
         {
             _context = context;
+            _userManager = UserManager;
         }
 
+        [Route("Tableros/Index/")]
         // GET: FormTableroElectrico
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TablerosElectricos.ToListAsync());
+            IEnumerable<FormTableroElectrico> LVTE;
+            try
+            {
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                LVTE = await _context.TablerosElectricos.Where(f => f.AuditorGuId.ToString() == currentUser.Id).ToListAsync();
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+            return View(LVTE);
         }
 
+      
         // GET: FormTableroElectrico/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -34,7 +50,7 @@ namespace AuditApp.Controllers
             }
 
             var formTableroElectrico = await _context.TablerosElectricos
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.FormID == id);
             if (formTableroElectrico == null)
             {
                 return NotFound();
@@ -43,19 +59,64 @@ namespace AuditApp.Controllers
             return View(formTableroElectrico);
         }
 
+
         // GET: FormTableroElectrico/Create
-        public IActionResult Create()
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
+        // GET: HyM/Create
+        public ActionResult Create()
         {
+            IEnumerable<Planta> LPlantas;
+            try
+            {
+                LPlantas = _context.Plantas;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+            ViewData["Plantas"] = LPlantas;
+
             return View();
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+       
+        public async Task<IActionResult> Save(FormTableroElectrico newTEAudit)
+        {
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var id_usuario = newTEAudit.AuditorGuId;
+                    _context.Add(newTEAudit);
+                    await _context.SaveChangesAsync();
+                   
+                    return RedirectToAction("Index");
+
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e);
+                }
+            }
+            return View("Create", newTEAudit);
+        }
+
 
         // POST: FormTableroElectrico/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")] FormTableroElectrico formTableroElectrico)
+        public async Task<IActionResult> Create(FormTableroElectrico formTableroElectrico)
         {
+            //[Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")]
             if (ModelState.IsValid)
             {
                 _context.Add(formTableroElectrico);
@@ -88,7 +149,7 @@ namespace AuditApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")] FormTableroElectrico formTableroElectrico)
         {
-            if (id != formTableroElectrico.Id)
+            if (id != formTableroElectrico.FormID)
             {
                 return NotFound();
             }
@@ -102,7 +163,7 @@ namespace AuditApp.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FormTableroElectricoExists(formTableroElectrico.Id))
+                    if (!FormTableroElectricoExists(formTableroElectrico.FormID))
                     {
                         return NotFound();
                     }
@@ -125,7 +186,7 @@ namespace AuditApp.Controllers
             }
 
             var formTableroElectrico = await _context.TablerosElectricos
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.FormID == id);
             if (formTableroElectrico == null)
             {
                 return NotFound();
@@ -147,7 +208,7 @@ namespace AuditApp.Controllers
 
         private bool FormTableroElectricoExists(int id)
         {
-            return _context.TablerosElectricos.Any(e => e.Id == id);
+            return _context.TablerosElectricos.Any(e => e.FormID == id);
         }
     }
 }

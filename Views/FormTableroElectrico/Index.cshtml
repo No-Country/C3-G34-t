@@ -1,143 +1,57 @@
 ﻿@model IEnumerable<AuditApp.Models.FormTableroElectrico>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tablero Eléctrico";
 }
 
-<h1>Index</h1>
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Listado Auditorías Tableros Eléctricos</h3>
+    </div>
+    <hr />
+    <p>
+        <a asp-action="Create" style="font-size: 1.3em; color: blue"><i class="text-primary bi-arrow-right-circle me-1"></i>Nuevo</a>
+    </p>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TableroYSector)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CarteleriaSeñalizada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CarteleriaBuenEstado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CarteleriaEPP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MPCProcEscritos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MPCCandadosTarjetas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MPCTableroProtegido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EPPCalzadoDielectrico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EPPGuantesDielectrico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EPPLentes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TableroLibre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cerradura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrdenLimpieza)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Matafuegos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuditorId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observaciones)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ResponsableDesvio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PlantaId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TableroYSector)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarteleriaSeñalizada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarteleriaBuenEstado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarteleriaEPP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MPCProcEscritos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MPCCandadosTarjetas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MPCTableroProtegido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EPPCalzadoDielectrico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EPPGuantesDielectrico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EPPLentes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TableroLibre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cerradura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrdenLimpieza)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Matafuegos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuditorId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observaciones)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResponsableDesvio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlantaId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered tabletable-striped">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(m => m.FormID)</td>
+                        <td>@Html.DisplayNameFor(m => m.TableroYSector)</td>
+                        <td>@Html.DisplayNameFor(m => m.Fecha)</td>
+                        <td>@Html.DisplayNameFor(m => m.Observaciones)</td>
+                        @*<td>@Html.DisplayNameFor(m => m.AuditorId)</td>*@
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FormID</td>
+                            <td>@item.TableroYSector</td>
+                            <td>@item.Fecha</td>
+                            <td>@item.Observaciones</td>
+                            @*<td>@item.AuditorId</td>*@
+                            <td>
+                                <a class="btn btn alert-primary" asp-action="Details" asp-controller="FormTableroElectrico" asp-route-id="@item.FormID">Detalle</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        }
+        else
+        {
+            <p>En el momento no hay tableros  que mostrar.</p>
+        }
+
+
+    </div>

@@ -1,14 +1,15 @@
 ﻿@model AuditApp.Models.FormTableroElectrico
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Tablero Eléctrico";
 }
-
-<h1>Details</h1>
-
+<div class="row">
+    <div class=col-sm-12>
+        <h3>Detalle Auditoría Tablero Eléctrico</h3>
+    </div>
+</div>
 <div>
-    <h4>FormTableroElectrico</h4>
-    <hr />
+     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TableroYSector)
@@ -95,10 +96,10 @@
             @Html.DisplayFor(model => model.Matafuegos)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AuditorId)
+            @Html.DisplayNameFor(model => model.AuditorGuId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AuditorId)
+            @Html.DisplayFor(model => model.AuditorGuId)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Fecha)
@@ -127,6 +128,9 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.FormID">Edit</a> |
+    @*<a asp-action="Index">Back to List</a>*@
+    
+        <a asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
+    
 </div>
