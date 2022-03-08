@@ -6,34 +6,23 @@
 *@
 @{
 }
-<div class="container">
-
-    @if (TempData["mensaje"] != null)
-    {
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            @TempData["mensaje"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    }
-    <div class="row">
-        <div class="col-sm-12">
-            <h3>Historial de Auditorías</h3>
-        </div>
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Historial de Auditorías</h3>
     </div>
-    <hr/>
-
+</div>
+<hr/>
+<div class="container col-12">
     <div class="row">
         @if (Model.Count() > 0)
         {
-            <table class="table table-bordered tabletable-striped">
-                <thead>
-                    <tr>                        
-                        <td>@Html.DisplayNameFor(m => m.PlantaName)</td>
-                        <td>@Html.DisplayNameFor(m => m.TipoFormulario)</td>
-                        <td>@Html.DisplayNameFor(m => m.Fecha)</td>
-                        
+            <table class="table table-hover table-striped align-middle text-center">
+                <thead class="table-light sticky-top">
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(m => m.PlantaName)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.TipoFormulario)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Fecha)</th>
+
                         <td>Acciones</td>
                     </tr>
                 </thead>
@@ -44,22 +33,16 @@
                             <td>@item.PlantaName</td>
                             <td>@item.TipoFormulario</td>
                             <td>@item.Fecha</td>
-                           
-                            <td>
-                                <a class="btn btn alert-primary" asp-action="Details" asp-controller="@item.controlador" asp-route-id="@item.IdFormulario">Detalle</a>
-                            </td>
+                            <!-- Botón Details -->
+                            <td><a class="btn btn alert-primary" asp-action="Details" asp-controller="@item.controlador" asp-route-id="@item.IdFormulario">Detalle</a></td>
                         </tr>
                     }
-
                 </tbody>
-
             </table>
         }
         else
         {
             <p>En el momento no hay Auditorias que mostrar.</p>
         }
-
-
     </div>
 </div>

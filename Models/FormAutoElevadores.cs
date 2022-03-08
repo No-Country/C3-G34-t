@@ -9,6 +9,7 @@ namespace AuditApp.Models
     public class FormAutoElevadores : FormBase
     {
         [Required]
+        [Display(Name = "ID de Elevador")]
         public string ElevadorID { get; set; }
         [Required]
         public string EtiquetaCargaMaxima { get; set; }

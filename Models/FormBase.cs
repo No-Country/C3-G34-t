@@ -11,6 +11,7 @@ namespace AuditApp.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "ID de Formulario")]
         public int FormID { get; set; }
 
         [Required]
