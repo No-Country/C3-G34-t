@@ -20,6 +20,7 @@ namespace AuditApp.Controllers
             _context = context;
             _userManager = UserManager;
         }
+
         [Route("Autoelevadores/Index/")]
         public async Task<IActionResult> Index()
         {
@@ -27,13 +28,12 @@ namespace AuditApp.Controllers
             try
             {
                 var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-                LVFAE = await _context.AutoElevadores.Where(x => x.AuditorGuId.ToString() == currentUser.Id).ToListAsync();
+                LVFAE = await _context.AutoElevadores.Where(f => f.AuditorGuId.ToString() == currentUser.Id).ToListAsync();
             }
             catch (Exception e)
             {
-                return BadRequest();
+                return BadRequest(e);
             }
-
             return View(LVFAE);
         }
 
@@ -41,16 +41,16 @@ namespace AuditApp.Controllers
         //HTTP GET
         public IActionResult Create()
         {
-            IEnumerable <Planta> LPlantas = null;
+            IEnumerable <Planta> LPlantas;
             try
             {
-                LPlantas = _context.Plantas;
+                LPlantas = _context.Plantas.OrderBy(planta => planta.Nombre);
             }
             catch (Exception e)
             {
-                return BadRequest();
+                return BadRequest(e);
             }
-            ViewData["Plantas"]=LPlantas;
+            ViewData["Plantas"] = LPlantas;
             ViewBag.Auditores = "";
 
             return View();
@@ -89,9 +89,10 @@ namespace AuditApp.Controllers
                 {
                     ViewBag.Planta = _context.Plantas.Find(FAE.PlantaId).Nombre.ToString();
                 }
-                catch {
+                catch
+                {
                     ViewBag.Planta = "No Disponible";
-                       }
+                }
 
                 if (FAE == null)
                 {
@@ -116,13 +117,14 @@ namespace AuditApp.Controllers
                     _context.AutoElevadores.Add(fae);
                     await _context.SaveChangesAsync();
                     TempData["mensaje"] = "El Formulario se ha Guardado exitosamente";
+                    return RedirectToAction("Index");
                 }
                 catch (Exception e)
                 {
-                    return BadRequest();
+                    return BadRequest(e);
                 }
             }
-            return RedirectToAction("Index");
+            return View("Create", fae);
         }
 
 

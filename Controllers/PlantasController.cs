@@ -22,7 +22,7 @@ namespace AuditApp.Controllers
         // GET: Plantas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Plantas.ToListAsync());
+            return View(await _context.Plantas.OrderBy(planta => planta.Nombre).ToListAsync());
         }
 
         // GET: Plantas/Details/5
