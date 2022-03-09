@@ -48,7 +48,7 @@ namespace AuditApp.Controllers
                     AuditoriasView Auth = new AuditoriasView();
                     Auth.PlantaName = LPlantas.Where(x => x.Id.Equals(item.PlantaId)).FirstOrDefault().Nombre.ToString();
                     Auth.Fecha = item.Fecha.ToString();
-                    Auth.TipoFormulario = "AutoElevadores";
+                    Auth.TipoFormulario = "Autoelevadores";
                     Auth.controlador = "FAutoElevadores";
                     Auth.IdFormulario = item.FormID;
                     All.Add(Auth);
@@ -59,7 +59,7 @@ namespace AuditApp.Controllers
                     AuditoriasView Auth = new AuditoriasView();
                     Auth.PlantaName = LPlantas.Where(x => x.Id == item.PlantaId).FirstOrDefault().Nombre;
                     Auth.Fecha = item.Fecha.ToString();
-                    Auth.TipoFormulario = "Tableros Electricos";
+                    Auth.TipoFormulario = "Tableros Eléctricos";
                     Auth.controlador = "FormTableroElectrico";
                     Auth.IdFormulario = item.FormID;
                     All.Add(Auth);
@@ -70,7 +70,7 @@ namespace AuditApp.Controllers
                     AuditoriasView Auth = new AuditoriasView();
                     Auth.PlantaName = LPlantas.Where(x => x.Id == item.PlantaId).FirstOrDefault().Nombre;
                     Auth.Fecha = item.Fecha.ToString();
-                    Auth.TipoFormulario = "Herramientas y Maquinas";
+                    Auth.TipoFormulario = "Herramientas y Máquinas";
                     Auth.controlador = "HyM";
                     Auth.IdFormulario = item.FormID;
                     All.Add(Auth);
