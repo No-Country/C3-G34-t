@@ -12,7 +12,7 @@
         <h3>Detalle Auditoría Autoelevadores</h3>
     </div>
 </div>
-<hr/>
+<hr />
 <div class="row">
     <div class="col-md-6 mx-auto">
         <form>
@@ -346,10 +346,23 @@
         </form>
     </div>
 </div>
+    </br>
+<div class="col-2">
+    <div class="form-group">
+        <button onclick="printHTML()" class="btn btn-primary btn-block">Imprimir</button>
+        <script>
+    function printHTML() {
+                if (window.print) {
+                    window.print();
+                }
+            }</script>
+    </div>
+</div>
+</br>
 
 <div>
     <a asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
 </div>
 @*<div class="form-group">
-        <a href="/FAutoElevadores/Index" value="Volver" class="btm btn-primary" >Volver</a>
-  </div>*@
+          <a href="/FAutoElevadores/Index" value="Volver" class="btm btn-primary" >Volver</a>
+    </div>*@

@@ -85,15 +85,15 @@
                 </div>
                 <div class="form-group mt-3">
                     <b><label asp-for="PuertasTablerosElectricos" class="control-label">16. Tableros eléctricos - verificar que las puertas de los tableros estén correctamente cerradas</label></b>
-                    <input asp-for="PuertasTablerosElectricos" class="form-control" value="@Model.PuertasTablerosElectricos" readonly/>
+                    <input asp-for="PuertasTablerosElectricos" class="form-control" value="@Model.PuertasTablerosElectricos" readonly />
                 </div>
                 <div class="form-group mt-3">
                     <b><label asp-for="GuinchesBalanceadores" class="control-label">17. Ginches / balanceadores - verificar los cables / cadenas de izamiento y los sistemas de fijación</label></b>
-                    <input asp-for="GuinchesBalanceadores" class="form-control" value="@Model.GuinchesBalanceadores" readonly/>
+                    <input asp-for="GuinchesBalanceadores" class="form-control" value="@Model.GuinchesBalanceadores" readonly />
                 </div>
                 <div class="form-group mt-3">
                     <b><label asp-for="Entrenamiento" class="control-label">18. Entrenamiento - apto para realizar las tareas de acuerdo a los riesgos</label></b>
-                    <input asp-for="Entrenamiento" class="form-control" value="@Model.Entrenamiento" readonly/>
+                    <input asp-for="Entrenamiento" class="form-control" value="@Model.Entrenamiento" readonly />
                 </div>
                 <div class="form-group mt-3">
                     <b><label asp-for="Observaciones" class="control-label my-1">19. Observaciones</label></b>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <b><label asp-for="ResponsableDesvio" class="control-label my-2">20. Responsable del Desvío</label></b>
-                    <input asp-for="ResponsableDesvio" class="form-control" value="@Model.ResponsableDesvio" readonly/>
+                    <input asp-for="ResponsableDesvio" class="form-control" value="@Model.ResponsableDesvio" readonly />
                 </div>
             </form>
         </div>
@@ -111,6 +111,21 @@
 @*<div>
         <a asp-area="" asp-controller="HyM" asp-action="Index">Back to HyM List</a>
     </div>*@
+    </br>
+<div class="col-2">
+    <div class="form-group">
+        <button onclick="printHTML()" class="btn btn-primary btn-block">Imprimir</button>
+        <script>
+    function printHTML() {
+                if (window.print) {
+                    window.print();
+                }
+            }</script>
+    </div>
+</div>
+</br>
+
+
 <div>
     <a asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
 </div>
