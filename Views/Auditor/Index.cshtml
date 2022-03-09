@@ -18,14 +18,13 @@
 @*<h1>Home Auditores</h1>
 <a>@UserManager.GetUserAsync(User).Result.Id</a>*@
 
-<style>
+@*<style>
     .chart-container {
         width: 50%;
         height: 50%;
         margin: auto
-        
     }
-</style>
+</style>*@
 @*@foreach (var item in Model)
 {
     <div><a>KEY=@item.Key -  VALOR = @item.Value </a></div>
@@ -34,21 +33,20 @@
 
 <div class="container" style="vertical-align:central;">
     <div class="row">
-        <div class="chart-container ">
-        <h4 style="margin:20px; align-content:center;">Indicador de auditorias por tipo.</h4><br />
+        <div class="col-12 col-md-6">
+            <h4 style="margin:20px; align-content:center;">Indicador de auditorias por tipo.</h4><br />
             <canvas id="chart_pie"></canvas>
         </div>
-        <div class=" chart-container ">
+        <div class="col-12 col-md-6">
             <h4 style="margin:20px; align-content:center;">Indicador de auditorias por empresa.</h4><br />
             <canvas id="chart_bar"></canvas>
         </div>
+        @*<div class="row ">
+            <div class="chart-container ">
+                <canvas id="chart_pie2"></canvas>
+            </div>
+        </div>*@
     </div>
-    @*<div class="row ">
-        <div class="chart-container ">
-            <canvas id="chart_pie2"></canvas>
-        </div>
-    </div>*@
-
 </div>
 
 
@@ -81,7 +79,6 @@
     var Labels = [];
     var Datas = [];
     chartdata.forEach(function(value,index){
-        debugger;
         console.log(JSON.stringify(value))
         Labels.push(value.myLabel);
         Datas.push(value.myData);

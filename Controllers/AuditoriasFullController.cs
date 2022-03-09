@@ -87,7 +87,7 @@ namespace AuditApp.Controllers
                 return BadRequest();
             }
 
-            return View(All);
+            return View(All.OrderByDescending(f => f.Fecha));
         }
 
 

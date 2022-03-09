@@ -29,7 +29,6 @@ namespace AuditApp.Controllers
             {
                 var currentUser = await _userManager.GetUserAsync(HttpContext.User);
                 LVHYM = await _context.HsyMs.Where(f => f.AuditorGuId.ToString() == currentUser.Id).ToListAsync();
-
             }
             catch (Exception e)
             {
@@ -45,7 +44,7 @@ namespace AuditApp.Controllers
             IEnumerable<Planta> LPlantas;
             try
             {
-                LPlantas = _context.Plantas;
+                LPlantas = _context.Plantas.OrderBy(planta => planta.Nombre);
             }
             catch (Exception e)
             {
@@ -108,16 +107,30 @@ namespace AuditApp.Controllers
             {
                 return NotFound();
             }
-           
-            var formtHyM = GetHyMById(id);
 
-            if (formtHyM == null)
+            FormHyM formtHyM;
+            try
             {
-                return NotFound();
-
+                formtHyM = GetHyMById(id);
+                ViewBag.Planta = _context.Plantas.Find(formtHyM.PlantaId).Nombre.ToString();
+                if (formtHyM == null)
+                {
+                    return NotFound();
+                }
+                else if (ViewBag.Planta == null)
+                {
+                    ViewBag.Planta = "No Disponible";
+                }
+                else
+                {
+                    return View(formtHyM);
+                }
             }
-
-            return View(formtHyM);
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: HyM/Edit/5

@@ -11,17 +11,19 @@
 
 
 <div class="row">
-    <div class="col-sm-6">
-        <h3>Listado Auditorías Auto Elevadores</h3>
+    <div class="col-sm-12">
+        <h3>Listado Auditorías Autoelevadores</h3>
     </div>
-    <hr />
+</div>
+<hr/>
+<div>
     <p>
         <a asp-action="Create" style="font-size: 1.3em; color: blue"><i class="text-primary bi-arrow-right-circle me-1"></i>Nuevo</a>
     </p>
 </div>
-<div class="container">
+<div class="container col-12">
 
-    @if (TempData["mensaje"] != null)
+    @*@if (TempData["mensaje"] != null)
     {
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             @TempData["mensaje"]
@@ -29,7 +31,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-    }
+    }*@
     @*<div class="row">
             <div class="col-sm-6">
                 <h3>AUDITORIAS AUTOELEVADORES</h3>
@@ -39,45 +41,41 @@
             </div>
         </div>*@
 
-
     <div class="row">
         @if (Model.Count() > 0)
         {
-            <table class="table table-bordered tabletable-striped">
-                <thead>
-                    <tr>
-                        <td>@Html.DisplayNameFor(m => m.FormID)</td>
-                        <td>@Html.DisplayNameFor(m => m.ElevadorID)</td>
-                        <td>@Html.DisplayNameFor(m => m.Fecha)</td>
-                        <td>@Html.DisplayNameFor(m => m.Observaciones)</td>
-                        @*<td>@Html.DisplayNameFor(m => m.AuditorId)</td>*@
-                        <td>Acciones</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle text-center">
+                    <thead class="table-light sticky-top">
                         <tr>
-                            <td>@item.FormID</td>
-                            <td>@item.ElevadorID</td>
-                            <td>@item.Fecha</td>
-                            <td>@item.Observaciones</td>
-                            @*<td>@item.AuditorId</td>*@
-                            <td>
-                                <a class="btn btn alert-primary" asp-action="Details" asp-controller="FAutoElevadores" asp-route-id="@item.FormID">Detalle</a>
-                            </td>
+                            <th scope="col">@Html.DisplayNameFor(m => m.FormID)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.ElevadorID)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.Fecha)</th>
+                            <th scope="col">@Html.DisplayNameFor(m => m.Observaciones)</th>
+                            @*<td>@Html.DisplayNameFor(m => m.AuditorId)</td>*@
+                            <td>Acciones</td>
                         </tr>
-                    }
-
-                </tbody>
-
-            </table>
-        }
-        else
-        {
-            <p>En el momento no hay autoelavadores que mostrar.</p>
-        }
-
-
-    </div>
-</div>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.FormID</td>
+                                <td>@item.ElevadorID</td>
+                                <td>@item.Fecha</td>
+                                <td>@item.Observaciones</td>
+                                @*<td>@item.AuditorId</td>*@
+                                <!-- Botón Details -->
+                                <td><a class="btn btn alert-primary" asp-action="Details" asp-controller="FAutoElevadores" asp-route-id="@item.FormID">Detalle</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        </div>
+                }
+                else
+                {
+                <p>En el momento no hay autoelavadores que mostrar.</p>
+                }
+            </div>
+        </div>

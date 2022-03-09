@@ -42,21 +42,40 @@ namespace AuditApp.Controllers
 
       
         // GET: FormTableroElectrico/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            if (id <= 0)
             {
                 return NotFound();
             }
-
-            var formTableroElectrico = await _context.TablerosElectricos
-                .FirstOrDefaultAsync(m => m.FormID == id);
-            if (formTableroElectrico == null)
+            FormTableroElectrico formTableroElectrico = new();
+            try
             {
-                return NotFound();
+                formTableroElectrico = await _context.TablerosElectricos.FirstOrDefaultAsync(m => m.FormID == id);
+                ViewBag.Planta = _context.Plantas.Find(formTableroElectrico.PlantaId).Nombre.ToString();
+                if (formTableroElectrico == null)
+                {
+                    return NotFound();
+                }
+                else if(ViewBag.Planta == null)
+                {
+                    ViewBag.Planta = "No Disponible";
+                }
+                else
+                {
+                    return View(formTableroElectrico);
+                }
+                
             }
-
-            return View(formTableroElectrico);
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+                //catch
+                //{
+                //    ViewBag.Planta = "No Disponible";
+                //}
+            return RedirectToAction("Index");
         }
 
 
@@ -71,7 +90,7 @@ namespace AuditApp.Controllers
             IEnumerable<Planta> LPlantas;
             try
             {
-                LPlantas = _context.Plantas;
+                LPlantas = _context.Plantas.OrderBy(planta => planta.Nombre);
             }
             catch (Exception e)
             {
@@ -127,84 +146,84 @@ namespace AuditApp.Controllers
         }
 
         // GET: FormTableroElectrico/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var formTableroElectrico = await _context.TablerosElectricos.FindAsync(id);
-            if (formTableroElectrico == null)
-            {
-                return NotFound();
-            }
-            return View(formTableroElectrico);
-        }
+        //    var formTableroElectrico = await _context.TablerosElectricos.FindAsync(id);
+        //    if (formTableroElectrico == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(formTableroElectrico);
+        //}
 
         // POST: FormTableroElectrico/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")] FormTableroElectrico formTableroElectrico)
-        {
-            if (id != formTableroElectrico.FormID)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")] FormTableroElectrico formTableroElectrico)
+        //{
+        //    if (id != formTableroElectrico.FormID)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(formTableroElectrico);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FormTableroElectricoExists(formTableroElectrico.FormID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(formTableroElectrico);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(formTableroElectrico);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!FormTableroElectricoExists(formTableroElectrico.FormID))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(formTableroElectrico);
+        //}
 
         // GET: FormTableroElectrico/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var formTableroElectrico = await _context.TablerosElectricos
-                .FirstOrDefaultAsync(m => m.FormID == id);
-            if (formTableroElectrico == null)
-            {
-                return NotFound();
-            }
+        //    var formTableroElectrico = await _context.TablerosElectricos
+        //        .FirstOrDefaultAsync(m => m.FormID == id);
+        //    if (formTableroElectrico == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(formTableroElectrico);
-        }
+        //    return View(formTableroElectrico);
+        //}
 
         // POST: FormTableroElectrico/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var formTableroElectrico = await _context.TablerosElectricos.FindAsync(id);
-            _context.TablerosElectricos.Remove(formTableroElectrico);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var formTableroElectrico = await _context.TablerosElectricos.FindAsync(id);
+        //    _context.TablerosElectricos.Remove(formTableroElectrico);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool FormTableroElectricoExists(int id)
         {
