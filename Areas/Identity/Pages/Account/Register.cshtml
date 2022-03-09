@@ -6,6 +6,17 @@
 
 <h1>@ViewData["Title"]</h1>*@
 
+<style>
+    #img1 {
+        display: block;
+        margin: 0 auto;
+        max-height:100%;
+        height: 90%;
+        max-width: 100%;
+        width: 90%;
+        margin-top:5%;
+    }
+</style>
 
 
 <div class="container">
@@ -15,14 +26,15 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
                  <div class="col-lg-6">
-                            <img id="img1" alt="Image1.png" src="@Url.Content("https://source.unsplash.com/Mv9hjnEUHR4/500x650")">
+                            <img id="img1" alt="Image1.png" height="80%"
+                            src="@Url.Content("https://images.unsplash.com/photo-1640622661329-67f406a77d53")">
                         </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" >
                     <div class="col-lg-10">
-                        <div class="text-center">
+                        <div class="text-center" style="margin:5%;">
                             <h1 class="h4 text-gray-900 mb-4">Crear una Cuenta!</h1>
                         </div>
-                        <div >
+                        <div style="margin:5%;">
                             <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
                                 <hr />
                                 <div asp-validation-summary="All" class="text-danger"></div>
@@ -30,37 +42,37 @@
                                     <label asp-for="Input.FirstName">Nombre</label>
                                     <input asp-for="Input.FirstName" class="form-control" />
                                     <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                                </div>
+                                </div><br/>
                                 <div class="form-group">
                                     <label asp-for="Input.LastName">Apellido</label>
                                     <input asp-for="Input.LastName" class="form-control" />
                                     <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                                </div>
+                                </div><br/>
                                 <div class="form-group">
                                     <label asp-for="Input.DNI">Documento de Identidad</label>
                                     <input asp-for="Input.DNI" class="form-control" />
                                     <span asp-validation-for="Input.DNI" class="text-danger"></span>
-                                </div>
+                                </div><br/>
                                 <div class="form-group">
                                     <label asp-for="Input.Matricula">Numero de matricula Profesional</label>
                                     <input asp-for="Input.Matricula" class="form-control" />
                                     <span asp-validation-for="Input.Matricula" class="text-danger"></span>
-                                </div>
+                                </div><br/>
                                 <div class="form-group">
                                     <label asp-for="Input.PhoneNumber">Telefono</label>
                                     <input asp-for="Input.PhoneNumber" class="form-control" />
                                     <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                                </div>
+                                </div><br/>
                                 <div class="form-group">
                                     <label asp-for="Input.Email">Correo Electronico</label>
                                     <input asp-for="Input.Email" class="form-control" />
                                     <span asp-validation-for="Input.Email" class="text-danger"></span>
-                                </div>
+                                </div><br/>
                                 <div class="form-group">
                                     <label asp-for="Input.Password">Constraseña</label>
                                     <input asp-for="Input.Password" class="form-control" />
                                     <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                </div>
+                                </div><br/>
                                 <div class="form-group">
                                     <label asp-for="Input.ConfirmPassword">Confirmar Contraseña</label>
                                     <input asp-for="Input.ConfirmPassword" class="form-control" />
