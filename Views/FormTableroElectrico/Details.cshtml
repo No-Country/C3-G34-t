@@ -1,0 +1,131 @@
+﻿@model AuditApp.Models.FormTableroElectrico
+
+@{
+    ViewData["Title"] = "Tablero Eléctrico";
+}
+<div class="row">
+    <div class=col-sm-12>
+        <h3>Detalle Auditoría Tablero Eléctrico</h3>
+    </div>
+</div>
+<div>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-6 mx-auto ">
+        <form>
+            <div class="form-group mt-2">
+                <b><label class="control-label">1. Fecha de auditoría</label></b>
+                <div class="input-group my-1">
+                    <input asp-for="Fecha" class="form-control" value="@Model.Fecha" type="text" readonly />
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="PlantaId" class="control-label my-2">Razón Social / Empresa</label>
+                <div class="input-group">
+                    <span class="material-icons input-group-text">factory</span>
+                    <input asp-for="PlantaId" class="form-control" value="@ViewBag.Planta" type="text" readonly>
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <b><label class='control-label my-2'>3. Nº Tablero y Sector</label></b>
+                <input asp-for="TableroYSector" class="form-control" value="@Model.TableroYSector" readonly />
+            </div>
+
+            <div class="form-group mt-2">
+                <b><label asp-for="CarteleriaSeñalizada" class="control-label my-2"></label></b>
+                <input asp-for="CarteleriaSeñalizada" class="form-control" value="@Model.CarteleriaSeñalizada" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="CarteleriaBuenEstado" class="control-label"></label></b>
+                <input asp-for="CarteleriaBuenEstado" class="form-control" value="@Model.CarteleriaBuenEstado" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="CarteleriaEPP" class="control-label"></label></b>
+                <input asp-for="CarteleriaEPP" class="form-control" value="@Model.CarteleriaEPP" readonly />
+            </div>
+
+            <div class="form-group  mt-3">
+                <b><label asp-for="MPCProcEscritos" class="control-label"></label></b>
+                <input asp-for="MPCProcEscritos" class="form-control" value="@Model.MPCProcEscritos" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="MPCCandadosTarjetas" class="control-label"></label></b>
+                <input asp-for="MPCCandadosTarjetas" class="form-control" value="@Model.MPCCandadosTarjetas" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="MPCTableroProtegido" class="control-label"></label></b>
+                <input asp-for="MPCTableroProtegido" class="form-control" value="@Model.MPCTableroProtegido" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="EPPCalzadoDielectrico" class="control-label"></label></b>
+                <input asp-for="EPPCalzadoDielectrico" class="form-control" value="@Model.EPPCalzadoDielectrico" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="EPPGuantesDielectrico" class="control-label"></label></b>
+                <input asp-for="EPPGuantesDielectrico" class="form-control" value="@Model.EPPGuantesDielectrico" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="EPPLentes" class="control-label"></label></b>
+                <input asp-for="EPPLentes" class="form-control" value="@Model.EPPLentes" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="TableroLibre" class="control-label"></label></b>
+                <input asp-for="TableroLibre" class="form-control" value="@Model.TableroLibre" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="Cerradura" class="control-label"></label></b>
+                <input asp-for="Cerradura" class="form-control" value="@Model.Cerradura" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="OrdenLimpieza" class="control-label"></label> </b>
+                <input asp-for="OrdenLimpieza" class="form-control" value="@Model.OrdenLimpieza" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="Matafuegos" class="control-label"></label> </b>
+                <input asp-for="Matafuegos" class="form-control" value="@Model.Matafuegos" readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="Observaciones" class="control-label my-1">17. Observaciones</label></b>
+                <textarea asp-for="Observaciones" class="form-control" style="height: 155px" readonly>@Model.Observaciones</textarea>
+            </div>
+            <div class="form-group mt-3">
+                <b><label asp-for="ResponsableDesvio" class="control-label my-2">18. Responsable del Desvío</label></b>
+                <input asp-for="ResponsableDesvio" class="form-control" value="@Model.ResponsableDesvio" readonly />
+            </div>
+        </form>
+    </div>
+</div>
+    </br>
+<div class="col-2">
+    <div class="form-group">
+        <button onclick="printHTML()" class="btn btn-primary btn-block">Imprimir</button>
+        <script>
+    function printHTML() {
+                if (window.print) {
+                    window.print();
+                }
+            }</script>
+    </div>
+</div>
+</br>
+
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.FormID">Edit</a> |*@
+    @*<a asp-action="Index">Back to List</a>*@
+    <a asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
+</div>

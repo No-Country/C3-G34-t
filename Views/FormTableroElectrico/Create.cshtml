@@ -1,0 +1,319 @@
+﻿@model AuditApp.Models.FormTableroElectrico
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<UsuarioBase> SignInManager
+@inject UserManager<UsuarioBase> UserManager
+
+@{
+    ViewData["Title"] = "Tablero Eléctrico";
+}
+
+<div class="row">
+    <div class=col-sm-12>
+        <h3>Nueva Auditoría Tablero Eléctrico</h3>
+    </div>
+</div>
+<hr />
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <form asp-action="Save">
+                <input type="text" asp-for="AuditorGuId" value="@UserManager.GetUserAsync(User).Result.Id" class="invisible" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger my-1"></div>
+                <div class="form-group mt-0">
+                    <b><label class="control-label">1. Fecha de auditoría</label></b>
+                    <div class="input-group my-1">
+                        <input asp-for="Fecha" class="form-control-plaintext bg-body" value="@DateTime.Now" type="text" readonly />
+                    </div>
+                    <span asp-validation-for="Fecha" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <b><label class='control-label'>2. Razón Social / Empresa</label></b>
+                    <div class="input-group">
+                        <span class="material-icons input-group-text">factory</span>
+                        <select asp-for="PlantaId" class="form-select" name="PlantaId">
+                            <option disabled selected>Elegir Planta</option>
+                            @foreach (var p in (IEnumerable<Planta>)ViewData["Plantas"])
+                            {
+                                <option value="@p.Id">@p.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                    <span asp-validation-for="PlantaId" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-2">
+                    <b><label class='control-label'>3. Nº Tablero y Sector</label></b>
+                    <input asp-for="TableroYSector" class="form-control" />
+                    <span asp-validation-for="TableroYSector" class="text-danger my-1"></span>
+                </div>
+                
+                <div class="form-group mt-4">
+                    <b><label asp-for="CarteleriaSeñalizada" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="CarteleriaSeñalizada" value="Ok" id="CarteleriaSeñalizadaok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleriaSeñalizadaok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="CarteleriaSeñalizada" value="No Ok" id="CarteleriaSeñalizadanook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleriaSeñalizadanook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="CarteleriaSeñalizada" value="No Aplica" id="CarteleriaSeñalizadanoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleriaSeñalizadanoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="CarteleriaSeñalizada" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="CarteleriaSeñalizada" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="CarteleriaBuenEstado" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="CarteleriaBuenEstado" value="Ok" id="CarteleriaBuenEstadook" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleriaBuenEstadook">Ok</label>
+
+                            <input type="radio" class="btn-check" name="CarteleriaBuenEstado" value="No Ok" id="CarteleriaBuenEstadonook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleriaBuenEstadonook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="CarteleriaBuenEstado" value="No Aplica" id="CarteleriaBuenEstadonoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleriaBuenEstadonoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="CarteleriaBuenEstado" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="CarteleriaBuenEstado" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="CarteleriaEPP" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="CarteleriaEPP" value="Ok" id="CarteleriaEPPok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleriaEPPok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="CarteleriaEPP" value="No Ok" id="CarteleriaEPPnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="CarteleriaEPPnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="CarteleriaEPP" value="No Aplica" id="CarteleriaEPPnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="CarteleriaEPPnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="CarteleriaEPP" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="CarteleriaEPP" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group  mt-3">
+                    <b><label asp-for="MPCProcEscritos" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="MPCProcEscritos" value="Ok" id="MPCProcEscritosok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="MPCProcEscritospok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="MPCProcEscritos" value="No Ok" id="MPCProcEscritosnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="MPCProcEscritosnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="MPCProcEscritos" value="No Aplica" id="MPCProcEscritosnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="MPCProcEscritosnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="MPCProcEscritos" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="MPCProcEscritos" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="MPCCandadosTarjetas" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="MPCCandadosTarjetas" value="Ok" id="MPCCandadosTarjetasok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="MPCCandadosTarjetasok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="MPCCandadosTarjetas" value="No Ok" id="MPCCandadosTarjetasnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="MPCCandadosTarjetasnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="MPCCandadosTarjetas" value="No Aplica" id="MPCCandadosTarjetasnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="MPCCandadosTarjetasnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="MPCCandadosTarjetas" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="MPCCandadosTarjetas" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="MPCTableroProtegido" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="MPCTableroProtegido" value="Ok" id="MPCTableroProtegidok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="MPCTableroProtegidook">Ok</label>
+
+                            <input type="radio" class="btn-check" name="MPCTableroProtegido" value="No Ok" id="MPCTableroProtegidonook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="MPCTableroProtegidonook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="MPCTableroProtegido" value="No Aplica" id="MPCTableroProtegidonoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="MPCTableroProtegidonoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="MPCTableroProtegido" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="MPCTableroProtegido" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="EPPCalzadoDielectrico" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="EPPCalzadoDielectrico" value="Ok" id="EPPCalzadoDielectricook" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EPPCalzadoDielectricook">Ok</label>
+
+                            <input type="radio" class="btn-check" name="EPPCalzadoDielectrico" value="No Ok" id="EPPCalzadoDielectriconook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="EPPCalzadoDielectriconook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="EPPCalzadoDielectrico" value="No Aplica" id="EPPCalzadoDielectriconoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EPPCalzadoDielectriconoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="EPPCalzadoDielectrico" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="EPPCalzadoDielectrico" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="EPPGuantesDielectrico" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="EPPGuantesDielectrico" value="Ok" id="EPPGuantesDielectricook" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EPPGuantesDielectricook">Ok</label>
+
+                            <input type="radio" class="btn-check" name="EPPGuantesDielectrico" value="No Ok" id="EPPGuantesDielectriconook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="EPPGuantesDielectriconook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="EPPGuantesDielectrico" value="No Aplica" id="EPPGuantesDielectriconoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EPPGuantesDielectriconoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="EPPGuantesDielectrico" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="EPPGuantesDielectrico" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="EPPLentes" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="EPPLentes" value="Ok" id="EPPLentesok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EPPLentesok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="EPPLentes" value="No Ok" id="EPPLentesnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="EPPLentesnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="EPPLentes" value="No Aplica" id="EPPLentesnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="EPPLentesnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="EPPLentes" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="EPPLentes" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="TableroLibre" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="TableroLibre" value="Ok" id="TableroLibreok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="TableroLibreok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="TableroLibre" value="No Ok" id="TableroLibrenook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="TableroLibrenook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="TableroLibre" value="No Aplica" id="TableroLibrenoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="TableroLibrenoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="TableroLibre" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="TableroLibre" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="Cerradura" class="control-label"></label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="Cerradura" value="Ok" id="Cerraduraok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Cerraduraok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="Cerradura" value="No Ok" id="Cerraduranook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="Cerraduranook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="Cerradura" value="No Aplica" id="Cerraduranoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Cerraduranoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="Cerradura" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="Cerradura" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="OrdenLimpieza" class="control-label"></label> </b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="OrdenLimpieza" value="Ok" id="OrdenLimpiezaok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="OrdenLimpiezaok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="OrdenLimpieza" value="No Ok" id="OrdenLimpiezanook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="OrdenLimpiezanook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="OrdenLimpieza" value="No Aplica" id="OrdenLimpiezanoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="OrdenLimpiezanoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="OrdenLimpieza" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="OrdenLimpieza" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="Matafuegos" class="control-label"></label> </b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="Matafuegos" value="Ok" id="Matafuegosok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Matafuegosok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="Matafuegos" value="No Ok" id="Matafuegosnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="Matafuegosnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="Matafuegos" value="No Aplica" id="Matafuegosnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="Matafuegosnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="Matafuegos" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="Matafuegos" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-3">
+                    <b><label asp-for="Observaciones" class="control-label my-1">17. Observaciones</label></b>
+                    <textarea asp-for="Observaciones" class="form-control" style="height: 155px"></textarea>
+                    <span asp-validation-for="Observaciones" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <b><label asp-for="ResponsableDesvio" class="control-label my-2">18. Responsable del Desvío</label></b>
+                    <input asp-for="ResponsableDesvio" class="form-control" />
+                    <span asp-validation-for="ResponsableDesvio" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-4 w-75">
+                    <input type="submit" value="Guardar" class="btn btn-primary border border-primary my-3 w-50" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+<div>
+    <a asp-controller="FormTableroElectrico" asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

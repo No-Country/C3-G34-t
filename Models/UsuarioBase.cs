@@ -20,7 +20,14 @@ namespace AuditApp.Models
         [Required]
         public string UserLastName { get; set; }
 
+<<<<<<< HEAD
         [Required]
+=======
+        
+        [Required(ErrorMessage = "Ingresar sólo números.Campo obligatorio")]
+        [StringLength(8, MinimumLength = 8)]
+
+>>>>>>> Developers
         public string DNI { get; set; }
 
         // ID, nombre, email, numero de teléfono se heredan de IdentityUser, el IdRol también lo heredaría pero no lo hemos implementado (se verá en su momento)

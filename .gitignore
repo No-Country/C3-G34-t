@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+<<<<<<< HEAD
+=======
+# To resolve a conflict when pushing changes
+#slnx.sqlite
+
+>>>>>>> Developers
 # User-specific files
 *.rsuser
 *.suo

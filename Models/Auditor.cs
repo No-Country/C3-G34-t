@@ -9,6 +9,10 @@ namespace AuditApp.Models
     public class Auditor : UsuarioBase
     {
         [Required]
+<<<<<<< HEAD
+=======
+        [Display(Name = "Matrícula")]
+>>>>>>> Developers
         public string Matricula { get; set; }
 
     }

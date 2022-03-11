@@ -1,0 +1,368 @@
+﻿@model AuditApp.Models.FormAutoElevadores;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "AutoElevadores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class=col-sm-12>
+        <h3>Detalle Auditoría Autoelevadores</h3>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <form>
+            <div class="form-group mt-2">
+                <b><label class="control-label">1. Fecha de auditoría</label></b>
+                <div class="input-group my-1">
+                    <input asp-for="Fecha" class="form-control" value="@Model.Fecha" type="text" readonly />
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <b><label class="control-label my-2">2. Razón Social / Empresa</label></b>
+                <div class="input-group">
+                    <span class="material-icons input-group-text">factory</span>
+                    <input asp-for="PlantaId" class="form-control" value="@ViewBag.Planta" type="text" readonly>
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <b><label class='control-label my-2'>3. Elevador ID</label></b>
+                <input asp-for="ElevadorID" value='@Model.ElevadorID' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b>
+                    <label class='control-label mt-1'>4. Los autoelevadores deberán contener una placa identificatoria para el equipo y otra para el accesorio, la cual debería contener, en forma visible, indeleble, destacada y redactada en idioma español, la siguiente información</label>
+                </b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label mt-1'>4.1 La carga máxima admisible a transportar, conforme el Sistema Métrico Legal Argentino (SIMELA)</label>
+                <input asp-for="EtiquetaCargaMaxima" value='@Model.EtiquetaCargaMaxima' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>4.2 La tabla de carga y/o curvas que permitan el cálculo de cargas máximas admisibles para distintas condiciones de uso, en el sistema métrico legal argentino</label>
+                <input asp-for="EtiquetasCurvas" value='@Model.EtiquetasCurvas' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>4.3 La identificación interna del autoelevador</label>
+                <input asp-for="Etiquetastringerna" value='@Model.Etiquetastringerna' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>4.4. Las placas deberán cumplir con lo establecido por la Norma IRAM 8412-1, o la que en el futuro la modifique o sustituya</label>
+                <input asp-for="IRAM8412" value='@Model.IRAM8412' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-4">
+                <b><label class='control-label'>5. La cabina del autoelevador deberá cumplir con los siguientes requisitos</label></b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>5.1 Estructura resistente que proteja al operador contra caídas, proyección de objetos o por desplazamiento de la carga</label>
+                <input asp-for="EstructuraContraCaidas" value='@Model.EstructuraContraCaidas' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>5.2 El autoelevador que deba operar con lluvia, nieve, agua nieve, etc., deberá contar con: cerramiento y un sistema de limpiaparabrisas, el aire en el interior de las cabinas con cerramientos, deberá cumplir los requisitos establecidos en la legislación vigente</label>
+                <input asp-for="ProteccionLLuvia" value='@Model.ProteccionLLuvia' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>6. Los mandos de la puesta en marcha, aceleración, elevación y freno, deberán reunir las condiciones de seguridad necesarias para evitar el accionamiento involuntario</label></b>
+                <input asp-for="SeguridadMandos" value='@Model.SeguridadMandos' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>7. El asiento del conductor deberá estar diseñado ergonómicamente, poseer soporte lumbar adecuado, ser cómodo, regulable en profundidad y tener la capacidad de neutralizar en medida suficiente las vibraciones</label></b>
+                <input asp-for="SillaConductor" value='@Model.SillaConductor' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>8. El autoelevador deberá estar provisto de los siguientes elementos de seguridad</label></b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.1 Cinturón de seguridad</label>
+                <input asp-for="CinturonSeguridad" value='@Model.CinturonSeguridad' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'> 8.2  Luces de giro, balizas, posición y freno</label>
+                <input asp-for="LucesGiroFreno" value='@Model.LucesGiroFreno' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.3 Luces de trabajo en aquellos casos donde la tarea que se realice con el autoelevador así lo requiera</label>
+                <input asp-for="LucesTrabajo" value='@Model.LucesTrabajo' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.4 Bocina</label>
+                <input asp-for="Bocina" value='@Model.Bocina' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.5 Dispositivo de aviso de retroceso, acústico-luminoso</label>
+                <input asp-for="AvisoRetroceso" value='@Model.AvisoRetroceso' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.6 Espejos retrovisores en ambos lados del vehículo</label>
+                <input asp-for="EspejosRetrovisores" value='@Model.EspejosRetrovisores' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.7 Arrestallamas, en el caso de que se trabaje en ambientes que así lo requieran</label>
+                <input asp-for="Arrestallamas" value='@Model.Arrestallamas' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.8 Dispositivo aislante que envuelva el tubo de escape y puntos calientes, para impedir el contacto con materiales o personas evitando posibles quemaduras o incendios</label>
+                <input asp-for="DispositivoAislante" value='@Model.DispositivoAislante' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.9 Para trabajos en pendientes, debe estar provisto de cuñas para sus ruedas, las que se deben utilizar cuando el autoelevador se encuentre detenido</label>
+                <input asp-for="CuñasRuedas" value='@Model.CuñasRuedas' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.10 Freno de estacionamiento que permita mantenerlo inmóvil con su carga máxima y con la pendiente máxima admisible</label>
+                <input asp-for="FrenoEstacionario" value='@Model.FrenoEstacionario' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.11 Extintor acorde con el riesgo existente</label>
+                <input asp-for="Extintor" value='@Model.Extintor' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.12 Medios seguros para el ascenso y descenso del operador</label>
+                <input asp-for="MediosAsensoDesenso" value='@Model.MediosAsensoDesenso' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>8.13 Superficies antideslizantes en pedales de mando, pisos y peldaños</label>
+                <input asp-for="AntideslizantesManoPisos" value='@Model.AntideslizantesManoPisos' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>9. El manual del operador deberá estar redactado en idioma español, en el Sistema métrico legal argentino y ser accesible al operador</label></b>
+                <input asp-for="ManualOperario" value='@Model.ManualOperario' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>10. El empleador, con el asesoramiento del responsable del servicio de higiene y seguridad de la empresa, deberá</label></b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'> 10.1 Establecer las velocidades seguras de circulación, colocando cartelería que indique los máximos permitidos, en todas las áreas donde circulen estos vehículos</label>
+                <input asp-for="CarteleraVelocidades" value='@Model.CarteleraVelocidades' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>10.2 Señalizar todas las áreas donde se desplace el autoelevador, con cartelería de seguridad, correspondiente a todos los aspectos relacionados con su circulación</label>
+                <input asp-for="CarteleraViasCirculacion" value='@Model.CarteleraViasCirculacion' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>10.3 Establecer la prohibición de circulación de personas debajo de la carga elevada</label>
+                <input asp-for="CarteleraProhibicionCarga" value='@Model.CarteleraProhibicionCarga' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>10.4 Pintar y señalizar la altura de techos cañerías y otras estructuras, con el fin de evitar accidentes cuando el vehículo se encuentre con la altura máxima de elevación de la torre</label>
+                <input asp-for="SeñalizacionAltura" value='@Model.SeñalizacionAltura' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>11. El vehículo deberá contar con pictogramas y cartelería de prevención de riesgos sobre</label></b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.1 Uso del cinturón de seguridad </label>
+                <input asp-for="CarteleraCinturon" value='@Model.CarteleraCinturon' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.2 Riesgo de atrapamiento</label>
+                <input asp-for="CarteleraAtrapamiento" value='@Model.CarteleraAtrapamiento' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.3 Presión de inflado de los neumáticos</label>
+                <input asp-for="CarteleraInfladoNeumaticos" value='@Model.CarteleraInfladoNeumaticos' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.4 Velocidades de circulación autorizadas</label>
+                <input asp-for="CarteleraVelocidadCirculacionAut" value='@Model.CarteleraVelocidadCirculacionAut' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.5 Prohibición de llevar, elevar o transportar personas</label>
+                <input asp-for="CarteleraProhibicionPersonas" value='@Model.CarteleraProhibicionPersonas' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.6 Prohibición de circulación de personas por debajo de la carga</label>
+                <input asp-for="CarteleraProhibicionCircPersonas" value='@Model.CarteleraProhibicionCircPersonas' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.7 Aplicación de freno de estacionamiento al salir del vehículo</label>
+                <input asp-for="CarteleraAplicarFreno" value='@Model.CarteleraAplicarFreno' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>11.8 Riesgos en la recarga de baterías y recambio de envases de Gas Licuado de Petróleo (GLP)</label>
+                <input asp-for="CarteleraRiesgosBateriasYGas" value='@Model.CarteleraRiesgosBateriasYGas' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>12. Sólo se permitirá la operación del autoelevador a conductores autorizados por el empleador para tal tarea. Dicha autorización se obtendrá tras una capacitación teórico-práctico no menor a DIEZ (10) horas con evaluación final. Asimismo se requiere una revalidación anual de DOS (2) horas de duración. El curso de capacitación se dictará a todos los conductores. En el caso de incorporar un conductor nuevo se deberá brindar dicho curso antes de comenzar a operar el equipo, aun cuando éste posea experiencia previa en el manejo de estos vehículos</label></b>
+                <input asp-for="OperacionPersonalAut" value='@Model.OperacionPersonalAut' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b>
+                    <label class='control-label'>13. El operador del autoelevador, deberá realizar un control diario del equipo en el inicio del turno de trabajo, mediante un listado de verificación o chequeo, que contendrá como mínimo los siguientes puntos</label>
+                </b>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.1 Ruedas (banda de rodaje, presión, desgaste, etc.)</label>
+                <input asp-for="ListadoControlRuedas" value='@Model.ListadoControlRuedas' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.2 Fijación de los brazos de la horquilla/uñas o del accesorio</label>
+                <input asp-for="ListadoFijacionBrazos" value='@Model.ListadoFijacionBrazos' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.3 Inexistencia de fugas de fluidos en el circuito hidráulico,  mangueras y/o conexiones</label>
+                <input asp-for="ListadoFugasFluidos" value='@Model.ListadoFugasFluidos' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.4 Niveles de aceites</label>
+                <input asp-for="ListadoNivelAceite" value='@Model.ListadoNivelAceite' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.5 Mandos en servicio</label>
+                <input asp-for="CheckMandosServicio" value='@Model.CheckMandosServicio' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.6 Bocina</label>
+                <input asp-for="CheckBocina" value='@Model.CheckBocina' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.7 Luces</label>
+                <input asp-for="CheckLuces" value='@Model.CheckLuces' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.8 Dispositivo de aviso de retroceso</label>
+                <input asp-for="CheckAvisoRetroceso" value='@Model.CheckAvisoRetroceso' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.9 Frenos de pie y de mano</label>
+                <input asp-for="CheckFrenoPieMano" value='@Model.CheckFrenoPieMano' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.10 Espejos</label>
+                <input asp-for="CheckEspejos" value='@Model.CheckEspejos' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.11 Extintor</label>
+                <input asp-for="CheckExtintor" value='@Model.CheckExtintor' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.12 Cinturón de seguridad</label>
+                <input asp-for="CheckCinturonSeguridad" value='@Model.CheckCinturonSeguridad' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.13 Sistema de transmisión</label>
+                <input asp-for="CheckSistemaTransmision" value='@Model.CheckSistemaTransmision' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class='control-label'>13.14 Estado del asiento</label>
+                <input asp-for="CheckEstadoAsiento" value='@Model.CheckEstadoAsiento' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>14. El operador deberá informar al supervisor/responsable/encargado, de las irregularidades detectadas en el chequeo previo, debiendo indicar este último al operador si el autoelevador puede ser operado o debe ir a reparaciones de manera inmediata</label></b>
+                <input asp-for="InformeReparaciones" value='@Model.InformeReparaciones' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>15. Si el autoelevador se encontrare fuera de servicio, deberá quedar claramente señalizado con la prohibición de su manejo por trabajadores no encargados de su reparación</label></b>
+                <input asp-for="SeñalizacionFueraServicio" value='@Model.SeñalizacionFueraServicio' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>16. Trimestralmente un profesional con incumbencia deberá realizar una revisión general del autoelevador</label></b>
+                <input asp-for="RevisionGeneralTriMestral" value='@Model.RevisionGeneralTriMestral' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>17. Se deberá registrar el programa interno de mantenimiento preventivo establecido por el fabricante, en caso de no contar con éste, se establecerá uno. Asimismo se deberá registrar el mantenimiento correctivo que se le realice al vehículo</label></b>
+                <input asp-for="ProgramaMantenimiento" value='@Model.ProgramaMantenimiento' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label class='control-label'>18. El reaprovisionamiento de combustible, la carga de baterías y el recambio de envases de Gas Licuado de Petróleo (GLP), se realizará en lugares designados y equipados para tal propósito, los que deberán cumplir con la normativa vigente. El personal que realice esta tarea deberá utilizar los Elementos de Protección Personal seleccionados por el responsable de higiene y seguridad de la  empresa con la participación del servicio de medicina del trabajo, quien seguirá un procedimiento de trabajo seguro, para el cual será entrenado, capacitado y autorizado para realizarla</label></b>
+                <input asp-for="ElementosProteccionGLP" value='@Model.ElementosProteccionGLP' class='form-control' readonly />
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="Observaciones" class="control-label my-1">19. Observaciones</label></b>
+                <textarea asp-for="Observaciones" class="form-control" style="height: 155px" readonly>@Model.Observaciones</textarea>
+            </div>
+
+            <div class="form-group mt-3">
+                <b><label asp-for="ResponsableDesvio" class="control-label my-2">20. Responsable del Desvío</label></b>
+                <input asp-for="ResponsableDesvio" class="form-control" value="@Model.ResponsableDesvio" readonly />
+            </div>
+        </form>
+    </div>
+</div>
+    </br>
+<div class="col-2">
+    <div class="form-group">
+        <button onclick="printHTML()" class="btn btn-primary btn-block">Imprimir</button>
+        <script>
+    function printHTML() {
+                if (window.print) {
+                    window.print();
+                }
+            }</script>
+    </div>
+</div>
+</br>
+
+<div>
+    <a asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
+</div>
+@*<div class="form-group">
+          <a href="/FAutoElevadores/Index" value="Volver" class="btm btn-primary" >Volver</a>
+    </div>*@

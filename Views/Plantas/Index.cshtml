@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AuditApp.Models.Planta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Listado Plantas</h3>
+    </div>
+</div>
+<hr />
+<div>
+    <p>
+        <a asp-action="Create" style="font-size: 1.3em; color: blue"><i class="text-primary bi-arrow-right-circle me-1"></i>Nuevo</a>
+    </p>
+</div>
+<div class="col-12 col-md-6 px-2">
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-hover table-striped align-middle text-center">
+                <thead class="table-light sticky-top">
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(model => model.Nombre)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="text-start">
+                            <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                            <!--<td>-->
+                                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+                                @*<a asp-action="Details" asp-route-id="@item.Id">Detalles</a>*@
+                                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                            <!--</td>-->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>En el momento no hay tableros  que mostrar.</p>
+        }
+    </div>
+</div>

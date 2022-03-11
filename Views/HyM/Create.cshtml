@@ -1,0 +1,324 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UsuarioBase> SignInManager
+@inject UserManager<UsuarioBase> UserManager
+
+@model FormHyM
+
+@{
+    ViewData["Title"] = "Herramientas y Máquinas";
+
+}
+
+<div class="row">
+    <div class=col-sm-12>
+        <h3>Nueva Auditoría Herramientas y Máquinas</h3>
+    </div>
+</div>
+<hr />
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <form asp-action="Save">
+                <input type="text" asp-for="AuditorGuId" value="@UserManager.GetUserAsync(User).Result.Id" class="invisible" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger my-1"></div>
+                <div class="form-group mt-0">
+                    <b><label class="control-label">1. Fecha de auditoría</label></b>
+                    <div class="input-group my-1">
+                        <input asp-for="Fecha" class="form-control-plaintext bg-body" value="@DateTime.Now" type="text" readonly />
+                    </div>
+                    <span asp-validation-for="Fecha" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-1">
+                    <b><label asp-for="PlantaId" class="control-label my-2">2. Razón Social / Empresa</label></b>
+                    <div class="input-group">
+                        <span class="material-icons input-group-text">factory</span>
+                        <select asp-for="PlantaId" class="form-select" name="PlantaId">
+                            <option disabled selected>Elegir Planta</option>
+                            @foreach (var p in (IEnumerable<Planta>)ViewData["Plantas"])
+                            {
+                                <option value="@p.Id">@p.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                    <span asp-validation-for="PlantaId" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <b><label asp-for="IdHyM" class="control-label my-2">3. ID Herramienta / Maquinaria</label></b>
+                    <input asp-for="IdHyM" class="form-control" />
+                    <span asp-validation-for="IdHyM" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-2">
+                    <b><label asp-for="Puesto" class="control-label my-2">4. Puesto / Sector</label></b>
+                    <input asp-for="Puesto" class="form-control" />
+                    <span asp-validation-for="Puesto" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-4">
+                    <b><label asp-for="EPP" class="control-label">5. Elementos de protección personal indicados para el puesto de trabajo - utilización OBLIGATORIA</label></b>
+                    <div>
+                        <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="EPP" value="Ok" id="eppok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="eppok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="EPP" value="No Ok" id="eppnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="eppnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="EPP" value="No Aplica" id="eppnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="eppnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="EPP" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="EPP" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="LimpiezaYorganizacion" class="control-label">6. Limpieza y organización del puesto de trabajo - verificar si el puesto de trabajo está limpio y organizado. 5S</label></b>
+                    <div>
+                        <div class="btn-group w-100 mt-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="LimpiezaYorganizacion" value="Ok" id="lyook" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="lyook">Ok</label>
+
+                            <input type="radio" class="btn-check" name="LimpiezaYorganizacion" value="No Ok" id="lyonook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="lyonook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="LimpiezaYorganizacion" value="No Aplica" id="lyonoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="lyonoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="LimpiezaYorganizacion" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="LimpiezaYorganizacion" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="Protecciones" class="control-label">7. Protecciones - verificar si están todas las protecciones (máquinas y equipamientos). CRÍTICO</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="Protecciones" value="Ok" id="protecok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="protecok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="Protecciones" value="No Ok" id="protecnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="protecnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="Protecciones" value="No Aplica" id="protecnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="protecnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="Protecciones" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="Protecciones" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group  mt-3">
+                    <b><label asp-for="DoblesPulsadores" class="control-label">8. Dobles pulsadores - verificar funcionamiento y sincronizmo. CRÍTICO</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="DoblesPulsadores" value="Ok" id="doblepulsapok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="doblepulsapok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="DoblesPulsadores" value="No Ok" id="doblepulsanook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="doblepulsanook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="DoblesPulsadores" value="No Aplica" id="doblepulsanoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="doblepulsanoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="DoblesPulsadores" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="DoblesPulsadores" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="ParadaDeEmergencia" class="control-label">9. Parada de emergencia - verificar condiciones y funcionamiento (máquinas y equipamiento). CRÍTICO</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="ParadaDeEmergencia" value="Ok" id="paraemergok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="paraemergok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="ParadaDeEmergencia" value="No Ok" id="paraemergnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="paraemergnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="ParadaDeEmergencia" value="No Aplica" id="paraemergnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="paraemergnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="ParadaDeEmergencia" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="ParadaDeEmergencia" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="BarreraOpticaEnclavamientoElectrico" class="control-label">10. Barreras ópticas, micros de seguridad, enclavamientos eléctricos (máquinas y equipamiento). CRÍTICO</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="BarreraOpticaEnclavamientoElectrico" value="Ok" id="boeeok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="boeeok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="BarreraOpticaEnclavamientoElectrico" value="No Ok" id="boeenook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="boeenook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="BarreraOpticaEnclavamientoElectrico" value="No Aplica" id="boeenoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="boeenoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="BarreraOpticaEnclavamientoElectrico" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="BarreraOpticaEnclavamientoElectrico" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="HerramientasManuales" class="control-label">11. Herramientas manuales - verificar condiciones y estado de conservación</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="HerramientasManuales" value="Ok" id="harramanok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="harramanok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="HerramientasManuales" value="No Ok" id="harramannook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="harramannook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="HerramientasManuales" value="No Aplica" id="harramannoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="harramannoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="HerramientasManuales" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="HerramientasManuales" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="PerdidasAireAguaAceite" class="control-label">12. Pérdidas de aire comprimido / agua / aceite - verificar la existencia de pérdidas</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="PerdidasAireAguaAceite" value="Ok" id="perdidasok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="perdidasok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="PerdidasAireAguaAceite" value="No Ok" id="perdidasnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="perdidasnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="PerdidasAireAguaAceite" value="No Aplica" id="perdidasnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="perdidasnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="PerdidasAireAguaAceite" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="PerdidasAireAguaAceite" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="Iluminacion" class="control-label">13. Iluminación - verificar la existencia de luminarias / lámparas quemadas</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="Iluminacion" value="Ok" id="ilumok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ilumok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="Iluminacion" value="No Ok" id="ilumnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="ilumnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="Iluminacion" value="No Aplica" id="ilumnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="ilumnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="Iluminacion" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="Iluminacion" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="CondicionesInseguras" class="control-label">14. Condiciones inseguras - verificar la existencia de condiciones inseguras</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="CondicionesInseguras" value="Ok" id="condicinsegok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="condicinsegok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="CondicionesInseguras" value="No Ok" id="condicinsegnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="condicinsegnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="CondicionesInseguras" value="No Aplica" id="condicinsegnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="condicinsegnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="CondicionesInseguras" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="CondicionesInseguras" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="CarrosEmbalajes" class="control-label">15. Medios de transporte (carros) / embalaje - verificar las condiciones de seguridad de los medios de transpoarte y de los embalajes</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="CarrosEmbalajes" value="Ok" id="carembaok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="carembaok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="CarrosEmbalajes" value="No Ok" id="carembanook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="carembanook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="CarrosEmbalajes" value="No Aplica" id="carembanoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="carembanoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="CarrosEmbalajes" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="CarrosEmbalajes" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="PuertasTablerosElectricos" class="control-label">16. Tableros eléctricos - verificar que las puertas de los tableros estén correctamente cerradas</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="PuertasTablerosElectricos" value="Ok" id="puertablerosok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="puertablerosok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="PuertasTablerosElectricos" value="No Ok" id="puertablerosnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="puertablerosnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="PuertasTablerosElectricos" value="No Aplica" id="puertablerosnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="puertablerosnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="PuertasTablerosElectricos" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="PuertasTablerosElectricos" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="GuinchesBalanceadores" class="control-label">17. Ginches / balanceadores - verificar los cables / cadenas de izamiento y los sistemas de fijación</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="GuinchesBalanceadores" value="Ok" id="guinchbalancok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="guinchbalancok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="GuinchesBalanceadores" value="No Ok" id="guinchbalancnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="guinchbalancnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="GuinchesBalanceadores" value="No Aplica" id="guinchbalancnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="guinchbalancnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="GuinchesBalanceadores" class="text-danger my-1"></span>
+                    </div>
+                    <span asp-validation-for="GuinchesBalanceadores" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="Entrenamiento" class="control-label">18. Entrenamiento - apto para realizar las tareas de acuerdo a los riesgos</label></b>
+                    <div>
+                        <div class="btn-group w-100 my-1" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="Entrenamiento" value="Ok" id="entrenamok" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="entrenamok">Ok</label>
+
+                            <input type="radio" class="btn-check" name="Entrenamiento" value="No Ok" id="entrenamnook" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill mx-2 my-2 w-25 p-1" for="entrenamnook">No ok</label>
+
+                            <input type="radio" class="btn-check" name="Entrenamiento" value="No Aplica" id="entrenamnoaplica" autocomplete="off">
+                            <label class="btn btn-outline-primary rounded-pill my-2 w-25 p-1" for="entrenamnoaplica">No aplica</label>
+                        </div>
+                        <span asp-validation-for="Entrenamiento" class="text-danger"></span>
+                    </div>
+                    <span asp-validation-for="Entrenamiento" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <b><label asp-for="Observaciones" class="control-label my-1">19. Observaciones</label></b>
+                    <textarea asp-for="Observaciones" class="form-control" style="height: 155px"></textarea>
+                    <span asp-validation-for="Observaciones" class="text-danger my-1"></span>
+                </div>
+                <div class="form-group mt-4">
+                    <b><label asp-for="ResponsableDesvio" class="control-label my-2">20. Responsable del Desvío</label></b>
+                    <input asp-for="ResponsableDesvio" class="form-control" />
+                    <span asp-validation-for="ResponsableDesvio" class="text-danger my-1"></span>
+                </div>
+
+                <div class="form-group mt-4 w-75">
+                    @*<a type="button" class="btn btn-light border border-secondary my-3 me-3 w-25" title="Cancelar" asp-controller="Auditor" asp-action="Index">Cancelar</a>*@
+                    <input type="submit" value="Guardar" class="btn btn-primary border border-primary my-3 w-50" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+<div>
+    <a asp-area="" asp-controller="HyM" asp-action="Index" style="font-size: 1.3em; color: orangered"><i class="bi bi-arrow-left-circle me-1"></i>Ir al Listado</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+

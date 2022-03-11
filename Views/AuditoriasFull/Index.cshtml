@@ -1,0 +1,48 @@
+﻿@using System.Collections
+@model IEnumerable<AuditApp.Models.AuditoriasView>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Historial de Auditorías</h3>
+    </div>
+</div>
+<hr/>
+<div class="container col-12">
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-hover table-striped align-middle text-center">
+                <thead class="table-light sticky-top">
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(m => m.PlantaName)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.TipoFormulario)</th>
+                        <th scope="col">@Html.DisplayNameFor(m => m.Fecha)</th>
+
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.PlantaName</td>
+                            <td>@item.TipoFormulario</td>
+                            <td>@item.Fecha</td>
+                            <!-- Botón Details -->
+                            <td><a class="btn btn alert-primary" asp-action="Details" asp-controller="@item.controlador" asp-route-id="@item.IdFormulario">Detalle</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>En el momento no hay Auditorias que mostrar.</p>
+        }
+    </div>
+</div>
