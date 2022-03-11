@@ -12,10 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using AuditApp.Models;
-<<<<<<< HEAD
-=======
 using System.Security.Claims;
->>>>>>> Developers
 
 namespace AuditApp.Areas.Identity.Pages.Account
 {
@@ -90,15 +87,12 @@ namespace AuditApp.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-<<<<<<< HEAD
-=======
                     Guid a = Guid.NewGuid();
                     var userId = _userManager.FindByEmailAsync(Input.Email);
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity();
                     Claim userCLaim = new Claim("userId", userId.Id.ToString());
                     HttpContext.User.Identities.First().AddClaim(userCLaim);
 
->>>>>>> Developers
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }

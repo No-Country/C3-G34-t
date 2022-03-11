@@ -1,15 +1,10 @@
 ﻿using AuditApp.Data;
-<<<<<<< HEAD
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-=======
 using AuditApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
->>>>>>> Developers
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +17,6 @@ namespace AuditApp.Controllers
     public class AuditorController : Controller
     {
         private readonly ApplicationDbContext _context;
-<<<<<<< HEAD
-        public AuditorController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        // No pude implementar el route [Route("Panel/Auditor")]
-        public IActionResult Index()
-        {
-            return View();
-        }
-=======
         private readonly UserManager<UsuarioBase> _userManager;
         public AuditorController(ApplicationDbContext context, UserManager<UsuarioBase> UserManager)
         {
@@ -79,7 +62,7 @@ namespace AuditApp.Controllers
             }
             catch (Exception e)
             {
-                return View();
+                return View(e);
             }
 
             return View(PlantaCont);
@@ -90,7 +73,5 @@ namespace AuditApp.Controllers
             public string MyLabel { get; set; }
             public int MyData { get; set; }
         }
-
->>>>>>> Developers
     }
 }

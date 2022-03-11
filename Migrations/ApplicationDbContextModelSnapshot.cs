@@ -20,8 +20,6 @@ namespace AuditApp.Migrations
                 .HasAnnotation("ProductVersion", "5.0.14")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
-=======
             modelBuilder.Entity("AuditApp.Models.FormAutoElevadores", b =>
                 {
                     b.Property<int>("FormID")
@@ -458,7 +456,6 @@ namespace AuditApp.Migrations
                     b.ToTable("Plantas");
                 });
 
->>>>>>> Developers
             modelBuilder.Entity("AuditApp.Models.UsuarioBase", b =>
                 {
                     b.Property<string>("Id")
@@ -473,12 +470,8 @@ namespace AuditApp.Migrations
 
                     b.Property<string>("DNI")
                         .IsRequired()
-<<<<<<< HEAD
-                        .HasColumnType("nvarchar(max)");
-=======
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
->>>>>>> Developers
 
                     b.Property<string>("Discriminator")
                         .IsRequired()

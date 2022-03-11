@@ -8,23 +8,6 @@ namespace AuditApp.Models
 {
     public class FormTableroElectrico : FormBase
     {
-<<<<<<< HEAD
-        [Key]
-        public int Id { get; set; }
-        public string TableroYSector { get; set; }
-        public string CarteleriaSeñalizada { get; set; }
-        public string CarteleriaBuenEstado { get; set; }
-        public string CarteleriaEPP { get; set; }
-        public string MPCProcEscritos { get; set; }
-        public string MPCCandadosTarjetas { get; set; }
-        public string MPCTableroProtegido { get; set; }
-        public string EPPCalzadoDielectrico { get; set; }
-        public string EPPGuantesDielectrico { get; set; }
-        public string EPPLentes { get; set; }
-        public string TableroLibre { get; set; }
-        public string Cerradura { get; set; }
-        public string OrdenLimpieza { get; set; }
-=======
         [Required]
         [Display(Name = "Nº de Tablero y Sector")]
         public string TableroYSector { get; set; }
@@ -66,7 +49,6 @@ namespace AuditApp.Models
         public string OrdenLimpieza { get; set; }
         [Required]
         [Display(Name = "16. Otros: posee matafuegos, tipo adecuado")]
->>>>>>> Developers
         public string Matafuegos { get; set; }
         
     }

@@ -8,25 +8,6 @@ namespace AuditApp.Models
 {
     public class FormHyM : FormBase
     {
-<<<<<<< HEAD
-        [Key]
-        public int Id { get; set; }
-        public string IdHyM { get; set; }
-        public string Puesto { get; set; }
-        public string EPP { get; set; }
-        public string LimpiezaYorganizacion { get; set; }
-        public string Protecciones { get; set; }
-        public string DoblesPulsadores { get; set; }
-        public string ParadaDeEmergencia { get; set; }
-        public string BarreraOpticaEnclavamientoElectrico { get; set; }
-        public string HerramientasManuales { get; set; }
-        public string PerdidasAireAguaAceite { get; set; }
-        public string Iluminacion { get; set; }
-        public string CondicionesInseguras { get; set; }
-        public string CarrosEmbalajes { get; set; }
-        public string PuertasTablerosElectricos { get; set; }
-        public string GuinchesBalanceadores { get; set; }
-=======
         [Required]
         [Display(Name = "ID Herramienta / Maquinaria")]
         public int IdHyM { get; set; }
@@ -86,7 +67,6 @@ namespace AuditApp.Models
         public string GuinchesBalanceadores { get; set; }
 
         [Required]
->>>>>>> Developers
         public string Entrenamiento { get; set; }
     }
 }
