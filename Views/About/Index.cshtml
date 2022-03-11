@@ -1,0 +1,127 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+//ViewData["Title"] = "Bienvenid@ a AuditApp";
+}
+@*<h1>@ViewData["Title"]</h1>*@
+
+
+@*<h4> Tabla de contenidos</h4>
+
+<ol>
+    <li><a href="#img">[Imagotipo]</a></li>
+    <li><a href="#queEs">[¿Qué es?] </a></li>
+    <li><a href="#tecs">[Tecnologías]</a></li>
+    <li><a href="#collabs">[Colaboradores]</a></li>
+</ol>*@
+<div class="container-fluid mb-5">
+    <div class="mx-auto d-block mb-3" style="width:200px; height:auto">
+        <img class="img-fluid w-100" src="https://user-images.githubusercontent.com/43002670/157101946-a1337045-d647-4bd7-bee6-99289535b355.png" id="img" />
+    </div>
+
+    @*<h4 id="queEs">¿Qué es AuditApp?</h4>*@
+    <div class="container justify-content-center">
+        <p class="lh-base fs-5">
+            <strong>AuditApp</strong> es una herramienta digital para la gestión de auditorías en el área de Higiene y Seguridad.
+            Tiene como objetivo el relevamiento de datos para generar información inmediata.
+            Es de navegación intuitiva.
+        </p>
+    </div>
+</div>
+
+<hr class="text-muted mx-auto w-75" />
+
+<div class="container-fluid my-5">
+    <div class="col-8 m-auto">
+        <div class="row row-cols-1 mb-4">
+            <h3 class="text-center mb-md-4" id="tecs">Tecnologías utilizadas</h3>
+        </div>
+        
+        <div class="row row-cols-auto justify-content-evenly mt-md-2">
+            <div><i class="devicon-dotnetcore-plain colored display-2"></i></div>
+            <div><i class="devicon-csharp-plain colored display-2"></i></div>
+            <div><i class="devicon-microsoftsqlserver-plain-wordmark colored display-1"></i></div>
+        </div>
+
+        <div class="row row-cols-auto justify-content-evenly mt-4">
+            <div><i class="devicon-javascript-plain colored display-5"></i></div>
+            <div><i class="devicon-bootstrap-plain colored display-5"></i></div>
+            <div class="align-baseline"><i class="devicon-css3-plain colored display-5"></i></div>
+            <div class="align-middle"><i class="devicon-html5-plain colored display-5"></i></div>
+        </div>
+    </div>        
+</div>
+
+<hr class="text-muted mx-auto w-75" />
+
+<div class="container-fluid my-5">
+    <div class="col-12 m-auto">
+        <div class="row row-cols-1 mb-4">
+            <h3 class="text-center mb-md-4" id="collabs">Equipo de desarrolladores</h3>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+            <div class="col">
+                <div class="card justify-content-center h-100 o-hidden border-0 shadow">
+                    <div class="card-header col-md-2 rounded-circle overflow-hidden bg-secondary position-relative p-0 mx-auto mt-4 mb-1" style="width: 180px; height: 180px;">
+                        <img src="~/images/card1.jpg" class="card-img-top overflow-hidden position-absolute top-50 start-50 translate-middle w-100" alt="Foto Dev Agustina">
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Aperlo María Agustina</h5>
+                        <p class="card-text">FullStack Developer</p>
+                        <a href="https://github.com/No-Country/C3-G34-t"><i class="bi bi-github text-dark text-decoration-none me-2" style="font-size: 1.97em;"></i></a>
+                        <a href="#"><i class="bi bi-linkedin text-decoration-none ms-2" style="font-size: 1.97em;"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card justify-content-center h-100 o-hidden border-0 shadow">
+                    <div class="card-header col-md-2 rounded-circle overflow-hidden bg-secondary position-relative p-0 mx-auto mt-4 mb-1" style="width: 180px; height: 180px;">
+                        <img src="~/images/card4.jpeg" class="card-img-top overflow-hidden position-absolute top-50 start-50 translate-middle w-100" alt="Foto Dev Maya">
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Franchi Maya</h5>
+                        <p class="card-text">FullStack Developer</p>
+                        <a href="https://github.com/mFranchi92"><i class="bi bi-github text-dark text-decoration-none me-2" style="font-size: 1.97em;"></i></a>
+                        <a href="https://linkedin.com/ln/maya-franchi"><i class="bi bi-linkedin text-decoration-none ms-2" style="font-size: 1.97em;"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card justify-content-center h-100 o-hidden border-0 shadow">
+                    <div class="card-header col-md-2 rounded-circle overflow-hidden bg-secondary position-relative p-0 mx-auto mt-4 mb-1" style="width: 180px; height: 180px;">
+                        <img src="~/images/card3.png" class="card-img-top overflow-hidden position-absolute top-50 start-50 translate-middle w-100" alt="Foto Dev Javier">
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">García Javier</h5>
+                        <p class="card-text">FullStack Developer</p>
+                        <div>
+                            <a href="https://github.com/RedFoxArg"><i class="bi bi-github text-dark text-decoration-none me-2" style="font-size: 1.97em;"></i></a>
+                            <a href="https://www.linkedin.com/in/garcia-javier/"><i class="bi bi-linkedin text-decoration-none ms-2" style="font-size: 1.97em;"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card justify-content-center h-100 o-hidden border-0 shadow">
+                    <div class="card-header col-md-2 rounded-circle overflow-hidden bg-secondary position-relative p-0 mx-auto mt-4 mb-1" style="width: 180px; height: 180px;">
+                        <img src="~/images/card2.png" class="card-img-top overflow-hidden position-absolute top-50 start-50 translate-middle w-100" alt="Foto Dev Cristian">
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Merchan Jonathan</h5>
+                        <p class="card-text">FullStack Developer</p>
+                        <a href="https://github.com/No-Country/C3-G34-t"><i class="bi bi-github text-dark text-decoration-none me-2" style="font-size: 1.97em;"></i></a>
+                        <a href="https://linkedin.com"><i class="bi bi-linkedin text-decoration-none ms-2" style="font-size: 1.97em;"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
