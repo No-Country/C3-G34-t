@@ -60,7 +60,7 @@ namespace AuditApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre")] Planta planta)
+        public async Task<IActionResult> Save([Bind("Id,Nombre")] Planta planta)
         {
             if (ModelState.IsValid)
             {

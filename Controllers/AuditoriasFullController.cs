@@ -35,6 +35,7 @@ namespace AuditApp.Controllers
             IEnumerable<FormHyM> LVHyM = null;
             List<Planta> LPlantas = new List<Planta>();
             List<AuditoriasView> All = new();
+            //List<AuditoriasView> OrderedDesc = new();
 
             try
             {                
@@ -77,6 +78,7 @@ namespace AuditApp.Controllers
                     All.Add(Auth);
                 }
 
+                //OrderedDesc = All.OrderByDescending(f => f.Fecha).ToList();
 
                 //    ViewData["AE"] = LVFAE;
                 //    ViewData["TE"] = LVTE;
@@ -88,7 +90,7 @@ namespace AuditApp.Controllers
                 return BadRequest();
             }
 
-            return View(All.OrderByDescending(f => f.Fecha));
+            return View(All);
         }
     }
 }
