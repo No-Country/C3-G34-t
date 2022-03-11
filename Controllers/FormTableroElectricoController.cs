@@ -21,8 +21,8 @@ namespace AuditApp.Controllers
             _userManager = UserManager;
         }
 
-        [Route("Tableros/Index/")]
         // GET: FormTableroElectrico
+        [Route("Tableros/Index/")]
         public async Task<IActionResult> Index()
         {
             IEnumerable<FormTableroElectrico> LVTE;
@@ -40,8 +40,8 @@ namespace AuditApp.Controllers
             return View(LVTE);
         }
 
-      
         // GET: FormTableroElectrico/Details/5
+        [Route("Tableros/Detalles/{id}")]
         public async Task<IActionResult> Details(int id)
         {
             if (id <= 0)
@@ -85,6 +85,7 @@ namespace AuditApp.Controllers
         //    return View();
         //}
         // GET: HyM/Create
+        [Route("Tableros/Nuevo/")]
         public ActionResult Create()
         {
             IEnumerable<Planta> LPlantas;
@@ -104,7 +105,6 @@ namespace AuditApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-       
         public async Task<IActionResult> Save(FormTableroElectrico newTEAudit)
         {
 
@@ -131,19 +131,19 @@ namespace AuditApp.Controllers
         // POST: FormTableroElectrico/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(FormTableroElectrico formTableroElectrico)
-        {
-            //[Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")]
-            if (ModelState.IsValid)
-            {
-                _context.Add(formTableroElectrico);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(formTableroElectrico);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(FormTableroElectrico formTableroElectrico)
+        //{
+        //    //[Bind("Id,TableroYSector,CarteleriaSeñalizada,CarteleriaBuenEstado,CarteleriaEPP,MPCProcEscritos,MPCCandadosTarjetas,MPCTableroProtegido,EPPCalzadoDielectrico,EPPGuantesDielectrico,EPPLentes,TableroLibre,Cerradura,OrdenLimpieza,Matafuegos,AuditorId,Fecha,Observaciones,ResponsableDesvio,PlantaId")]
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(formTableroElectrico);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(formTableroElectrico);
+        //}
 
         // GET: FormTableroElectrico/Edit/5
         //public async Task<IActionResult> Edit(int? id)

@@ -39,6 +39,7 @@ namespace AuditApp.Controllers
         }
 
         // GET: HyM/Create
+        [Route("Herramientas/Nuevo/")]
         public ActionResult Create()
         {                                
             IEnumerable<Planta> LPlantas;
@@ -99,7 +100,7 @@ namespace AuditApp.Controllers
         }
 
 
-        [Route("HyM/Details/{id}")]
+        [Route("Herramientas/Detalles/{id}")]
         // GET: HyM/Details/5
         public IActionResult Details(int id)
         {

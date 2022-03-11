@@ -10,6 +10,7 @@ namespace AuditApp.Controllers
     public class About : Controller
     {
         // GET: About
+        [Route("Acererca-de-AuditApp/Index/")]
         public ActionResult Index()
         {
             return View();

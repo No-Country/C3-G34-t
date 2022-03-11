@@ -39,6 +39,7 @@ namespace AuditApp.Controllers
 
         [HttpGet]
         //HTTP GET
+        [Route("Autoelevadores/Nuevo/")]
         public IActionResult Create()
         {
             IEnumerable <Planta> LPlantas;
@@ -74,6 +75,7 @@ namespace AuditApp.Controllers
         
         [HttpGet]
         //{{ServerURL}}/Rol/DetailsId?id=1
+        [Route("Autoelevadores/Detalles/{id}")]
         public async Task<IActionResult> Details(int id)
         {
             FormAutoElevadores FAE = new FormAutoElevadores();

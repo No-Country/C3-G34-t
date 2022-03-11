@@ -23,6 +23,7 @@ namespace AuditApp.Controllers
             _userManager = UserManager;
         }
         [HttpGet]
+        [Route("Historial/Index/")]
         public async Task<IActionResult> Index()
         {
             //ViewData["AE"] = "";
@@ -89,10 +90,5 @@ namespace AuditApp.Controllers
 
             return View(All.OrderByDescending(f => f.Fecha));
         }
-
-
-
-
-
     }
 }
