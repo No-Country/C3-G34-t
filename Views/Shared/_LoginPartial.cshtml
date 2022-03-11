@@ -13,9 +13,9 @@
             @*<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><i class="bi bi-person-circle me-2"></i> @UserManager.GetUserAsync(User).Result.UserFirstName @UserManager.GetUserAsync(User).Result.UserLastName</a>*@
             <a class="nav-link text-dark dropdown-toggle" href="#" id="userOptionsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">@UserManager.GetUserAsync(User).Result.UserFirstName @UserManager.GetUserAsync(User).Result.UserLastName</a>
             <ul class="dropdown-menu" style="z-index: 100000;" aria-labelledby="userOptionsDropdown">
-                <li class="dropdown-item">
+                @*<li class="dropdown-item">
                     <a class="nav-link text-dark p-0" asp-area="" asp-controller="Auditor" asp-action="Index">Editar Perfil</a>
-                </li>
+                </li>*@
                 <li class="dropdown-item">
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Auditor", new { area = "" })">
                         <button type="submit" class="nav-link btn btn-link text-dark p-0">Cerrar sesión</button>
