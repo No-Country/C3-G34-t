@@ -38,7 +38,7 @@ Colaboradores y Rol
 ***
 
 Aperlo María Agustina (FullStack Developer)
-Franchin Maya  (FullStack Developer)
+Franchi Maya  (FullStack Developer)
 García Javier  (FullStack Developer)
 Merchan Jonathan   (FullStack Developer)
 
