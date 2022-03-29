@@ -36,10 +36,10 @@ Es de navegación intuitiva.
 
 ### <a name="colaboradores" />Colaboradores y Rol
 
-- Aperlo, María Agustina (FullStack Developer)
-- Franchi, Maya (FullStack Developer)
-- García, Javier (FullStack Developer)
-- Merchan, Jonathan (FullStack Developer)
+- [Aperlo, María Agustina (FullStack Developer)](https://github.com/magustinaperlo)
+- [Franchi, Maya (FullStack Developer)](https://github.com/mFranchi92)
+- [García, Javier (FullStack Developer)](https://github.com/RedFoxArg)
+- [Merchan, Jonathan (FullStack Developer)](https://github.com/JonathanMerchan)
 
 
 
